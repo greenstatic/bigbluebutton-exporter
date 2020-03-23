@@ -5,9 +5,23 @@ Docker container image: [https://hub.docker.com/r/greenstatic/bigbluebutton-expo
 
 Default port: 9688
 ## Grafana Dashboard
-Dashboard is available at: `extras/grafana_dashboard.json`
+To import the customized dashboards, select the create button on the left hand side of Grafana and select __import__ then copy/paste the contents of the dashboard's JSON (see bellow for the path of the file).
 
-![](extras/grafana_dashboard_img.png)
+### Server Instance Dashboard
+Using the instance variable (top left corner) one can select a specific BigBlueButton server and view detailed metrics.
+**Netdata is required** to view CPU & network bandwidth data.
+See [Using Netdata with Prometheus](https://docs.netdata.cloud/backends/prometheus/) for details on how to set it up.
+
+Dashboard is available at: `extras/grafana_dashboard_server_instance.json`
+
+![](extras/img_grafana_dashboard_server_instance.png)
+
+### All Servers Dashboard
+Shows aggregated data for all BigBlueButton servers.
+
+Dashboard is available at: `extras/grafana_dashboard_all_servers.json`
+
+![](extras/img_grafana_dashboard_all_servers.png)
 
 ## Installation
 The following instructions will instruct you how to install bbb-exporter on your BigBlueButton server and
@@ -51,6 +65,10 @@ direct `/metrics/` to expose your BBB server's metrics.
     ```
 1. Reload Nginx: `sudo systemctl reload nginx`
 1. Try accessing `/metrics` on your web server
+
+It is advised to add HTTP Basic Auth to the metrics endpoint and configure Prometheus to use the credentials.
+This way metrics will not be exposed for everybody to see.
+
 
 ## Metrics
 Gauges:
@@ -96,4 +114,4 @@ for instructions how.
 ## Extras
 Located in `extras` dir:
 * docker-compose YAML file for bigbluebutton-exporter
-* Grafana dashboard
+* Grafana dashboards
