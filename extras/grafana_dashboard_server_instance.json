@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1584987382843,
+  "iteration": 1585080405221,
   "links": [],
   "panels": [
     {
@@ -109,8 +109,7 @@
     },
     {
       "aliasColors": {
-        "Participants": "blue",
-        "bbb.garaza.io:443": "blue"
+        "Participants": "blue"
       },
       "bars": false,
       "dashLength": 10,
@@ -244,7 +243,7 @@
           "refId": "A"
         },
         {
-          "expr": "max_over_time(bbb_meetings_participants{instance=\"bbb.garaza.io:443\"}[100y])",
+          "expr": "max_over_time(bbb_meetings_participants{instance=\"$instance\"}[100y])",
           "interval": "",
           "legendFormat": "All time",
           "refId": "B"
@@ -371,7 +370,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\", instance=\"bbb.garaza.io:443\"})",
+          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\", instance=\"$instance\"})",
           "interval": "",
           "legendFormat": "CPU Utlization",
           "refId": "A"
@@ -407,7 +406,7 @@
           "format": "percent",
           "label": "CPU Utlization [%]",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": null,
           "show": true
         },
@@ -428,8 +427,7 @@
     },
     {
       "aliasColors": {
-        "Voice participants": "orange",
-        "bbb.garaza.io:443": "orange"
+        "Voice participants": "orange"
       },
       "bars": false,
       "dashLength": 10,
@@ -757,8 +755,7 @@
     },
     {
       "aliasColors": {
-        "Voice participants": "orange",
-        "bbb.garaza.io:443": "orange"
+        "Voice participants": "orange"
       },
       "bars": false,
       "dashLength": 10,
@@ -1007,10 +1004,6 @@
     "list": [
       {
         "allValue": null,
-        "current": {
-          "text": "bbb.garaza.io:443",
-          "value": "bbb.garaza.io:443"
-        },
         "datasource": "Prometheus",
         "definition": "label_values(bbb_api_up, instance)",
         "hide": 0,
@@ -1019,20 +1012,7 @@
         "label": "Instance",
         "multi": false,
         "name": "instance",
-        "options": [
-          {
-            "$$hashKey": "object:909",
-            "selected": true,
-            "text": "bbb.garaza.io:443",
-            "value": "bbb.garaza.io:443"
-          },
-          {
-            "$$hashKey": "object:910",
-            "selected": false,
-            "text": "bbb2.garaza.io:443",
-            "value": "bbb2.garaza.io:443"
-          }
-        ],
+        "options": [],
         "query": "label_values(bbb_api_up, instance)",
         "refresh": 0,
         "regex": "",
@@ -1070,5 +1050,5 @@
   "variables": {
     "list": []
   },
-  "version": 21
+  "version": 24
 }
