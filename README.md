@@ -1,6 +1,10 @@
 # BigBlueButton Exporter
 Prometheus exporter for BigBlueButton.
 
+![Docker Pulls](https://img.shields.io/docker/pulls/greenstatic/bigbluebutton-exporter?logo=Docker)
+![Docker Image Version (latest semver)](https://img.shields.io/docker/v/greenstatic/bigbluebutton-exporter?label=latest%20docker%20image&logo=Docker&sort=semver)
+![GitHub](https://img.shields.io/github/license/greenstatic/bigbluebutton-exporter)
+
 Docker container image: [https://hub.docker.com/r/greenstatic/bigbluebutton-exporter](https://hub.docker.com/r/greenstatic/bigbluebutton-exporter)
 
 Default port: 9688
