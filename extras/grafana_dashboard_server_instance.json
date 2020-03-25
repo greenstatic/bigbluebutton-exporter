@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1585080405221,
+  "iteration": 1585161265945,
   "links": [],
   "panels": [
     {
@@ -36,7 +36,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 3,
         "w": 4,
@@ -114,7 +114,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -201,7 +201,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -255,7 +255,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 7,
         "w": 4,
@@ -327,7 +327,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -432,7 +432,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -520,7 +520,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 2,
         "w": 4,
@@ -568,7 +568,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 9,
         "w": 4,
@@ -646,7 +646,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -760,7 +760,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -868,7 +868,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1012,7 +1012,6 @@
         "label": "Instance",
         "multi": false,
         "name": "instance",
-        "options": [],
         "query": "label_values(bbb_api_up, instance)",
         "refresh": 0,
         "regex": "",
@@ -1050,5 +1049,5 @@
   "variables": {
     "list": []
   },
-  "version": 24
+  "version": 25
 }

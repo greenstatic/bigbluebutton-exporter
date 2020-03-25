@@ -35,7 +35,7 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -111,7 +111,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -198,7 +198,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -246,7 +246,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -298,7 +298,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -390,7 +390,7 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -478,7 +478,7 @@
       }
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -540,7 +540,7 @@
       "type": "row"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -591,7 +591,7 @@
       "type": "gauge"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -643,7 +643,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -695,7 +695,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -747,7 +747,7 @@
       "type": "stat"
     },
     {
-      "datasource": null,
+      "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -818,7 +818,7 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -975,5 +975,5 @@
   "variables": {
     "list": []
   },
-  "version": 25
+  "version": 26
 }
