@@ -22,6 +22,7 @@ Dashboard is available at: `extras/grafana_dashboard_server_instance.json`
 
 ### All Servers Dashboard
 Shows aggregated data for all BigBlueButton servers.
+Netdata is NOT required for this dashboard.
 
 Dashboard is available at: `extras/grafana_dashboard_all_servers.json`
 
@@ -30,6 +31,7 @@ Dashboard is available at: `extras/grafana_dashboard_all_servers.json`
 ## Installation
 The following instructions will instruct you how to install bbb-exporter on your BigBlueButton server and
 direct `/metrics/` to expose your BBB server's metrics.
+We assume you have a working installation of BigBlueButton with Nginx as the reverse proxy.
 
 1. On your BigBlueButton server create directory bbb-exporter: 
    ```bash
@@ -69,10 +71,118 @@ direct `/metrics/` to expose your BBB server's metrics.
     ```
 1. Reload Nginx: `sudo systemctl reload nginx`
 1. Try accessing `/metrics` on your web server
+1. You are now ready to add your exporter to your Prometheus configuration, example bellow:
+    ```
+    - job_name: 'bbb'
+      scrape_interval: 5s
+      scheme: https
+      static_configs:
+      - targets: ['bbb.example.com', 'bbb2.example.com']
+    ``` 
 
-It is advised to add HTTP Basic Auth to the metrics endpoint and configure Prometheus to use the credentials.
+It is **advised to add HTTP Basic Auth** to the metrics endpoint and configure Prometheus to use the credentials.
 This way metrics will not be exposed for everybody to see.
+See the [HTTP Basic Auth](http-basic-auth) section for instructions.
 
+### Netdata
+If you wish to use the Server Instance Grafana Dashboard, Netdata is required. 
+Instructions bellow will configure Netdata to bind to localhost and configure Nginx as a reverse proxy that will expose Netdata via a location directive.
+
+1. Instructions on how to install Netdata can be found: [https://docs.netdata.cloud/packaging/installer/](https://docs.netdata.cloud/packaging/installer/)
+1. After you install Netdata, change Netdata's configuration to bind to the address `127.0.0.1`.
+    ```bash
+    cd /etc/netdata
+    sudo ./edit-config netdata.conf
+
+    # Find: [web]
+    # then make sure: `bind to = 127.0.0.1` 
+    ```
+1. To your Nginx configuration (/etc/nginx/sites-available/bigbluebutton) add a location directive, example is bellow:
+    ```
+    # Netdata Monitoring
+    location /netdata/ {
+        proxy_pass         http://127.0.0.1:19999/;
+        proxy_redirect     default;
+        proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+        client_max_body_size       10m;
+        client_body_buffer_size    128k;
+        proxy_connect_timeout      90;
+        proxy_send_timeout         90;
+        proxy_read_timeout         90;
+        proxy_buffer_size          4k;
+        proxy_buffers              4 32k;
+        proxy_busy_buffers_size    64k;
+        proxy_temp_file_write_size 64k;
+        include    fastcgi_params;
+    }
+    ```
+
+1. Then follow the instruction on how to configure Prometheus to scape your Netdata metrics: [https://docs.netdata.cloud/backends/prometheus/](https://docs.netdata.cloud/backends/prometheus/). For your metrics path use: `/netdata/api/v1/allmetrics` (the netdata prefix must be the same as the location path you specified in the Nginx configuration).
+
+    Example Prometheus config bellow:
+    ```
+    - job_name: 'bbb_netdata'
+      metrics_path: '/netdata/api/v1/allmetrics'
+      params:
+      format: [prometheus]
+      honor_labels: true
+      scheme: https
+      static_configs:
+      - targets: ['bbb.example.com', 'bbb2.example.com']
+    ``` 
+
+It is recommended to add HTTP Basic Auth to your Nginx location directive.
+See the [HTTP Basic Auth](http-basic-auth) section for instructions.
+
+#### Explanation 
+The Server Instance Grafana Dashboard makes the assumption that the instance variable (FQDN + port) is the same for the exporter and Netdata.
+This is possible only if they are both behind the Nginx reverse proxy.
+This is also the recommended setup, along with HTTP Basic Auth for improved security.
+
+#### Setup Netdata without the Nginx reverse proxy
+In the case you do not wish to deploy your Netdata behind the Nginx reverse proxy, you either need to fix the Server Instance Grafana Dashboard (not recommended) or add a Prometheus relabel config.
+
+Thank you to @robbi5 for providing this snippet:
+```
+relabel_configs:
+- source_labels: ['__address__']
+  separator:     ':'
+  regex:         '(.*):.*'
+  target_label:  'instance'
+  replacement:   '$1'
+```
+
+See issue #3 for more details.
+
+### HTTP Basic Auth
+It is strongly recommended for your Nginx location directives (exporter & Netdata) to be behind HTTP Basic Auth.
+This prevents unnecessary system information from being exposed to the public internet.
+
+```bash
+# First we will need apache2-utils
+sudo apt-get install apache2-utils
+
+# Create a username (e.g. monitoring) and password (prompted after you run the command)
+sudo htpasswd -c /etc/nginx/.htpasswd monitoring  # user: monitoring
+```
+
+Afterwards add to each of your location directives the following two lines:
+```
+auth_basic "BigBlueButton";  # The contents of this can be anything
+auth_basic_user_file /etc/nginx/.htpasswd;
+```
+
+Do not forget to reload Nginx (`sudo systemctl reload nginx`) and fix your Prometheus config to include the HTTP Basic Auth directive (for the exporter and Netdata), example bellow:
+```
+- job_name: 'bbb'
+  scrape_interval: 5s
+  scheme: https
+  basic_auth:
+    username: monitoring
+    password: ukvK2Tn2dmmGZM7AxsGnXCZK
+  static_configs:
+  - targets: ['bbb.example.com', 'bbb2.example.com']
+```
 
 ## Metrics
 Gauges:
