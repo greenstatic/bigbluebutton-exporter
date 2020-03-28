@@ -82,7 +82,7 @@ We assume you have a working installation of BigBlueButton with Nginx as the rev
 
 It is **advised to add HTTP Basic Auth** to the metrics endpoint and configure Prometheus to use the credentials.
 This way metrics will not be exposed for everybody to see.
-See the [HTTP Basic Auth](http-basic-auth) section for instructions.
+See the [HTTP Basic Auth](#http-basic-auth) section for instructions.
 
 ### Netdata
 If you wish to use the Server Instance Grafana Dashboard, Netdata is required. 
@@ -132,7 +132,7 @@ Instructions bellow will configure Netdata to bind to localhost and configure Ng
     ``` 
 
 It is recommended to add HTTP Basic Auth to your Nginx location directive.
-See the [HTTP Basic Auth](http-basic-auth) section for instructions.
+See the [HTTP Basic Auth](#http-basic-auth) section for instructions.
 
 #### Explanation 
 The Server Instance Grafana Dashboard makes the assumption that the instance variable (FQDN + port) is the same for the exporter and Netdata.
