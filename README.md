@@ -152,7 +152,7 @@ relabel_configs:
   replacement:   '$1'
 ```
 
-See issue #3 for more details.
+See [issue #3](https://github.com/greenstatic/bigbluebutton-exporter/issues/3) for more details.
 
 ### HTTP Basic Auth
 It is strongly recommended for your Nginx location directives (exporter & Netdata) to be behind HTTP Basic Auth.
