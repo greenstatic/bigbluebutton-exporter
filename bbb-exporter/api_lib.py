@@ -7,7 +7,7 @@ from urllib.parse import urljoin
 import requests
 import xmltodict as xmltodict
 
-import metrics
+import settings
 
 
 class Client:
@@ -38,17 +38,17 @@ def api_get_call(endpoint: str, client: Client, params={}) -> Optional[collectio
     except Exception as e:
         logging.error("Failed to perform API call")
         logging.error(e)
-        metrics.process_api_up(False)
+        settings._api_up = False
         return None
 
     try:
         data = xmltodict.parse(r.text)
-        metrics.process_api_up(True)
+        settings._api_up = True
         return data
     except Exception as e:
         logging.error("Failed to parse response")
         logging.error(e)
-        metrics.process_api_up(False)
+        settings._api_up = False
         return None
 
 

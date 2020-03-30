@@ -220,10 +220,6 @@ for instructions how.
     * Required: false
     * Default: 9688
     * Values: <1 - 65535>
-* SLEEP_DURATION - sleep duration between scraping API calls
-    * Required: false
-    * Default: 5
-    * Values: <0 - > 
     
 ## Extras
 Located in `extras` dir:

@@ -2,8 +2,8 @@ import os
 import api_lib
 
 MAJOR = 0
-MINOR = 1
-BUGFIX = 2
+MINOR = 2
+BUGFIX = 0
 
 VERSION = "{}.{}.{}".format(MAJOR, MINOR, BUGFIX)
 
@@ -18,5 +18,7 @@ API_CLIENT = api_lib.Client(API_BASE_URL, API_SECRET)
 
 PORT = int(os.getenv("PORT", 9688))
 
-# Sleep duration for BBB API polling
-SLEEP_DURATION = int(os.getenv("SLEEP_DURATION", 5))  # seconds
+
+# Global (gasp.) variable flag that is used to mark if communicating with BigBlueButton's API is possible.
+# Used to set the `bbb_api_up` metric.
+_api_up = False
