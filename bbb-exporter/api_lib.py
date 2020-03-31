@@ -41,8 +41,21 @@ def api_get_call(endpoint: str, client: Client, params={}) -> Optional[collectio
         settings._api_up = False
         return None
 
+    if int(r.status_code / 100) != 2:
+        logging.error("Non 2xx HTTP status code response")
+        logging.error(r.text)
+        settings._api_up = False
+        return None
+
+    if settings.DEBUG:
+        print(r.text)
+
     try:
         data = xmltodict.parse(r.text)
+        if data['response']['returncode'].lower() != "success":
+            logging.error("Recieved a non-success response: " + data['response']['message'])
+            return None
+
         settings._api_up = True
         return data
     except Exception as e:

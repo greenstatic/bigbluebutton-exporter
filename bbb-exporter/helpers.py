@@ -23,6 +23,17 @@ def execution_duration(fun):
     return wrapper
 
 
+def valid_api_base_url(url: str) -> bool:
+    return len(url) > 0 and url[-1] == "/"
+
+
+def validate_api_base_url(url: str) -> str:
+    if not valid_api_base_url(url):
+        raise ValueError("Invalid API_BASE_URL, must end with trailing slash")
+
+    return url
+
+
 class HistogramBucketHelper:
     """
     A helper class that helps us create a histogram metric by saving buckets and their associated values.
