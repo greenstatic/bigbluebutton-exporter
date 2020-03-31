@@ -1,5 +1,6 @@
 # BigBlueButton Exporter
 Prometheus exporter for BigBlueButton.
+On a HTTP `/metrics` request, the exporter will query the BigBlueButton's API for data which it then aggregates and exposes as metrics.
 
 ![Docker Pulls](https://img.shields.io/docker/pulls/greenstatic/bigbluebutton-exporter?logo=Docker)
 ![Docker Image Version (latest semver)](https://img.shields.io/docker/v/greenstatic/bigbluebutton-exporter?label=latest%20docker%20image&logo=Docker&sort=semver)
@@ -79,10 +80,9 @@ We assume you have a working installation of BigBlueButton with Nginx as the rev
       static_configs:
       - targets: ['bbb.example.com', 'bbb2.example.com']
     ``` 
-
-It is **advised to add HTTP Basic Auth** to the metrics endpoint and configure Prometheus to use the credentials.
-This way metrics will not be exposed for everybody to see.
-See the [HTTP Basic Auth](#http-basic-auth) section for instructions.
+1. Setup HTTP Basic Auth, see the [HTTP Basic Auth](#http-basic-auth) section for further instructions.
+   HTTP Basic Auth is required because each request to the `/metrics` endpoint performs an API call to BigBlueButton which takes a couple of seconds. 
+   If exposed to the public internet it could potentially lead to DOS attacks.
 
 ### Netdata
 If you wish to use the Server Instance Grafana Dashboard, Netdata is required. 
@@ -131,7 +131,7 @@ Instructions bellow will configure Netdata to bind to localhost and configure Ng
       - targets: ['bbb.example.com', 'bbb2.example.com']
     ``` 
 
-It is recommended to add HTTP Basic Auth to your Nginx location directive.
+It is strongly recommended to add HTTP Basic Auth to your Nginx location directive.
 See the [HTTP Basic Auth](#http-basic-auth) section for instructions.
 
 #### Explanation 
