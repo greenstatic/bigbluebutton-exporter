@@ -17,7 +17,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 4,
-  "iteration": 1585161265945,
+  "iteration": 1585684910846,
   "links": [],
   "panels": [
     {
@@ -203,64 +203,10 @@
     {
       "datasource": "Prometheus",
       "gridPos": {
-        "h": 4,
+        "h": 8,
         "w": 4,
         "x": 0,
         "y": 4
-      },
-      "id": 30,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "max"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
-      },
-      "pluginVersion": "6.7.0",
-      "targets": [
-        {
-          "expr": "bbb_meetings_participants{instance=\"$instance\"}",
-          "interval": "",
-          "legendFormat": "Selected timeframe",
-          "refId": "A"
-        },
-        {
-          "expr": "max_over_time(bbb_meetings_participants{instance=\"$instance\"}[100y])",
-          "interval": "",
-          "legendFormat": "All time",
-          "refId": "B"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Max Participants",
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "gridPos": {
-        "h": 7,
-        "w": 4,
-        "x": 0,
-        "y": 8
       },
       "id": 26,
       "options": {
@@ -522,17 +468,17 @@
     {
       "datasource": "Prometheus",
       "gridPos": {
-        "h": 2,
+        "h": 5,
         "w": 4,
         "x": 0,
-        "y": 15
+        "y": 12
       },
-      "id": 24,
+      "id": 30,
       "options": {
         "colorMode": "value",
         "fieldOptions": {
           "calcs": [
-            "last"
+            "max"
           ],
           "defaults": {
             "mappings": [],
@@ -549,22 +495,34 @@
           "overrides": [],
           "values": false
         },
-        "graphMode": "area",
+        "graphMode": "none",
         "justifyMode": "auto",
         "orientation": "horizontal"
       },
       "pluginVersion": "6.7.0",
       "targets": [
         {
-          "expr": "bbb_meetings_participants - bbb_meetings_listeners{instance=\"$instance\"}",
+          "expr": "bbb_meetings_participants{instance=\"$instance\"}",
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "Selected timeframe",
           "refId": "A"
+        },
+        {
+          "expr": "max_over_time(bbb_meetings_participants{instance=\"$instance\"}[1w])",
+          "interval": "",
+          "legendFormat": "Since 1 week",
+          "refId": "C"
+        },
+        {
+          "expr": "max_over_time(bbb_meetings_participants{instance=\"$instance\"}[100y])",
+          "interval": "",
+          "legendFormat": "All time",
+          "refId": "B"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "(Participants - Listeners) Delta",
+      "title": "Max Participants",
       "type": "stat"
     },
     {
@@ -1012,6 +970,7 @@
         "label": "Instance",
         "multi": false,
         "name": "instance",
+        "options": [],
         "query": "label_values(bbb_api_up, instance)",
         "refresh": 0,
         "regex": "",
@@ -1049,5 +1008,5 @@
   "variables": {
     "list": []
   },
-  "version": 25
+  "version": 28
 }

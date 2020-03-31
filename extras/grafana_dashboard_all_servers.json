@@ -198,6 +198,7 @@
       }
     },
     {
+      "cacheTimeout": null,
       "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
@@ -205,15 +206,26 @@
         "x": 0,
         "y": 5
       },
-      "id": 24,
+      "id": 34,
+      "links": [],
       "options": {
         "colorMode": "value",
         "fieldOptions": {
           "calcs": [
-            "max"
+            "last"
           ],
           "defaults": {
-            "mappings": [],
+            "mappings": [
+              {
+                "$$hashKey": "object:409",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
             "thresholds": {
               "mode": "absolute",
               "steps": [
@@ -222,7 +234,8 @@
                   "value": null
                 }
               ]
-            }
+            },
+            "unit": "none"
           },
           "overrides": [],
           "values": false
@@ -234,15 +247,15 @@
       "pluginVersion": "6.7.0",
       "targets": [
         {
-          "expr": "bbb_meetings_participants",
+          "expr": "sum(bbb_meetings_participants)",
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "Total",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Max Participants for Selected Timeframe",
+      "title": "Total Participants",
       "type": "stat"
     },
     {
@@ -290,7 +303,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Participants",
+      "title": "Participants per server",
       "type": "stat"
     },
     {
@@ -485,12 +498,12 @@
         "x": 0,
         "y": 13
       },
-      "id": 4,
+      "id": 24,
       "options": {
         "colorMode": "value",
         "fieldOptions": {
           "calcs": [
-            "last"
+            "max"
           ],
           "defaults": {
             "mappings": [],
@@ -514,7 +527,7 @@
       "pluginVersion": "6.7.0",
       "targets": [
         {
-          "expr": "bbb_meetings_listeners",
+          "expr": "bbb_meetings_participants",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -522,7 +535,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Listeners",
+      "title": "Max Participants for Selected Timeframe",
       "type": "stat"
     },
     {
@@ -561,10 +574,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -613,10 +622,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -665,10 +670,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -717,10 +718,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -769,10 +766,6 @@
                 {
                   "color": "green",
                   "value": null
-                },
-                {
-                  "color": "red",
-                  "value": 80
                 }
               ]
             }
@@ -975,5 +968,5 @@
   "variables": {
     "list": []
   },
-  "version": 26
+  "version": 30
 }
