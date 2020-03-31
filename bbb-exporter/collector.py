@@ -113,7 +113,7 @@ class BigBlueButtonCollector:
         logging.debug("Requesting via API recordings deleted data")
         recordings_deleted = GaugeMetricFamily('bbb_recordings_deleted',
                                                "Total number of BigBlueButton recordings deleted")
-        recording_deleted_data, recording_deleted_latency = execution_duration(api.get_recordings)("unpublished")
+        recording_deleted_data, recording_deleted_latency = execution_duration(api.get_recordings)("deleted")
         recordings_deleted.add_metric([], len(recording_deleted_data))
         self.histogram_data_recording_deleted_latency.add(recording_deleted_latency)
         bbb_api_latency.add_metric(["getRecordings", "state=deleted"],
