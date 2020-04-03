@@ -124,7 +124,7 @@ Instructions bellow will configure Netdata to bind to localhost and configure Ng
     - job_name: 'bbb_netdata'
       metrics_path: '/netdata/api/v1/allmetrics'
       params:
-      format: [prometheus]
+        format: [prometheus]
       honor_labels: true
       scheme: https
       static_configs:
