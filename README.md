@@ -196,6 +196,9 @@ Gauges:
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
 * bbb_recordings_deleted - Total number of BigBlueButton recordings deleted
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
+* bbb_meetings_rooms_participants - Total number of participants per room in all BigBlueButton meetings
+* bbb_meetings_rooms_video_participants - Total number of video participants per room in all BigBlueButton meetings
+* bbb_meetings_rooms_voice_participants - Total number of voice participants per room in all BigBlueButton meetings
 
 Histograms:
 * bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency

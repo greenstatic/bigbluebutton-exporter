@@ -28,6 +28,9 @@ class BigBlueButtonCollector:
         meetings, meetings_data_latency = execution_duration(api.get_meetings)()
 
         no_meetings = len(meetings)
+        no_meetings_rooms_participants_list = list(map(lambda meeting: ([meeting["internalMeetingID"]],int(meeting["participantCount"])), meetings))
+        no_meetings_rooms_video_participants_list = list(map(lambda meeting: ([meeting["internalMeetingID"]],int(meeting["videoCount"])), meetings))
+        no_meetings_rooms_voice_participants_list = list(map(lambda meeting: ([meeting["internalMeetingID"]],int(meeting["voiceParticipantCount"])), meetings))
         no_participants = reduce(lambda total, meeting: total + int(meeting['participantCount']), meetings, 0)
         no_listeners = reduce(lambda total, meeting: total + int(meeting['listenerCount']), meetings, 0)
         no_voice_participants = reduce(lambda total, meeting: total + int(meeting['voiceParticipantCount']), meetings, 0)
@@ -42,6 +45,18 @@ class BigBlueButtonCollector:
         bbb_meetings = GaugeMetricFamily('bbb_meetings', "Number of BigBlueButton meetings")
         bbb_meetings.add_metric([], no_meetings)
         yield bbb_meetings
+        
+        bbb_meetings_rooms_participants = GaugeMetricFamily('bbb_meetings_rooms_participants', "Total number of participants per room in all BigBlueButton meetings", labels=['room'])
+        list(map(lambda meeting: bbb_meetings_rooms_participants.add_metric(*meeting), no_meetings_rooms_participants_list))
+        yield bbb_meetings_rooms_participants
+        
+        bbb_meetings_rooms_video_participants = GaugeMetricFamily('bbb_meetings_rooms_video_participants', "Total number of video participants per room in all BigBlueButton meetings", labels=['room'])
+        list(map(lambda meeting: bbb_meetings_rooms_video_participants.add_metric(*meeting), no_meetings_rooms_video_participants_list))
+        yield bbb_meetings_rooms_video_participants
+
+        bbb_meetings_rooms_voice_participants = GaugeMetricFamily('bbb_meetings_rooms_voice_participants', "Total number of voice participants per room in all BigBlueButton meetings", labels=['room'])
+        list(map(lambda meeting: bbb_meetings_rooms_voice_participants.add_metric(*meeting), no_meetings_rooms_voice_participants_list))
+        yield bbb_meetings_rooms_voice_participants
 
         bbb_meetings_participants = GaugeMetricFamily('bbb_meetings_participants',
                                                       "Total number of participants in all BigBlueButton meetings")
