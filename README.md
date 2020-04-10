@@ -190,6 +190,7 @@ Gauges:
 * bbb_meetings_listeners - Total number of listeners in all BigBlueButton meetings
 * bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings
 * bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings
+* bbb_meetings_participant_clients - Total number of participants in all BigBlueButton meetings by client
 * bbb_recordings_processing - Total number of BigBlueButton recordings processing
 * bbb_recordings_processed - Total number of BigBlueButton recordings processed
 * bbb_recordings_published - Total number of BigBlueButton recordings published
