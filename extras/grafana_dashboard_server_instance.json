@@ -757,7 +757,7 @@
         {
           "expr": "bbb_meetings_video_participants{instance=\"$instance\"}",
           "interval": "",
-          "legendFormat": "Voice participants",
+          "legendFormat": "Video participants",
           "refId": "A"
         }
       ],
