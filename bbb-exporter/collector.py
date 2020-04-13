@@ -22,19 +22,6 @@ class BigBlueButtonCollector:
     def __init__(self):
         pass
 
-    def _get_participant_count_by_client(self, meetings):
-        p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0, 'FLASH': 0})
-        for meeting in meetings:
-            if isinstance(meeting['attendees']['attendee'], list):
-                attendees = meeting['attendees']['attendee']
-            else:
-                attendees = [meeting['attendees']['attendee']]
-
-            for attendee in attendees:
-                p_by_c[attendee['clientType']] += 1
-
-        return p_by_c
-
     def collect(self):
         logging.info("Collecting metrics from BigBlueButton API")
 
@@ -81,13 +68,12 @@ class BigBlueButtonCollector:
         bbb_meetings_video_participants.add_metric([], no_video_participants)
         yield bbb_meetings_video_participants
 
-
-        bbb_meetings_participant_clients = GaugeMetricFamily('bbb_meetings_participants_clients',
+        bbb_meetings_participant_clients = GaugeMetricFamily('bbb_meetings_participant_clients',
                                                             "Total number of participants in all BigBlueButton "
                                                             "meetings by client",
-                                                            labels=["clientType"])
+                                                            labels=["type"])
         for client, num in participants_by_client.items():
-            bbb_meetings_participant_clients.add_metric([client], num)
+            bbb_meetings_participant_clients.add_metric([client.lower()], num)
         yield bbb_meetings_participant_clients
 
         logging.debug("Requesting via API recordings processing data")
@@ -153,3 +139,16 @@ class BigBlueButtonCollector:
 
         logging.info("Finished collecting metrics from BigBlueButton API")
 
+    @staticmethod
+    def _get_participant_count_by_client(self, meetings):
+        p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0, 'FLASH': 0})
+        for meeting in meetings:
+            if isinstance(meeting['attendees']['attendee'], list):
+                attendees = meeting['attendees']['attendee']
+            else:
+                attendees = [meeting['attendees']['attendee']]
+
+            for attendee in attendees:
+                p_by_c[attendee['clientType']] += 1
+
+        return p_by_c
