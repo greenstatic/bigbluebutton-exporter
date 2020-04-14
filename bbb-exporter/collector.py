@@ -140,9 +140,11 @@ class BigBlueButtonCollector:
         logging.info("Finished collecting metrics from BigBlueButton API")
 
     @staticmethod
-    def _get_participant_count_by_client(self, meetings):
+    def _get_participant_count_by_client(meetings):
         p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0, 'FLASH': 0})
         for meeting in meetings:
+            if not meeting.get("attendees"):
+                continue
             if isinstance(meeting['attendees']['attendee'], list):
                 attendees = meeting['attendees']['attendee']
             else:
