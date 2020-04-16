@@ -10,9 +10,18 @@ Docker container image: [https://hub.docker.com/r/greenstatic/bigbluebutton-expo
 
 Default port: 9688
 ## Grafana Dashboard
-To import the customized dashboards, select the create button on the left hand side of Grafana and select __import__ then copy/paste the contents of the dashboard's JSON (see bellow for the path of the file).
 
-### Server Instance Dashboard
+### Note on installing Grafana on the BBB-Host
+If you plan to [install Grafana](https://grafana.com/docs/grafana/latest/installation/) on the BigBlueButton host itself, keep in mind that the standard port for grafana (3000) is also used by the html5-client of BigBlueButton (see `/etc/bigbluebutton/nginx/bbb-html5.nginx`).
+In this case you will need to change the grafana port in `/etc/grafana/grafana.ini` to something else, e.g. 3001).
+
+### Importing the Dashboards
+The first step is importing the dashboard templates prepared in this repo.
+There is one json that shows the aggregated data for all BigBlueButton servers (`extras/grafana_dashboard_all_servers.json`) and another one for detailed metrics of each server provided (`extras/grafana_dashboard_server_instance.json`).
+
+To import the customized dashboards, select the create button on the left hand side of Grafana and select __import__ then copy/paste the contents of the dashboard's JSON.
+
+#### Server Instance Dashboard
 Using the instance variable (top left corner) one can select a specific BigBlueButton server and view detailed metrics.
 **Netdata is required** to view CPU & network bandwidth data.
 See [Using Netdata with Prometheus](https://docs.netdata.cloud/backends/prometheus/) for details on how to set it up.
@@ -21,7 +30,7 @@ Dashboard is available at: `extras/grafana_dashboard_server_instance.json`
 
 ![](extras/img_grafana_dashboard_server_instance.png)
 
-### All Servers Dashboard
+#### All Servers Dashboard
 Shows aggregated data for all BigBlueButton servers.
 Netdata is NOT required for this dashboard.
 
