@@ -1,5 +1,6 @@
 import logging
 from functools import reduce
+from collections import defaultdict
 
 from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily
 from prometheus_client.utils import INF
@@ -32,6 +33,7 @@ class BigBlueButtonCollector:
         no_listeners = reduce(lambda total, meeting: total + int(meeting['listenerCount']), meetings, 0)
         no_voice_participants = reduce(lambda total, meeting: total + int(meeting['voiceParticipantCount']), meetings, 0)
         no_video_participants = reduce(lambda total, meeting: total + int(meeting['videoCount']), meetings, 0)
+        participants_by_client = self._get_participant_count_by_client(meetings)
 
         bbb_api_latency = HistogramMetricFamily('bbb_api_latency', "BigBlueButton API call latency",
                                                 labels=['endpoint', 'parameters'])
@@ -65,6 +67,14 @@ class BigBlueButtonCollector:
 
         bbb_meetings_video_participants.add_metric([], no_video_participants)
         yield bbb_meetings_video_participants
+
+        bbb_meetings_participant_clients = GaugeMetricFamily('bbb_meetings_participant_clients',
+                                                            "Total number of participants in all BigBlueButton "
+                                                            "meetings by client",
+                                                            labels=["type"])
+        for client, num in participants_by_client.items():
+            bbb_meetings_participant_clients.add_metric([client.lower()], num)
+        yield bbb_meetings_participant_clients
 
         logging.debug("Requesting via API recordings processing data")
         bbb_recordings_processing = GaugeMetricFamily('bbb_recordings_processing',
@@ -129,3 +139,18 @@ class BigBlueButtonCollector:
 
         logging.info("Finished collecting metrics from BigBlueButton API")
 
+    @staticmethod
+    def _get_participant_count_by_client(meetings):
+        p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0, 'FLASH': 0})
+        for meeting in meetings:
+            if not meeting.get("attendees"):
+                continue
+            if isinstance(meeting['attendees']['attendee'], list):
+                attendees = meeting['attendees']['attendee']
+            else:
+                attendees = [meeting['attendees']['attendee']]
+
+            for attendee in attendees:
+                p_by_c[attendee['clientType']] += 1
+
+        return p_by_c
