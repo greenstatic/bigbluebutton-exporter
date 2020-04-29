@@ -14,7 +14,7 @@ jobs:
 
       - name: Install and Build 🔧
         run: |
-          pip3 install mkdocs mkdocs-material
+          pip3 install setuptools mkdocs mkdocs-material
           make docs
 
       - name: Deploy 🚀
