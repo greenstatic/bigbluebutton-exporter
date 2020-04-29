@@ -12,6 +12,9 @@
     * Required: false
     * Default: false
     * Values: <true | false>
+* BIND_IP
+    * Required: false
+    * Default: 0.0.0.0
 * PORT
     * Required: false
     * Default: 9688

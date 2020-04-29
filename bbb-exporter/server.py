@@ -14,7 +14,7 @@ if __name__ == '__main__':
     if settings.DEBUG:
         logging.getLogger().setLevel(logging.DEBUG)
 
-    start_http_server(settings.PORT)
+    start_http_server(settings.PORT, addr=settings.BIND_IP)
     logging.info("HTTP server started on port: {}".format(settings.PORT))
 
     REGISTRY.register(BigBlueButtonCollector())
