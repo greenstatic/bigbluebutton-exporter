@@ -17,7 +17,7 @@ In this case you will need to change the grafana port in `/etc/grafana/grafana.i
 
 ### Importing the Dashboards
 The first step is importing the dashboard templates prepared in this repo.
-There is one json that shows the aggregated data for all BigBlueButton servers (`extras/grafana_dashboard_all_servers.json`) and another one for detailed metrics of each server provided (`extras/grafana_dashboard_server_instance.json`).
+There is one json that shows the aggregated data for all BigBlueButton servers (`extras/dashboards/all_servers.json`) and another one for detailed metrics of each server provided (`extras/dashboards/server_instance_netdata.json`).
 
 To import the customized dashboards, select the create button on the left hand side of Grafana and select __import__ then copy/paste the contents of the dashboard's JSON.
 
@@ -26,17 +26,17 @@ Using the instance variable (top left corner) one can select a specific BigBlueB
 **Netdata is required** to view CPU & network bandwidth data.
 See [Using Netdata with Prometheus](https://docs.netdata.cloud/backends/prometheus/) for details on how to set it up.
 
-Dashboard is available at: `extras/grafana_dashboard_server_instance.json`
+Dashboard is available at: `extras/dashbords/server_instance_netdata.json`
 
-![](extras/img_grafana_dashboard_server_instance.png)
+![](docs/assets/img_grafana_dashboard_server_instance.png)
 
 #### All Servers Dashboard
 Shows aggregated data for all BigBlueButton servers.
 Netdata is NOT required for this dashboard.
 
-Dashboard is available at: `extras/grafana_dashboard_all_servers.json`
+Dashboard is available at: `extras/dashboards/all_servers.json`
 
-![](extras/img_grafana_dashboard_all_servers.png)
+![](docs/assets/img_grafana_dashboard_all_servers.png)
 
 ## Installation
 The following instructions will instruct you how to install bbb-exporter on your BigBlueButton server and
@@ -47,7 +47,7 @@ We assume you have a working installation of BigBlueButton with Nginx as the rev
    ```bash
    $ mkdir ~/bbb-exporter
    ```
-1. Copy `extras/docker-compose.yml` to your BigBlueButton server to `~/bbb-exporter/docker-compose.yml`
+1. Copy `extras/docker-compose.exporter.yml` to your BigBlueButton server to `~/bbb-exporter/docker-compose.yml`
 1. Create the file `~/bbb-exporter/secrets.env` and enter the following
     ```
     # The following information can be found by running: bbb-conf --secret

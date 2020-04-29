@@ -1,0 +1,32 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  scrape_timeout: 15s
+
+scrape_configs:
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  - job_name: 'bbb'
+    relabel_configs:
+      - source_labels: ['__address__']
+        separator:     ':'
+        regex:         '(.*):.*'
+        target_label:  'instance'
+        replacement:   '$1'
+    static_configs:
+      - targets: ['localhost:9688']
+
+  - job_name: 'bbb_node_exporter'
+    params:
+      format: [prometheus]
+    honor_labels: true
+    relabel_configs:
+      - source_labels: ['__address__']
+        separator:     ':'
+        regex:         '(.*):.*'
+        target_label:  'instance'
+        replacement:   '$1'
+    static_configs:
+      - targets: ['localhost:9100']

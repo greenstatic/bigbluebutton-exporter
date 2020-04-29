@@ -1,0 +1,57 @@
+version: '3.2'
+services:
+  bbb-exporter:
+    container_name: bbb-exporter
+    image: greenstatic/bigbluebutton-exporter:v0.2.0
+    network_mode: host
+    env_file:
+      - bbb_exporter_secrets.env
+    restart: unless-stopped
+
+  prometheus:
+    container_name: prometheus
+    image: prom/prometheus:v2.17.2
+    network_mode: host
+    command:
+      # Default commands from Dockerfile
+      - "--config.file=/etc/prometheus/prometheus.yml"
+      - "--storage.tsdb.path=/prometheus"
+      - "--web.console.libraries=/usr/share/prometheus/console_libraries"
+      - "--web.console.templates=/usr/share/prometheus/consoles"
+      # Our custom commands - metrics will be stored for 400 days
+      - "--storage.tsdb.retention.time=400d"
+      - "--web.listen-address=127.0.0.1:9090"
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
+      - "prometheus_data:/prometheus"
+    restart: unless-stopped
+
+  grafana:
+    container_name: grafana
+    image: grafana/grafana:6.7.1
+    network_mode: host
+    environment:
+      GF_SERVER_HTTP_ADDR: "127.0.0.1"
+      GF_SERVER_HTTP_PORT: "3001"
+    volumes:
+      - "grafana_data:/var/lib/grafana"
+    restart: unless-stopped
+
+  node_exporter:
+    container_name: node_exporter
+    image: prom/node-exporter:v0.18.1
+    network_mode: host
+    command:
+      - "--path.rootfs=/host"
+      - "--web.listen-address=127.0.0.1:9100"
+    pid: "host"
+    volumes:
+      - type: "bind"
+        source: "/"
+        target: "/host"
+        read_only: true
+    restart: unless-stopped
+
+volumes:
+  prometheus_data:
+  grafana_data:

@@ -1,0 +1,9 @@
+version: '3'
+services:
+  bbb-exporter:
+    container_name: bbb-exporter
+    image: greenstatic/bigbluebutton-exporter:v0.2.0
+    ports:
+      - "127.0.0.1:9688:9688"
+    env_file:
+      - secrets.env
