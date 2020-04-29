@@ -9,9 +9,7 @@ jobs:
     steps:
       - name: Checkout 🛎️
         uses: actions/checkout@v2
-        with:
-          persist-credentials: false
-
+        
       - name: Install and Build 🔧
         run: |
           sudo apt-get install python3-setuptools
