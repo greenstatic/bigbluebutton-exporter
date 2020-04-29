@@ -16,6 +16,7 @@ jobs:
         run: |
           sudo apt-get install python3-setuptools
           pip3 install mkdocs mkdocs-material
+          export PATH=~/.local/bin:$PATH
           make docs
 
       - name: Deploy 🚀
