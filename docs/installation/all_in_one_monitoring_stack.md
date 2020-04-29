@@ -45,12 +45,6 @@ cd ~/bbb-monitoring
 sudo docker-compose up -d
 ```
 
-!!! bug
-    Due to the inability to set the bind IP to BigBlueButton Exporter, the exporter will be publicly available on port
-    9688.
-    We are fixing this in the next release.
-    In the meantime you will need to block this port in the firewall for external traffic. 
-
 ### 5. Configure Nginx
 Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
 `127.0.0.1:3001`.
