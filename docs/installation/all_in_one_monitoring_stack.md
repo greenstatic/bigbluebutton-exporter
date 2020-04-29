@@ -14,8 +14,14 @@ Grafana will be exposed through the system installed Nginx which will act as a T
 Prerequisites:
 
 * Docker (you probably have this on your BigBlueButton server)
-* docker-compose
+* docker-compose (recent version with compose file format version 3.2 support)
 * Nginx (that has TLS configured)
+
+!!! Warning
+    Follow [Docker's official installation instructions](https://docs.docker.com/engine/install/ubuntu/) instead of 
+    installing docker-compose from Ubuntu's official repository since it is outdated and does not support compose file 
+    format v3.2 (as of April 29, 2020).
+    
 
 ### Step-by-step Guide
 ### 1. Create directory
@@ -26,6 +32,11 @@ mkdir ~/bbb-monitoring
 ### 2. Copy configuration files
 Copy all the files in [extras/all_in_one_monitoring](https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/all_in_one_monitoring) 
 to your server into `~/bbb-monitoring`
+
+And replace all the references to `example.com` with your BigBlueButton domain.
+
+!!! note
+    You will configure `https://example.com/monitoring` in [step 5: Configure Nginx](#5-configure-nginx).
 
 ### 3. Add your secrets 
 Get your BBB secret by running:
@@ -67,6 +78,10 @@ location /monitoring/ {
   include    fastcgi_params;
 }
 ```
+
+!!! Note
+    If you would like to change the URL you will need to update the docker-compose grafana `GF_SERVER_ROOT_URL` env 
+    variable as well.
 
 !!! Tip
     When upgrading BigBlueButton, the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
