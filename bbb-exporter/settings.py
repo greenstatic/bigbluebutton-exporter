@@ -20,6 +20,9 @@ API_CLIENT = api_lib.Client(API_BASE_URL, API_SECRET)
 PORT = int(os.getenv("PORT", 9688))
 BIND_IP = os.getenv("BIND_IP", "0.0.0.0")
 
+recordings_env = os.getenv("COLLECT_RECORDINGS", "true")
+RECORDINGS = False if recordings_env.lower() == "false" else True
+
 # Global (gasp.) variable flag that is used to mark if communicating with BigBlueButton's API is possible.
 # Used to set the `bbb_api_up` metric.
 _api_up = False

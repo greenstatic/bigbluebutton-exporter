@@ -76,60 +76,64 @@ class BigBlueButtonCollector:
             bbb_meetings_participant_clients.add_metric([client.lower()], num)
         yield bbb_meetings_participant_clients
 
-        logging.debug("Requesting via API recordings processing data")
-        bbb_recordings_processing = GaugeMetricFamily('bbb_recordings_processing',
-                                                      "Total number of BigBlueButton recordings processing")
-        recording_processing_data, recording_processing_latency = execution_duration(api.get_recordings)("processing")
-        bbb_recordings_processing.add_metric([], len(recording_processing_data))
-        self.histogram_data_recording_processing_latency.add(recording_processing_latency)
-        bbb_api_latency.add_metric(["getRecordings", "state=processing"],
-                                   self.histogram_data_recording_processing_latency.get_buckets(),
-                                   self.histogram_data_recording_processing_latency.sum)
-        yield bbb_recordings_processing
+        if settings.RECORDINGS:
+            logging.debug("Requesting via API recordings processing data")
+            bbb_recordings_processing = GaugeMetricFamily('bbb_recordings_processing',
+                                                          "Total number of BigBlueButton recordings processing")
+            recording_processing_data, recording_processing_latency = execution_duration(api.get_recordings)("processing")
+            bbb_recordings_processing.add_metric([], len(recording_processing_data))
+            self.histogram_data_recording_processing_latency.add(recording_processing_latency)
+            bbb_api_latency.add_metric(["getRecordings", "state=processing"],
+                                       self.histogram_data_recording_processing_latency.get_buckets(),
+                                       self.histogram_data_recording_processing_latency.sum)
+            yield bbb_recordings_processing
 
-        logging.debug("Requesting via API recordings processed data")
-        recordings_processed_data = GaugeMetricFamily('bbb_recordings_processed',
-                                                      "Total number of BigBlueButton recordings processed")
-        recording_processed_data, recording_processed_latency = execution_duration(api.get_recordings)("processed")
-        recordings_processed_data.add_metric([], len(recording_processed_data))
-        self.histogram_data_recording_processed_latency.add(recording_processed_latency)
-        bbb_api_latency.add_metric(["getRecordings", "state=processed"],
-                                   self.histogram_data_recording_processed_latency.get_buckets(),
-                                   self.histogram_data_recording_processed_latency.sum)
-        yield recordings_processed_data
+            logging.debug("Requesting via API recordings processed data")
+            recordings_processed_data = GaugeMetricFamily('bbb_recordings_processed',
+                                                          "Total number of BigBlueButton recordings processed")
+            recording_processed_data, recording_processed_latency = execution_duration(api.get_recordings)("processed")
+            recordings_processed_data.add_metric([], len(recording_processed_data))
+            self.histogram_data_recording_processed_latency.add(recording_processed_latency)
+            bbb_api_latency.add_metric(["getRecordings", "state=processed"],
+                                       self.histogram_data_recording_processed_latency.get_buckets(),
+                                       self.histogram_data_recording_processed_latency.sum)
+            yield recordings_processed_data
 
-        logging.debug("Requesting via API recordings published data")
-        recordings_published = GaugeMetricFamily('bbb_recordings_published',
-                                                 "Total number of BigBlueButton recordings published")
-        recording_published_data, recording_published_latency = execution_duration(api.get_recordings)("published")
-        recordings_published.add_metric([], len(recording_published_data))
-        self.histogram_data_recording_published_latency.add(recording_published_latency)
-        bbb_api_latency.add_metric(["getRecordings", "state=published"],
-                                   self.histogram_data_recording_published_latency.get_buckets(),
-                                   self.histogram_data_recording_published_latency.sum)
-        yield recordings_published
+            logging.debug("Requesting via API recordings published data")
+            recordings_published = GaugeMetricFamily('bbb_recordings_published',
+                                                     "Total number of BigBlueButton recordings published")
+            recording_published_data, recording_published_latency = execution_duration(api.get_recordings)("published")
+            recordings_published.add_metric([], len(recording_published_data))
+            self.histogram_data_recording_published_latency.add(recording_published_latency)
+            bbb_api_latency.add_metric(["getRecordings", "state=published"],
+                                       self.histogram_data_recording_published_latency.get_buckets(),
+                                       self.histogram_data_recording_published_latency.sum)
+            yield recordings_published
 
-        logging.debug("Requesting via API recordings unpublished data")
-        recordings_unpublished = GaugeMetricFamily('bbb_recordings_unpublished',
-                                                   "Total number of BigBlueButton recordings unpublished")
-        recording_unpublished_data, recording_unpublished_latency = execution_duration(api.get_recordings)("unpublished")
-        recordings_unpublished.add_metric([], len(recording_unpublished_data))
-        self.histogram_data_recording_unpublished_latency.add(recording_unpublished_latency)
-        bbb_api_latency.add_metric(["getRecordings", "state=unpublished"],
-                                   self.histogram_data_recording_unpublished_latency.get_buckets(),
-                                   self.histogram_data_recording_unpublished_latency.sum)
-        yield recordings_unpublished
+            logging.debug("Requesting via API recordings unpublished data")
+            recordings_unpublished = GaugeMetricFamily('bbb_recordings_unpublished',
+                                                       "Total number of BigBlueButton recordings unpublished")
+            recording_unpublished_data, recording_unpublished_latency = execution_duration(api.get_recordings)("unpublished")
+            recordings_unpublished.add_metric([], len(recording_unpublished_data))
+            self.histogram_data_recording_unpublished_latency.add(recording_unpublished_latency)
+            bbb_api_latency.add_metric(["getRecordings", "state=unpublished"],
+                                       self.histogram_data_recording_unpublished_latency.get_buckets(),
+                                       self.histogram_data_recording_unpublished_latency.sum)
+            yield recordings_unpublished
 
-        logging.debug("Requesting via API recordings deleted data")
-        recordings_deleted = GaugeMetricFamily('bbb_recordings_deleted',
-                                               "Total number of BigBlueButton recordings deleted")
-        recording_deleted_data, recording_deleted_latency = execution_duration(api.get_recordings)("deleted")
-        recordings_deleted.add_metric([], len(recording_deleted_data))
-        self.histogram_data_recording_deleted_latency.add(recording_deleted_latency)
-        bbb_api_latency.add_metric(["getRecordings", "state=deleted"],
-                                   self.histogram_data_recording_deleted_latency.get_buckets(),
-                                   self.histogram_data_recording_deleted_latency.sum)
-        yield recordings_deleted
+            logging.debug("Requesting via API recordings deleted data")
+            recordings_deleted = GaugeMetricFamily('bbb_recordings_deleted',
+                                                   "Total number of BigBlueButton recordings deleted")
+            recording_deleted_data, recording_deleted_latency = execution_duration(api.get_recordings)("deleted")
+            recordings_deleted.add_metric([], len(recording_deleted_data))
+            self.histogram_data_recording_deleted_latency.add(recording_deleted_latency)
+            bbb_api_latency.add_metric(["getRecordings", "state=deleted"],
+                                       self.histogram_data_recording_deleted_latency.get_buckets(),
+                                       self.histogram_data_recording_deleted_latency.sum)
+            yield recordings_deleted
+
+        else:
+            logging.debug("Will not collect recordings data")
 
         bbb_api_up = GaugeMetricFamily('bbb_api_up', "1 if BigBlueButton API is responding 0 otherwise")
         bbb_api_up.add_metric([], 1 if settings._api_up else 0)
