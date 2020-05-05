@@ -49,6 +49,10 @@ Histograms:
     * Required: false
     * Default: false
     * Values: <true | false>
+* COLLECT_RECORDINGS
+    * Required: false
+    * Default: true
+    * Values: <true | false>
 * BIND_IP
     * Required: false
     * Default: 0.0.0.0

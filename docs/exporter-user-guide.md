@@ -13,6 +13,10 @@
     * Required: false
     * Default: false
     * Values: &lt;true | false&gt;
+* COLLECT_RECORDINGS - Enable collection of recordings data through the API
+    * Required: false
+    * Default: true
+    * Values: &lt;true | false&gt;
 * BIND_IP - Which network address to bind the HTTP server of the exporter
     * Required: false
     * Default: 0.0.0.0
