@@ -15,7 +15,7 @@
     
     
       
-        <title>Exporter User Guide - BigBlueButton Exporter</title>
+        <title>Debugging - BigBlueButton Exporter</title>
       
     
     
@@ -56,7 +56,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#exporter-user-guide" class="md-skip">
+        <a href="#debugging" class="md-skip">
           Skip to content
         </a>
       
@@ -84,7 +84,7 @@
           </span>
           <span class="md-header-nav__topic md-ellipsis">
             
-              Exporter User Guide
+              Debugging
             
           </span>
         </div>
@@ -284,6 +284,18 @@
       
       
 
+
+  <li class="md-nav__item">
+    <a href="../exporter-user-guide/" title="Exporter User Guide" class="md-nav__link">
+      Exporter User Guide
+    </a>
+  </li>
+
+    
+      
+      
+      
+
   
 
 
@@ -295,14 +307,14 @@
     
     
       <label class="md-nav__link md-nav__link--active" for="__toc">
-        Exporter User Guide
+        Debugging
         <span class="md-nav__icon md-icon">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 9h14V7H3v2m0 4h14v-2H3v2m0 4h14v-2H3v2m16 0h2v-2h-2v2m0-10v2h2V7h-2m0 6h2v-2h-2v2z"/></svg>
         </span>
       </label>
     
-    <a href="./" title="Exporter User Guide" class="md-nav__link md-nav__link--active">
-      Exporter User Guide
+    <a href="./" title="Debugging" class="md-nav__link md-nav__link--active">
+      Debugging
     </a>
     
       
@@ -321,15 +333,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    Environment Variables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics" class="md-nav__link">
-    Metrics
+  <a href="#debugging-faulty-metrics" class="md-nav__link">
+    Debugging Faulty Metrics
   </a>
   
 </li>
@@ -338,18 +343,6 @@
   
 </nav>
     
-  </li>
-
-    
-      
-      
-      
-
-
-  <li class="md-nav__item">
-    <a href="../debugging/" title="Debugging" class="md-nav__link">
-      Debugging
-    </a>
   </li>
 
     
@@ -403,15 +396,8 @@
     <ul class="md-nav__list" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#environment-variables" class="md-nav__link">
-    Environment Variables
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics" class="md-nav__link">
-    Metrics
+  <a href="#debugging-faulty-metrics" class="md-nav__link">
+    Debugging Faulty Metrics
   </a>
   
 </li>
@@ -428,7 +414,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-                  <a href="https://github.com/greenstatic/bigbluebutton-exporter/edit/master/docs/exporter-user-guide.md" title="Edit this page" class="md-content__button md-icon">
+                  <a href="https://github.com/greenstatic/bigbluebutton-exporter/edit/master/docs/debugging.md" title="Edit this page" class="md-content__button md-icon">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
                   </a>
                 
@@ -436,61 +422,22 @@
                   
                 
                 
-                <h1 id="exporter-user-guide">Exporter User Guide<a class="headerlink" href="#exporter-user-guide" title="Permanent link">#</a></h1>
-<h2 id="environment-variables">Environment Variables<a class="headerlink" href="#environment-variables" title="Permanent link">#</a></h2>
-<ul>
-<li>API_SECRET - BigBlueButton API Secret<ul>
-<li><strong>Required: true</strong></li>
-<li>Use <code>$ bbb-conf --secret</code> on BigBlueButton server to get secret and Base API url</li>
-</ul>
-</li>
-<li>API_BASE_URL - BigBlueButton API base URL<ul>
-<li><strong>Required: true</strong></li>
-<li>Example: "https://example.com/bigbluebutton/api/"</li>
-<li>Trailing slash is required!</li>
-<li>Make sure you supply the base url <strong>of the API</strong>, often this URL ends in <code>/api/</code></li>
-</ul>
-</li>
-<li>DEBUG  - Enable debug logging<ul>
-<li>Required: false</li>
-<li>Default: false</li>
-<li>Values: &lt;true | false&gt;</li>
-</ul>
-</li>
-<li>BIND_IP - Which network address to bind the HTTP server of the exporter<ul>
-<li>Required: false</li>
-<li>Default: 0.0.0.0</li>
-</ul>
-</li>
-<li>PORT - HTTP port to serve the exporter metrics<ul>
-<li>Required: false</li>
-<li>Default: 9688</li>
-<li>Values: &lt;1 - 65535&gt;</li>
-</ul>
-</li>
-</ul>
-<h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">#</a></h2>
-<p>Gauges:</p>
-<ul>
-<li>bbb_meetings_participants - Total number of participants in all BigBlueButton meetings</li>
-<li>bbb_meetings_listeners - Total number of listeners in all BigBlueButton meetings</li>
-<li>bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings</li>
-<li>bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings</li>
-<li>bbb_meetings_participant_clients(type=&lt;client>) - Total number of participants in all BigBlueButton meetings by client (html5|dial-in|flash)</li>
-<li>bbb_recordings_processing - Total number of BigBlueButton recordings processing</li>
-<li>bbb_recordings_processed - Total number of BigBlueButton recordings processed</li>
-<li>bbb_recordings_published - Total number of BigBlueButton recordings published</li>
-<li>bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished</li>
-<li>bbb_recordings_deleted - Total number of BigBlueButton recordings deleted</li>
-<li>bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise</li>
-</ul>
-<p>Histograms:</p>
-<ul>
-<li>bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency<ul>
-<li>buckets: .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF</li>
-</ul>
-</li>
-</ul>
+                <h1 id="debugging">Debugging<a class="headerlink" href="#debugging" title="Permanent link">#</a></h1>
+<p>You might encounter some strange or unexpected metrics from your BigBlueButton server(s).
+In order to properly debug the issue it is crucial to figure out where the issue lies;
+in the monitoring infrastructure (BigBlueButton Exporter, Prometheus, Grafana, node_exporter, 
+Netdata, etc.) or in the BigBlueButton infrastructure.</p>
+<h2 id="debugging-faulty-metrics">Debugging Faulty Metrics<a class="headerlink" href="#debugging-faulty-metrics" title="Permanent link">#</a></h2>
+<p>If you suspect there is an issue within BigBlueButton Exporter or the accompanied Grafana 
+dashboards you can run the exporter in debug mode and view the XML API response the 
+exporter fetches from BigBlueButton.
+If the "faulty" metric is contained within the XML API response then the issue lies with
+BigBlueButton, otherwise the issue lies within the monitoring stack (BigBlueButton Exporter, 
+Prometheus, Grafana, node_exporter, Netdata, etc.).</p>
+<p>You can turn on debugging mode, as specified in the 
+<a href="../exporter-user-guide/#environment-variables">Exporter User Guide</a>, by adding the 
+environment variable <code>DEBUG=true</code>.
+This should spit out the XML API responses of all API queries to stdout.</p>
                 
               
               
@@ -509,7 +456,7 @@
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../installation/netdata/" title="Netdata" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../exporter-user-guide/" title="Exporter User Guide" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -518,19 +465,19 @@
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Netdata
+                Exporter User Guide
               </div>
             </div>
           </a>
         
         
-          <a href="../debugging/" title="Debugging" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../development/" title="Development" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
                   Next
                 </span>
-                Debugging
+                Development
               </div>
             </div>
             <div class="md-footer-nav__button md-icon">
