@@ -4,21 +4,22 @@
 * API_SECRET - BigBlueButton API Secret
     * **Required: true**
     * Use `$ bbb-conf --secret` on BigBlueButton server to get secret and Base API url
-* API_BASE_URL - 
+* API_BASE_URL - BigBlueButton API base URL
     * **Required: true**
     * Example: "https://example.com/bigbluebutton/api/"
     * Trailing slash is required!
-* DEBUG 
+    * Make sure you supply the base url **of the API**, often this URL ends in `/api/`
+* DEBUG  - Enable debug logging
     * Required: false
     * Default: false
-    * Values: <true | false>
-* BIND_IP
+    * Values: &lt;true | false&gt;
+* BIND_IP - Which network address to bind the HTTP server of the exporter
     * Required: false
     * Default: 0.0.0.0
-* PORT
+* PORT - HTTP port to serve the exporter metrics
     * Required: false
     * Default: 9688
-    * Values: <1 - 65535>
+    * Values: &lt;1 - 65535&gt;
     
 ## Metrics
 Gauges:
