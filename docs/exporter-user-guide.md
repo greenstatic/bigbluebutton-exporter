@@ -9,6 +9,11 @@
     * Example: "https://example.com/bigbluebutton/api/"
     * Trailing slash is required!
     * Make sure you supply the base url **of the API**, often this URL ends in `/api/`
+* ROOM_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_participants_bucket` histogram metric
+    * Required: false
+    * Default: `0,1,5,15,30,60,90,120,150,200,250,300,400,500`
+    * `INF` will be added automatically as the final bucket size
+    * Values: list of integers separated using comma (`,`)
 * DEBUG  - Enable debug logging
     * Required: false
     * Default: false
@@ -35,9 +40,13 @@ Gauges:
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
 * bbb_recordings_deleted - Total number of BigBlueButton recordings deleted
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
+* bbb_exporter - Information about the exporter (i.e. version)
 
 Histograms:
 
 * bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency
     * buckets: .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF
-    
+* bbb_room_participants_bucket - Number of rooms with participants less than or equal to the bucket size
+    * buckets: 0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF
+    * bucket sizes can be overridden using `ROOM_PARTICIPANTS_CUSTOM_BUCKETS`, see [environment variables](#environment-variables) 
+    for details

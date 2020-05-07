@@ -62,7 +62,7 @@ class HistogramBucketHelper:
 
 
 def string_list_to_int_list(xs: List[str]) -> List[int]:
-    return [int(i) for i in xs]
+    return [int(i) for i in xs.split(",")]
 
 
 def int_list_greater_than_zero(l: List[int]) -> bool:
