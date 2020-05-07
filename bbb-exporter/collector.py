@@ -2,7 +2,8 @@ import logging
 from functools import reduce
 from collections import defaultdict
 
-from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily
+from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily, GaugeHistogramMetricFamily, \
+    InfoMetricFamily
 from prometheus_client.utils import INF
 
 import api
@@ -11,16 +12,20 @@ from helpers import execution_duration, HistogramBucketHelper
 
 
 class BigBlueButtonCollector:
-    buckets = [.01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF]
-    histogram_data_meetings_latency = HistogramBucketHelper(buckets)
-    histogram_data_recording_processing_latency = HistogramBucketHelper(buckets)
-    histogram_data_recording_processed_latency = HistogramBucketHelper(buckets)
-    histogram_data_recording_published_latency = HistogramBucketHelper(buckets)
-    histogram_data_recording_unpublished_latency = HistogramBucketHelper(buckets)
-    histogram_data_recording_deleted_latency = HistogramBucketHelper(buckets)
+    api_latency_buckets = [.01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF]
+    histogram_data_meetings_latency = HistogramBucketHelper(api_latency_buckets)
+    histogram_data_recording_processing_latency = HistogramBucketHelper(api_latency_buckets)
+    histogram_data_recording_processed_latency = HistogramBucketHelper(api_latency_buckets)
+    histogram_data_recording_published_latency = HistogramBucketHelper(api_latency_buckets)
+    histogram_data_recording_unpublished_latency = HistogramBucketHelper(api_latency_buckets)
+    histogram_data_recording_deleted_latency = HistogramBucketHelper(api_latency_buckets)
 
-    def __init__(self):
-        pass
+    room_participants_buckets = [0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF]
+
+    def __init__(self, room_participants_buckets=[]):
+        assert type(room_participants_buckets) == list
+        if len(room_participants_buckets) > 0:
+            self.room_participants_buckets = room_participants_buckets + [INF]
 
     def collect(self):
         logging.info("Collecting metrics from BigBlueButton API")
@@ -130,12 +135,27 @@ class BigBlueButtonCollector:
                                    self.histogram_data_recording_deleted_latency.get_buckets(),
                                    self.histogram_data_recording_deleted_latency.sum)
         yield recordings_deleted
+        yield bbb_api_latency
 
         bbb_api_up = GaugeMetricFamily('bbb_api_up', "1 if BigBlueButton API is responding 0 otherwise")
         bbb_api_up.add_metric([], 1 if settings._api_up else 0)
 
         yield bbb_api_up
-        yield bbb_api_latency
+
+        logging.debug("Calculating room participants histogram")
+        histogram_room_participants = HistogramBucketHelper(self.room_participants_buckets)
+        for meeting in meetings:
+            histogram_room_participants.add(int(meeting['participantCount']))
+
+        room_participants = GaugeHistogramMetricFamily('bbb_room_participants',
+                                                       "BigBlueButton room participants histogram gauge")
+        room_participants.add_metric([], histogram_room_participants.get_buckets(), histogram_room_participants.sum)
+
+        yield room_participants
+
+        bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
+        bbb_exporter.add_metric([settings.VERSION], 1)
+        yield bbb_exporter
 
         logging.info("Finished collecting metrics from BigBlueButton API")
 

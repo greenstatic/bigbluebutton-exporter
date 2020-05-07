@@ -59,3 +59,29 @@ class HistogramBucketHelper:
         Inf is represented as '+Inf' as per Prometheus requirements.
         """
         return list(map(lambda x: (str(x[0]) if x[0] != float("inf") else "+Inf", x[1]), self._buckets))
+
+
+def string_list_to_int_list(xs: List[str]) -> List[int]:
+    return [int(i) for i in xs]
+
+
+def int_list_greater_than_zero(l: List[int]) -> bool:
+    """
+    Return True if every element in list is >= 0, else False
+    """
+    for i in l:
+        if i < 0:
+            return False
+    return True
+
+
+def validate_buckets(xs: List[str]) -> List[int]:
+    try:
+        buckets = string_list_to_int_list(xs)
+    except ValueError:
+        raise ValueError("Non-integer value in list of buckets")
+
+    if not int_list_greater_than_zero(buckets):
+        raise ValueError("List of buckets contain int less than 0")
+
+    return buckets

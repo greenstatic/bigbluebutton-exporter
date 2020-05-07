@@ -17,6 +17,6 @@ if __name__ == '__main__':
     start_http_server(settings.PORT, addr=settings.BIND_IP)
     logging.info("HTTP server started on port: {}".format(settings.PORT))
 
-    REGISTRY.register(BigBlueButtonCollector())
+    REGISTRY.register(BigBlueButtonCollector(room_participants_buckets=settings.ROOM_PARTICIPANTS_CUSTOM_BUCKETS))
     while True:
         sleep(1)
