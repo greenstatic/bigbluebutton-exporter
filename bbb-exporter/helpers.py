@@ -61,7 +61,9 @@ class HistogramBucketHelper:
         return list(map(lambda x: (str(x[0]) if x[0] != float("inf") else "+Inf", x[1]), self._buckets))
 
 
-def string_list_to_int_list(xs: List[str]) -> List[int]:
+def string_list_to_int_list(xs: str) -> List[int]:
+    if xs == '':
+        return []
     return [int(i) for i in xs.split(",")]
 
 
@@ -75,7 +77,7 @@ def int_list_greater_than_zero(l: List[int]) -> bool:
     return True
 
 
-def validate_buckets(xs: List[str]) -> List[int]:
+def validate_buckets(xs: str) -> List[int]:
     try:
         buckets = string_list_to_int_list(xs)
     except ValueError:

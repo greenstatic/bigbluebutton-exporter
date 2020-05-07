@@ -20,7 +20,7 @@ API_SECRET = os.environ["API_SECRET"]
 
 API_CLIENT = api_lib.Client(API_BASE_URL, API_SECRET)
 
-ROOM_PARTICIPANTS_CUSTOM_BUCKETS = validate_buckets(os.getenv("ROOM_PARTICIPANTS_CUSTOM_BUCKETS", default=[]))
+ROOM_PARTICIPANTS_CUSTOM_BUCKETS = validate_buckets(os.getenv("ROOM_PARTICIPANTS_CUSTOM_BUCKETS", default=""))
 
 PORT = int(os.getenv("PORT", 9688))
 BIND_IP = os.getenv("BIND_IP", "0.0.0.0")
