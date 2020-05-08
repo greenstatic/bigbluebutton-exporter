@@ -15,7 +15,7 @@ Available at: [https://bigbluebutton-exporter.greenstatic.dev](https://bigbluebu
 
 ## Grafana Dashboard Screenshot
 
-![](docs/assets/img_grafana_dashboard_server_instance.png)
+![](docs/assets/img_grafana_dashboard_all_servers.png)
 
 ![](docs/assets/img_grafana_dashboard_server_instance.png)
 
