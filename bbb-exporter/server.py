@@ -17,6 +17,20 @@ if __name__ == '__main__':
     start_http_server(settings.PORT, addr=settings.BIND_IP)
     logging.info("HTTP server started on port: {}".format(settings.PORT))
 
-    REGISTRY.register(BigBlueButtonCollector(room_participants_buckets=settings.ROOM_PARTICIPANTS_CUSTOM_BUCKETS))
+    collector = BigBlueButtonCollector()
+
+    if len(settings.ROOM_PARTICIPANTS_CUSTOM_BUCKETS) > 0:
+        collector.set_room_participants_buckets(settings.ROOM_PARTICIPANTS_CUSTOM_BUCKETS)
+
+    if len(settings.ROOM_LISTENERS_CUSTOM_BUCKETS) > 0:
+        collector.set_room_listeners_buckets(settings.ROOM_LISTENERS_CUSTOM_BUCKETS)
+
+    if len(settings.ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS) > 0:
+        collector.set_room_voice_participants_buckets(settings.ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS)
+
+    if len(settings.ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS) > 0:
+        collector.set_room_video_participants_buckets(settings.ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS)
+
+    REGISTRY.register(collector)
     while True:
         sleep(1)
