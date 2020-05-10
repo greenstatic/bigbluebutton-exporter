@@ -65,11 +65,12 @@ class BigBlueButtonCollector:
 
         yield self.metric_meetings_participant_clients(meetings)
 
-        yield self.metric_recordings_processing(bbb_api_latency)
-        yield self.metric_recordings_processed_data(bbb_api_latency)
-        yield self.metric_recordings_published(bbb_api_latency)
-        yield self.metric_recordings_unpublished(bbb_api_latency)
-        yield self.metric_recordings_deleted(bbb_api_latency)
+        if settings.RECORDINGS_METRICS_ENABLE:
+            yield self.metric_recordings_processing(bbb_api_latency)
+            yield self.metric_recordings_processed_data(bbb_api_latency)
+            yield self.metric_recordings_published(bbb_api_latency)
+            yield self.metric_recordings_unpublished(bbb_api_latency)
+            yield self.metric_recordings_deleted(bbb_api_latency)
 
         yield bbb_api_latency
 

@@ -9,9 +9,13 @@
     * Example: "https://example.com/bigbluebutton/api/"
     * Trailing slash is required!
     * Make sure you supply the base url **of the API**, often this URL ends in `/api/`
-* DEBUG  - Enable debug logging
+* DEBUG - Enable debug logging
     * Required: false
     * Default: false
+    * Values: &lt;true | false&gt;
+* RECORDINGS_METRICS - Enable collection of recordings metrics 
+    * Required: false
+    * Default: true
     * Values: &lt;true | false&gt;
 * BIND_IP - Which network address to bind the HTTP server of the exporter
     * Required: false

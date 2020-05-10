@@ -28,6 +28,8 @@ ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS = validate_buckets(os.getenv("ROOM_VIDEO_
 PORT = int(os.getenv("PORT", 9688))
 BIND_IP = os.getenv("BIND_IP", "0.0.0.0")
 
+RECORDINGS_METRICS_ENABLE = False if os.getenv("RECORDINGS_METRICS", "true").lower() == "false" else True
+
 # Global (gasp.) variable flag that is used to mark if communicating with BigBlueButton's API is possible.
 # Used to set the `bbb_api_up` metric.
 _api_up = False
