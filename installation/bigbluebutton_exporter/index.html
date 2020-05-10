@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.5">
+      <meta name="generator" content="mkdocs-1.1, mkdocs-material-5.1.6">
     
     
       
@@ -19,9 +19,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.df84b5fe.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.4b9ffd7b.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.8435c73a.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.b79bcd20.min.css">
       
       
         
@@ -339,9 +339,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#systemd-installation" class="md-nav__link">
-    Systemd Installation
+  <a href="#systemd-installation-not-recommended" class="md-nav__link">
+    Systemd Installation (Not recommended)
   </a>
+  
+    <nav class="md-nav" aria-label="Systemd Installation (Not recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-python-3-pip" class="md-nav__link">
+    1. Install Python 3 pip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-download-the-source-code" class="md-nav__link">
+    2. Download the source code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-a-non-privileged-user-for-the-exporter" class="md-nav__link">
+    3. Create a non-privileged user for the exporter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-copy-systemd-unit-service-and-example-settings" class="md-nav__link">
+    4. Copy Systemd unit service and example settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-edit-settings-and-replace-api_base_url-and-api_secret" class="md-nav__link">
+    5. Edit settings and replace API_BASE_URL and API_SECRET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-start-the-bigbluebutton-exporter-service" class="md-nav__link">
+    6. Start the bigbluebutton-exporter service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-setup-nginx-as-a-tls-termination-proxy" class="md-nav__link">
+    7. Setup Nginx as a TLS termination proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-configure-prometheus" class="md-nav__link">
+    8. Configure Prometheus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -563,9 +625,71 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#systemd-installation" class="md-nav__link">
-    Systemd Installation
+  <a href="#systemd-installation-not-recommended" class="md-nav__link">
+    Systemd Installation (Not recommended)
   </a>
+  
+    <nav class="md-nav" aria-label="Systemd Installation (Not recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-install-python-3-pip" class="md-nav__link">
+    1. Install Python 3 pip
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-download-the-source-code" class="md-nav__link">
+    2. Download the source code
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3-create-a-non-privileged-user-for-the-exporter" class="md-nav__link">
+    3. Create a non-privileged user for the exporter
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#4-copy-systemd-unit-service-and-example-settings" class="md-nav__link">
+    4. Copy Systemd unit service and example settings
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#5-edit-settings-and-replace-api_base_url-and-api_secret" class="md-nav__link">
+    5. Edit settings and replace API_BASE_URL and API_SECRET
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#6-start-the-bigbluebutton-exporter-service" class="md-nav__link">
+    6. Start the bigbluebutton-exporter service
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#7-setup-nginx-as-a-tls-termination-proxy" class="md-nav__link">
+    7. Setup Nginx as a TLS termination proxy
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#8-configure-prometheus" class="md-nav__link">
+    8. Configure Prometheus
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -748,11 +872,66 @@ docker-compose up -d
 <p>We recommend you "watch" on GitHub the <a href="https://github.com/greenstatic/bigbluebutton-exporter/">projects repository</a> to be notified
 on new releases.
 This way you will be always notified when a new update for BigBlueButton Exporter is available.</p>
-<h2 id="systemd-installation">Systemd Installation<a class="headerlink" href="#systemd-installation" title="Permanent link">#</a></h2>
-<p>TODO</p>
+<h2 id="systemd-installation-not-recommended">Systemd Installation (Not recommended)<a class="headerlink" href="#systemd-installation-not-recommended" title="Permanent link">#</a></h2>
+<p>This is an alternative installation guide that does not require docker and installs the exporter as a Systemd unit.</p>
+<p>After the guide you will have:</p>
+<ul>
+<li>BigBlueButton Exporter installed system wide and you will be able to use systemctl to
+start/stop/restart the exporter</li>
+<li>Nginx as a TLS termination proxy for the exporter</li>
+</ul>
+<p>Installation should be on the BigBlueButton server, although it is possible to install it on a secondary machine, but 
+this will require you to install Nginx and set it up by yourself.</p>
+<h3 id="1-install-python-3-pip">1. Install Python 3 pip<a class="headerlink" href="#1-install-python-3-pip" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo apt install python3-pip
+</code></pre></div>
+
+
+<h3 id="2-download-the-source-code">2. Download the source code<a class="headerlink" href="#2-download-the-source-code" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> /opt
+sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
+<span class="nb">cd</span> bigbluebutton-exporter/
+<span class="c1"># It is recommended to checkout a release tag instead of using the master branch.</span>
+<span class="c1"># We recommend selecting the latest release tag from:</span>
+<span class="c1"># https://github.com/greenstatic/bigbluebutton-exporter/releases</span>
+sudo git checkout &lt;RELEASE TAG&gt;
+<span class="c1"># e.g. sudo git checkout v0.2.0</span>
+</code></pre></div>
+
+
+<h3 id="3-create-a-non-privileged-user-for-the-exporter">3. Create a non-privileged user for the exporter<a class="headerlink" href="#3-create-a-non-privileged-user-for-the-exporter" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo useradd -r -d /opt/bigbluebutton-exporter -s /usr/sbin/nologin bbb-exporter
+sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
+</code></pre></div>
+
+
+<h3 id="4-copy-systemd-unit-service-and-example-settings">4. Copy Systemd unit service and example settings<a class="headerlink" href="#4-copy-systemd-unit-service-and-example-settings" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter.service /lib/systemd/system/
+sudo cp -r /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter /etc
+</code></pre></div>
+
+
+<h3 id="5-edit-settings-and-replace-api_base_url-and-api_secret">5. Edit settings and replace <code>API_BASE_URL</code> and <code>API_SECRET</code><a class="headerlink" href="#5-edit-settings-and-replace-api_base_url-and-api_secret" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo nano /etc/bigbluebutton-exporter/settings.env 
+<span class="c1"># or using Vim</span>
+sudo vim /etc/bigbluebutton-exporter/settings.env 
+</code></pre></div>
+
+
+<h3 id="6-start-the-bigbluebutton-exporter-service">6. Start the bigbluebutton-exporter service<a class="headerlink" href="#6-start-the-bigbluebutton-exporter-service" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code>sudo systemctl start bigbluebutton-exporter
+<span class="c1"># optional - enable exporter to autostart when booting host</span>
+sudo systemctl <span class="nb">enable</span> bigbluebutton-exporter
+</code></pre></div>
+
+
+<h3 id="7-setup-nginx-as-a-tls-termination-proxy">7. Setup Nginx as a TLS termination proxy<a class="headerlink" href="#7-setup-nginx-as-a-tls-termination-proxy" title="Permanent link">#</a></h3>
+<p>Follow <a href="#5-create-http-basic-auth-password">steps 5 - 7</a> from the Docker installation instructions.</p>
+<h3 id="8-configure-prometheus">8. Configure Prometheus<a class="headerlink" href="#8-configure-prometheus" title="Permanent link">#</a></h3>
+<p>Follow <a href="#8-add-the-exporter-to-your-prometheus-configuration">step 8</a> from the Docker installation instructions.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h2>
 <h3 id="multiple-bigbluebutton-servers">Multiple BigBlueButton Servers<a class="headerlink" href="#multiple-bigbluebutton-servers" title="Permanent link">#</a></h3>
-<p>You will need to install BigBlueButton Exporter on each server (steps 1-7) and then just add the server's domain to your
+<p>You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
 Prometheus <code>bbb</code> job target list.</p>
                 
               
@@ -820,8 +999,8 @@ Prometheus <code>bbb</code> job target list.</p>
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.83fe6e3c.min.js"></script>
-      <script src="../../assets/javascripts/bundle.7e1cb91c.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/vendor.a0c4167b.min.js"></script>
+      <script src="../../assets/javascripts/bundle.fb26dd1d.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
