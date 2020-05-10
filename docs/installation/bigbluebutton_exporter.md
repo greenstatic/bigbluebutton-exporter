@@ -54,12 +54,15 @@ This is because we will use Nginx to act as a TLS termination proxy (reverse pro
     For this you will need the handy `apache2-utils` package to create a password that will be used with HTTP basic auth by Nginx.
     You can install it (on Ubuntu) by running: `sudo apt-get install apache2-utils`.
 
-Create a username (e.g. monitoring) and password.
+Create a username (e.g. metrics) and password.
 You will be prompted after you run the `htpasswd` command for the desired password.
 ```shell
-# You may replace monitoring with any desired username
-sudo htpasswd -c /etc/nginx/.htpasswd monitoring
+# You may replace metrics with any desired username
+sudo htpasswd -c /etc/nginx/.htpasswd metrics
 ```
+
+!!! Warning
+    If you already have `/etc/nginx/.htpasswd` file then do not add the `-c` flag, otherwise you will overwrite the file.
 
 ### 6. Add Nginx site configuration
 Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
@@ -105,7 +108,8 @@ If everything is okay reload Nginx:
 sudo systemctl reload nginx
 ```
 
-Now you can try accessing the metrics on `/metrics` and typing in your username/password that you choose in [5. Create HTTP basic auth password](#5-create-http-basic-auth-password)
+Now you can try accessing the metrics on `/metrics` and typing in your username/password that you choose in 
+[5. Create HTTP basic auth password](#5-create-http-basic-auth-password)
 
 You should get the raw metrics in the Prometheus format.
 

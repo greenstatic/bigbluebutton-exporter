@@ -1,4 +1,79 @@
 # node_exporter
-Coming soon.
+Follow these instructions in order to view system resource utilization with the `server_instace_node_exporter.yaml` Grafana dashboard.
 
-TODO
+Instructions bellow will configure node_exporter to bind to localhost and configure Nginx as a reverse proxy that will expose 
+node_exporter via a location directive with HTTP basic auth.
+
+## Step-by-step Guide
+`node_exporter` should be installed on your BigBlueButton server in order to expose system metrics for your Grafan 
+dashboards.
+
+### 1. Copy `extras/node_exporter`
+```shell
+git clone https://github.com/greenstatic/bigbluebutton-exporter.git
+cp -r bigbluebutton-exporter/extras/node_exporter ~/
+```
+!!! tip
+    Always check for the latest stable docker image tag (for the `docker-compose.yaml` file). 
+
+### 2. Start using docker-compose
+```shell
+cd ~/node_exporter
+sudo docker-compose up -d
+```
+
+### 3. Create HTTP basic auth password
+
+!!! info
+    For this you will need the handy `apache2-utils` package to create a password that will be used with HTTP basic auth by Nginx.
+    You can install it (on Ubuntu) by running: `sudo apt install apache2-utils`.
+
+Create a username (e.g. monitoring) and password.
+You will be prompted after you run the `htpasswd` command for the desired password.
+
+!!! tip
+    The username and password combo doesn't need to be the same as the one for the exporter.
+
+```shell
+# You may replace monitoring with any desired username
+# add `-c` flag to create the file if it doesn't exist
+sudo htpasswd /etc/nginx/.htpasswd monitoring
+```
+
+### 6. Add Nginx site configuration
+Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
+`127.0.0.1:9100`.
+
+```text
+# Netdata Monitoring
+location /node_exporter/ {
+    proxy_pass         http://127.0.0.1:9100/;
+    proxy_redirect     default;
+    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
+    client_max_body_size       10m;
+    client_body_buffer_size    128k;
+    proxy_connect_timeout      90;
+    proxy_send_timeout         90;
+    proxy_read_timeout         90;
+    proxy_buffer_size          4k;
+    proxy_buffers              4 32k;
+    proxy_busy_buffers_size    64k;
+    proxy_temp_file_write_size 64k;
+    include    fastcgi_params;
+}
+```
+
+### 7. Add node_exporter to your Prometheus scrape jobs
+Add the following job to your Prometheus configuration.
+Replace `example.com` with your BigBlueButton's domain.
+
+```yaml
+- job_name: 'bbb_node_exporter'
+  metrics_path: '/node_exporter/metrics'
+  params:
+    format: [prometheus]
+  honor_labels: true
+  scheme: https
+  static_configs:
+  - targets: ['example.com']
+``` 

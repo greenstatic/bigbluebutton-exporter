@@ -24,7 +24,7 @@ sudo ./edit-config netdata.conf
 
 !!! info
     For this you will need the handy `apache2-utils` package to create a password that will be used with HTTP basic auth by Nginx.
-    You can install it (on Ubuntu) by running: `sudo apt-get install apache2-utils`.
+    You can install it (on Ubuntu) by running: `sudo apt install apache2-utils`.
 
 Create a username (e.g. monitoring) and password.
 You will be prompted after you run the `htpasswd` command for the desired password.
@@ -34,7 +34,8 @@ You will be prompted after you run the `htpasswd` command for the desired passwo
 
 ```shell
 # You may replace monitoring with any desired username
-sudo htpasswd -c /etc/nginx/.htpasswd monitoring
+# add `-c` flag to create the file if it doesn't exist
+sudo htpasswd /etc/nginx/.htpasswd monitoring
 ```
 
 ### 6. Add Nginx site configuration
