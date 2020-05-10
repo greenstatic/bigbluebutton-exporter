@@ -325,12 +325,45 @@
     Environment Variables
   </a>
   
+    <nav class="md-nav" aria-label="Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
+    Metric Histogram Custom Buckets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#metrics" class="md-nav__link">
     Metrics
   </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gauges" class="md-nav__link">
+    Gauges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histograms" class="md-nav__link">
+    Histograms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -407,12 +440,45 @@
     Environment Variables
   </a>
   
+    <nav class="md-nav" aria-label="Environment Variables">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
+    Metric Histogram Custom Buckets
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
   <a href="#metrics" class="md-nav__link">
     Metrics
   </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gauges" class="md-nav__link">
+    Gauges
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histograms" class="md-nav__link">
+    Histograms
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -469,8 +535,45 @@
 </ul>
 </li>
 </ul>
+<h3 id="metric-histogram-custom-buckets">Metric Histogram Custom Buckets<a class="headerlink" href="#metric-histogram-custom-buckets" title="Permanent link">#</a></h3>
+<ul>
+<li>
+<p>ROOM_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the <code>bbb_room_participants_bucket</code> histogram metric</p>
+<ul>
+<li>Required: false</li>
+<li>Default: <code>0,1,5,15,30,60,90,120,150,200,250,300,400,500</code></li>
+<li><code>INF</code> will be added automatically as the final bucket size</li>
+<li>Values: list of integers separated using comma (<code>,</code>)</li>
+</ul>
+</li>
+<li>
+<p>ROOM_LISTENERS_CUSTOM_BUCKETS - Custom bucket sizes for the <code>bbb_room_listeners_bucket</code> histogram metric</p>
+<ul>
+<li>Required: false</li>
+<li>Default: <code>0,1,5,15,30,60,90,120,150,200,250,300,400,500</code></li>
+<li><code>INF</code> will be added automatically as the final bucket size</li>
+<li>Values: list of integers separated using comma (<code>,</code>)</li>
+</ul>
+</li>
+<li>ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the <code>bbb_room_voice_participants_bucket</code> histogram 
+metric<ul>
+<li>Required: false</li>
+<li>Default: <code>0,1,5,15,30,60,90,120</code></li>
+<li><code>INF</code> will be added automatically as the final bucket size</li>
+<li>Values: list of integers separated using comma (<code>,</code>)</li>
+</ul>
+</li>
+<li>ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the <code>bbb_room_video_participants_bucket</code> histogram 
+metric<ul>
+<li>Required: false</li>
+<li>Default: <code>0,1,5,15,30,60,90,120</code></li>
+<li><code>INF</code> will be added automatically as the final bucket size</li>
+<li>Values: list of integers separated using comma (<code>,</code>)</li>
+</ul>
+</li>
+</ul>
 <h2 id="metrics">Metrics<a class="headerlink" href="#metrics" title="Permanent link">#</a></h2>
-<p>Gauges:</p>
+<h3 id="gauges">Gauges<a class="headerlink" href="#gauges" title="Permanent link">#</a></h3>
 <ul>
 <li>bbb_meetings_participants - Total number of participants in all BigBlueButton meetings</li>
 <li>bbb_meetings_listeners - Total number of listeners in all BigBlueButton meetings</li>
@@ -483,11 +586,36 @@
 <li>bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished</li>
 <li>bbb_recordings_deleted - Total number of BigBlueButton recordings deleted</li>
 <li>bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise</li>
+<li>bbb_exporter(labels: version) - Information about the exporter (i.e. version)</li>
 </ul>
-<p>Histograms:</p>
+<h3 id="histograms">Histograms<a class="headerlink" href="#histograms" title="Permanent link">#</a></h3>
 <ul>
 <li>bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency<ul>
 <li>buckets: .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF</li>
+</ul>
+</li>
+<li>bbb_room_participants_bucket - Number of rooms with participants less than or equal to the bucket size<ul>
+<li>buckets: 0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF</li>
+<li>bucket sizes can be overridden using <code>ROOM_PARTICIPANTS_CUSTOM_BUCKETS</code>, see 
+<a href="#metric-histogram-custom-buckets">environment variables - metric-histogram-custom-buckets</a> for details</li>
+</ul>
+</li>
+<li>bbb_room_listeners_bucket - Number of rooms with listeners less than or equal to the bucket size<ul>
+<li>buckets: 0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF</li>
+<li>bucket sizes can be overridden using <code>ROOM_LISTENERS_CUSTOM_BUCKETS</code>, see 
+<a href="#metric-histogram-custom-buckets">environment variables - metric-histogram-custom-buckets</a> for details</li>
+</ul>
+</li>
+<li>bbb_room_voice_participants_bucket - Number of rooms with voice participants less than or equal to the bucket size<ul>
+<li>buckets: 0, 1, 5, 15, 30, 60, 90, 120, INF</li>
+<li>bucket sizes can be overridden using <code>ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS</code>, see 
+<a href="#metric-histogram-custom-buckets">environment variables - metric-histogram-custom-buckets</a> for details</li>
+</ul>
+</li>
+<li>bbb_room_video_participants_bucket - Number of rooms with video participants less than or equal to the bucket size<ul>
+<li>buckets: 0, 1, 5, 15, 30, 60, 90, 120, INF</li>
+<li>bucket sizes can be overridden using <code>ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS</code>, see 
+<a href="#metric-histogram-custom-buckets">environment variables - metric-histogram-custom-buckets</a> for details</li>
 </ul>
 </li>
 </ul>
