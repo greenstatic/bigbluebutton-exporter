@@ -21,9 +21,33 @@
     * Default: 9688
     * Values: &lt;1 - 65535&gt;
     
+### Metric Histogram Custom Buckets
+* ROOM_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_participants_bucket` histogram metric
+    * Required: false
+    * Default: `0,1,5,15,30,60,90,120,150,200,250,300,400,500`
+    * `INF` will be added automatically as the final bucket size
+    * Values: list of integers separated using comma (`,`)
+    
+* ROOM_LISTENERS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_listeners_bucket` histogram metric
+    * Required: false
+    * Default: `0,1,5,15,30,60,90,120,150,200,250,300,400,500`
+    * `INF` will be added automatically as the final bucket size
+    * Values: list of integers separated using comma (`,`)
+* ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_voice_participants_bucket` histogram 
+metric
+    * Required: false
+    * Default: `0,1,5,15,30,60,90,120`
+    * `INF` will be added automatically as the final bucket size
+    * Values: list of integers separated using comma (`,`)
+* ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_video_participants_bucket` histogram 
+metric
+    * Required: false
+    * Default: `0,1,5,15,30,60,90,120`
+    * `INF` will be added automatically as the final bucket size
+    * Values: list of integers separated using comma (`,`)
+    
 ## Metrics
-Gauges:
-
+### Gauges
 * bbb_meetings_participants - Total number of participants in all BigBlueButton meetings
 * bbb_meetings_listeners - Total number of listeners in all BigBlueButton meetings
 * bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings
@@ -35,9 +59,24 @@ Gauges:
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
 * bbb_recordings_deleted - Total number of BigBlueButton recordings deleted
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
+* bbb_exporter(labels: version) - Information about the exporter (i.e. version)
 
-Histograms:
-
+### Histograms
 * bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency
     * buckets: .01, .025, .05, .075, .1, .25, .5, .75, 1.0, 1.25, 1.5, 1.75, 2.0, 2.5, 5.0, 7.5, 10.0, INF
-    
+* bbb_room_participants_bucket - Number of rooms with participants less than or equal to the bucket size
+    * buckets: 0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF
+    * bucket sizes can be overridden using `ROOM_PARTICIPANTS_CUSTOM_BUCKETS`, see 
+    [environment variables - metric-histogram-custom-buckets](#metric-histogram-custom-buckets) for details
+* bbb_room_listeners_bucket - Number of rooms with listeners less than or equal to the bucket size
+    * buckets: 0, 1, 5, 15, 30, 60, 90, 120, 150, 200, 250, 300, 400, 500, INF
+    * bucket sizes can be overridden using `ROOM_LISTENERS_CUSTOM_BUCKETS`, see 
+    [environment variables - metric-histogram-custom-buckets](#metric-histogram-custom-buckets) for details
+* bbb_room_voice_participants_bucket - Number of rooms with voice participants less than or equal to the bucket size
+    * buckets: 0, 1, 5, 15, 30, 60, 90, 120, INF
+    * bucket sizes can be overridden using `ROOM_VOICE_PARTICIPANTS_CUSTOM_BUCKETS`, see 
+    [environment variables - metric-histogram-custom-buckets](#metric-histogram-custom-buckets) for details
+* bbb_room_video_participants_bucket - Number of rooms with video participants less than or equal to the bucket size
+    * buckets: 0, 1, 5, 15, 30, 60, 90, 120, INF
+    * bucket sizes can be overridden using `ROOM_VIDEO_PARTICIPANTS_CUSTOM_BUCKETS`, see 
+    [environment variables - metric-histogram-custom-buckets](#metric-histogram-custom-buckets) for details
