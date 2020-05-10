@@ -76,6 +76,12 @@ Replace `example.com` with your BigBlueButton's domain.
   - targets: ['example.com']
 ``` 
 
+### 8. Import the dashboard to your Grafana
+Log into your Grafana web interface, click on `+` -> `Import` and select `Upload .json file`.
+Select the file `extras/dashboards/server_instance_netdata.json` from the repository (clone the repository or copy the 
+contents of the file).
+
+
 ## Notes
 ### Multiple BigBlueButton servers
 If you wish to monitor multiple BigBlueButton servers simply do steps 1-6 for each server and then add each server's 

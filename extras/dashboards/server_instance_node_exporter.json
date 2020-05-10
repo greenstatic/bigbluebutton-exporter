@@ -2,7 +2,7 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:234",
+        "$$hashKey": "object:183",
         "datasource": "-- Grafana --",
         "enable": true,
         "hide": false,
@@ -17,7 +17,7 @@
         "type": "tags"
       },
       {
-        "$$hashKey": "object:704",
+        "$$hashKey": "object:184",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -33,8 +33,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1589139401902,
+  "id": 10,
+  "iteration": 1589139495278,
   "links": [],
   "panels": [
     {
@@ -194,7 +194,7 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:448",
+          "$$hashKey": "object:678",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -203,7 +203,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:449",
+          "$$hashKey": "object:679",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -241,7 +241,7 @@
         "x": 0,
         "y": 4
       },
-      "id": 54,
+      "id": 46,
       "interval": null,
       "links": [],
       "mappingType": 1,
@@ -413,7 +413,6 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:1706",
           "alias": "Participants",
           "yaxis": 2
         }
@@ -423,7 +422,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\", instance=\"$instance\"})",
+          "expr": "(((count(count(node_cpu_seconds_total{instance=\"$instance\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode=\"idle\",instance=~\"$instance\"}[1m])))) * 100) / count(count(node_cpu_seconds_total{instance=~\"$instance\"}) by (cpu))",
           "interval": "",
           "legendFormat": "CPU Utlization",
           "refId": "A"
@@ -455,7 +454,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1633",
           "format": "percent",
           "label": "CPU Utlization [%]",
           "logBase": 1,
@@ -464,7 +462,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1634",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -549,7 +546,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2205",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -558,7 +554,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2206",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -609,7 +604,7 @@
       "pluginVersion": "6.7.2",
       "targets": [
         {
-          "expr": "max(bbb_meetings_participants{instance=\"$instance\"})",
+          "expr": "bbb_meetings_participants{instance=\"$instance\"}",
           "interval": "",
           "legendFormat": "Selected timeframe",
           "refId": "A"
@@ -672,12 +667,12 @@
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:1522",
+          "$$hashKey": "object:276",
           "alias": "Participants",
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:2530",
+          "$$hashKey": "object:277",
           "alias": "CPU total utilization",
           "yaxis": 2
         }
@@ -687,11 +682,18 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "abs(netdata_system_ip_kilobits_persec_average{instance=\"$instance\"})",
+          "expr": "sum(irate(node_network_receive_bytes_total{instance=\"$instance\"}[5m])*8)",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Bandiwidth ({{dimension}})",
+          "legendFormat": "Bandiwidth receive",
           "refId": "A"
+        },
+        {
+          "expr": "sum(irate(node_network_transmit_bytes_total{instance=\"$instance\"}[5m])*8)",
+          "interval": "",
+          "intervalFactor": 1,
+          "legendFormat": "Bandiwidth transmit",
+          "refId": "C"
         },
         {
           "expr": "bbb_meetings_participants{instance=\"$instance\"}",
@@ -723,8 +725,8 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:756",
-          "format": "Kbits",
+          "$$hashKey": "object:296",
+          "format": "bps",
           "label": "Bandwidth",
           "logBase": 1,
           "max": null,
@@ -732,7 +734,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:757",
+          "$$hashKey": "object:297",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -816,7 +818,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2374",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -825,7 +826,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2375",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1012,9 +1012,9 @@
         "x": 0,
         "y": 33
       },
-      "id": 52,
+      "id": 51,
       "panels": [],
-      "title": "Heatmaps",
+      "title": "Histograms",
       "type": "row"
     },
     {
@@ -1110,7 +1110,7 @@
       "heatmap": {},
       "hideZeroBuckets": true,
       "highlightCards": true,
-      "id": 46,
+      "id": 47,
       "legend": {
         "show": true
       },
@@ -1246,7 +1246,7 @@
       "heatmap": {},
       "hideZeroBuckets": true,
       "highlightCards": true,
-      "id": 50,
+      "id": 49,
       "legend": {
         "show": true
       },
@@ -1354,7 +1354,6 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:399",
           "colorMode": "warning",
           "fill": true,
           "line": true,
@@ -1363,7 +1362,6 @@
           "yaxis": "left"
         },
         {
-          "$$hashKey": "object:405",
           "colorMode": "critical",
           "fill": true,
           "line": true,
@@ -1391,7 +1389,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:371",
           "format": "short",
           "label": "Seconds",
           "logBase": 1,
@@ -1400,7 +1397,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:372",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1521,7 +1517,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:2618",
           "decimals": null,
           "format": "short",
           "label": "Latency [s]",
@@ -1531,7 +1526,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:2619",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1552,7 +1546,7 @@
   "tags": [
     "BigBlueButton",
     "prometheus",
-    "netdata"
+    "node_exporter"
   ],
   "templating": {
     "list": [
@@ -1581,7 +1575,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-1h",
     "to": "now"
   },
   "timepicker": {
@@ -1599,10 +1593,10 @@
     ]
   },
   "timezone": "",
-  "title": "BigBlueButton Server Instance (netdata)",
-  "uid": "HIbd_CXZz2",
+  "title": "BigBlueButton Server Instance (node_exporter)",
+  "uid": "HIbd_CXZz3",
   "variables": {
     "list": []
   },
-  "version": 44
+  "version": 3
 }

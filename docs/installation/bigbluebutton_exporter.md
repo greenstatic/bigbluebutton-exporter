@@ -210,6 +210,19 @@ Follow [steps 5 - 7](#5-create-http-basic-auth-password) from the Docker install
 ### 8. Configure Prometheus
 Follow [step 8](#8-add-the-exporter-to-your-prometheus-configuration) from the Docker installation instructions.
 
+### Updates
+To update the exporter all you need to do is issue a:
+```shell
+cd /opt/bigbluebutton-exporter
+sudo git pull
+sudo git checkout <RELEASE TAG>
+sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
+sudo systemctl restart bigbluebutton-exporter
+```
+
+Check the [repository releases](https://github.com/greenstatic/bigbluebutton-exporter/releases) to get the latest tag.
+It is recommended to watch the repository to be alerted when there is a new release available.
+
 ## Notes
 ### Multiple BigBlueButton Servers
 You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your

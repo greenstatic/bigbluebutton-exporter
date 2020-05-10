@@ -23,8 +23,8 @@ or Netdata), you can import the appropriate Grafana dashboards.
 
 !!! note
     We assume a working Grafana-Prometheus installation.
-    If you used the All-In-One Monitoring Stack installation type, you should have connected Prometheus to Grafana during
-    the setup guide.
+    If you used the All-In-One Monitoring Stack installation type you are covered since Grafana, Prometheus and node_exporter
+    come preconfigured. 
 
 Login to Grafana and in the left menu click on _+ icon -> import_
 
