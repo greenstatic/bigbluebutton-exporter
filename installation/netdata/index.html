@@ -348,6 +348,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#8-import-the-dashboard-to-your-grafana" class="md-nav__link">
+    8. Import the dashboard to your Grafana
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -508,6 +515,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#8-import-the-dashboard-to-your-grafana" class="md-nav__link">
+    8. Import the dashboard to your Grafana
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -580,7 +594,7 @@ sudo ./edit-config netdata.conf
 <div class="admonition info">
 <p class="admonition-title">Info</p>
 <p>For this you will need the handy <code>apache2-utils</code> package to create a password that will be used with HTTP basic auth by Nginx.
-You can install it (on Ubuntu) by running: <code>sudo apt-get install apache2-utils</code>.</p>
+You can install it (on Ubuntu) by running: <code>sudo apt install apache2-utils</code>.</p>
 </div>
 <p>Create a username (e.g. monitoring) and password.
 You will be prompted after you run the <code>htpasswd</code> command for the desired password.</p>
@@ -589,7 +603,8 @@ You will be prompted after you run the <code>htpasswd</code> command for the des
 <p>The username and password combo doesn't need to be the same as the one for the exporter.</p>
 </div>
 <div class="codehilite"><pre><span></span><code><span class="c1"># You may replace monitoring with any desired username</span>
-sudo htpasswd -c /etc/nginx/.htpasswd monitoring
+<span class="c1"># add `-c` flag to create the file if it doesn&#39;t exist</span>
+sudo htpasswd /etc/nginx/.htpasswd monitoring
 </code></pre></div>
 
 
@@ -629,6 +644,10 @@ Replace <code>example.com</code> with your BigBlueButton's domain.</p>
 </code></pre></div>
 
 
+<h3 id="8-import-the-dashboard-to-your-grafana">8. Import the dashboard to your Grafana<a class="headerlink" href="#8-import-the-dashboard-to-your-grafana" title="Permanent link">#</a></h3>
+<p>Log into your Grafana web interface, click on <code>+</code> -&gt; <code>Import</code> and select <code>Upload .json file</code>.
+Select the file <code>extras/dashboards/server_instance_netdata.json</code> from the repository (clone the repository or copy the 
+contents of the file).</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h2>
 <h3 id="multiple-bigbluebutton-servers">Multiple BigBlueButton servers<a class="headerlink" href="#multiple-bigbluebutton-servers" title="Permanent link">#</a></h3>
 <p>If you wish to monitor multiple BigBlueButton servers simply do steps 1-6 for each server and then add each server's 

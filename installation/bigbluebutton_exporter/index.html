@@ -402,6 +402,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updates_1" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -688,6 +695,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#updates_1" class="md-nav__link">
+    Updates
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -787,13 +801,17 @@ This is because we will use Nginx to act as a TLS termination proxy (reverse pro
 <p>For this you will need the handy <code>apache2-utils</code> package to create a password that will be used with HTTP basic auth by Nginx.
 You can install it (on Ubuntu) by running: <code>sudo apt-get install apache2-utils</code>.</p>
 </div>
-<p>Create a username (e.g. monitoring) and password.
+<p>Create a username (e.g. metrics) and password.
 You will be prompted after you run the <code>htpasswd</code> command for the desired password.</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># You may replace monitoring with any desired username</span>
-sudo htpasswd -c /etc/nginx/.htpasswd monitoring
+<div class="codehilite"><pre><span></span><code><span class="c1"># You may replace metrics with any desired username</span>
+sudo htpasswd -c /etc/nginx/.htpasswd metrics
 </code></pre></div>
 
 
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you already have <code>/etc/nginx/.htpasswd</code> file then do not add the <code>-c</code> flag, otherwise you will overwrite the file.</p>
+</div>
 <h3 id="6-add-nginx-site-configuration">6. Add Nginx site configuration<a class="headerlink" href="#6-add-nginx-site-configuration" title="Permanent link">#</a></h3>
 <p>Add the location directive to your Nginx web server (<code>/etc/nginx/sites-available/bigbluebutton</code>) that will proxy traffic to
 <code>127.0.0.1:9688</code>.</p>
@@ -837,7 +855,8 @@ do virtual hosting and acquire a seperate HTTPS certificate.</p>
 </code></pre></div>
 
 
-<p>Now you can try accessing the metrics on <code>/metrics</code> and typing in your username/password that you choose in <a href="#5-create-http-basic-auth-password">5. Create HTTP basic auth password</a></p>
+<p>Now you can try accessing the metrics on <code>/metrics</code> and typing in your username/password that you choose in 
+<a href="#5-create-http-basic-auth-password">5. Create HTTP basic auth password</a></p>
 <p>You should get the raw metrics in the Prometheus format.</p>
 <h3 id="8-add-the-exporter-to-your-prometheus-configuration">8. Add the exporter to your Prometheus configuration<a class="headerlink" href="#8-add-the-exporter-to-your-prometheus-configuration" title="Permanent link">#</a></h3>
 <p>Now all that is left is to point your Prometheus to the exporter.</p>
@@ -929,6 +948,18 @@ sudo systemctl <span class="nb">enable</span> bigbluebutton-exporter
 <p>Follow <a href="#5-create-http-basic-auth-password">steps 5 - 7</a> from the Docker installation instructions.</p>
 <h3 id="8-configure-prometheus">8. Configure Prometheus<a class="headerlink" href="#8-configure-prometheus" title="Permanent link">#</a></h3>
 <p>Follow <a href="#8-add-the-exporter-to-your-prometheus-configuration">step 8</a> from the Docker installation instructions.</p>
+<h3 id="updates_1">Updates<a class="headerlink" href="#updates_1" title="Permanent link">#</a></h3>
+<p>To update the exporter all you need to do is issue a:</p>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> /opt/bigbluebutton-exporter
+sudo git pull
+sudo git checkout &lt;RELEASE TAG&gt;
+sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
+sudo systemctl restart bigbluebutton-exporter
+</code></pre></div>
+
+
+<p>Check the <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">repository releases</a> to get the latest tag.
+It is recommended to watch the repository to be alerted when there is a new release available.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h2>
 <h3 id="multiple-bigbluebutton-servers">Multiple BigBlueButton Servers<a class="headerlink" href="#multiple-bigbluebutton-servers" title="Permanent link">#</a></h3>
 <p>You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
