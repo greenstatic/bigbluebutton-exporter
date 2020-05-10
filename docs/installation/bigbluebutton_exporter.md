@@ -145,12 +145,68 @@ We recommend you "watch" on GitHub the [projects repository](https://github.com/
 on new releases.
 This way you will be always notified when a new update for BigBlueButton Exporter is available.
 
-## Systemd Installation
+## Systemd Installation (Not recommended)
+This is an alternative installation guide that does not require docker and installs the exporter as a Systemd unit.
 
-TODO
+After the guide you will have:
 
+* BigBlueButton Exporter installed system wide and you will be able to use systemctl to
+start/stop/restart the exporter
+* Nginx as a TLS termination proxy for the exporter
+
+Installation should be on the BigBlueButton server, although it is possible to install it on a secondary machine, but 
+this will require you to install Nginx and set it up by yourself.
+
+### 1. Install Python 3 pip
+```shell
+sudo apt install python3-pip
+```
+
+### 2. Download the source code
+```shell
+cd /opt
+sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
+cd bigbluebutton-exporter/
+# It is recommended to checkout a release tag instead of using the master branch.
+# We recommend selecting the latest release tag from:
+# https://github.com/greenstatic/bigbluebutton-exporter/releases
+sudo git checkout <RELEASE TAG>
+# e.g. sudo git checkout v0.2.0
+```
+
+### 3. Create a non-privileged user for the exporter
+```shell
+sudo useradd -r -d /opt/bigbluebutton-exporter -s /usr/sbin/nologin bbb-exporter
+sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
+```
+
+### 4. Copy Systemd unit service and example settings
+```shell
+sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter.service /lib/systemd/system/
+sudo cp -r /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter /etc
+```
+
+### 5. Edit settings and replace `API_BASE_URL` and `API_SECRET`
+```shell
+sudo nano /etc/bigbluebutton-exporter/settings.env 
+# or using Vim
+sudo vim /etc/bigbluebutton-exporter/settings.env 
+```
+
+### 6. Start the bigbluebutton-exporter service
+```shell
+sudo systemctl start bigbluebutton-exporter
+# optional - enable exporter to autostart when booting host
+sudo systemctl enable bigbluebutton-exporter
+```
+
+### 7. Setup Nginx as a TLS termination proxy
+Follow [steps 5 - 7](#5-create-http-basic-auth-password) from the Docker installation instructions.
+
+### 8. Configure Prometheus
+Follow [step 8](#8-add-the-exporter-to-your-prometheus-configuration) from the Docker installation instructions.
 
 ## Notes
 ### Multiple BigBlueButton Servers
-You will need to install BigBlueButton Exporter on each server (steps 1-7) and then just add the server's domain to your
+You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
 Prometheus `bbb` job target list.

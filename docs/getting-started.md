@@ -6,14 +6,14 @@ First you will need to choose your installation configuration.
 | --- | --- | --- | --- |
 | [Docker installation](./installation/bigbluebutton_exporter.md#docker-installation-recommended) (recommended) | multiple | ✅ | ✅ |  
 | [All-In-One Monitoring Stack installation](./installation/all_in_one_monitoring_stack.md) | 1 | ❌ | ✅ |
-| [Systemd installation](./installation/bigbluebutton_exporter.md#systemd-installation) | multiple | ✅ | ❌ |
+| [Systemd installation](./installation/bigbluebutton_exporter.md#systemd-installation-not-recommended) (not recommended) | multiple | ✅ | ❌ |
 
 If you choose the Docker or Systemd installation type you will have the choice of choosing between node_exporter 
 (recommended) and Netdata for server resource utilization metrics.
 The metrics that will be collected from one of these two tools will be used together with BigBlueButton exporter metrics
 in the _Server Instance_ Grafana dashboards.
 
-[node_exporter installation instructions](./installation/netdata.md)
+[node_exporter installation instructions](./installation/node_exporter.md)
 
 [Netdata installation instructions](./installation/netdata.md)
 

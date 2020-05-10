@@ -1,0 +1,14 @@
+[Unit]
+Description=BigBlueButton Exporter
+
+[Service]
+Type=simple
+ExecStart=/usr/bin/python3 /opt/bigbluebutton-exporter/bbb-exporter/server.py
+User=bbb-exporter
+Group=bbb-exporter
+Restart=always
+RestartSec=5s
+EnvironmentFile=/etc/bigbluebutton-exporter/settings.env
+
+[Install]
+WantedBy=multi-user.target
