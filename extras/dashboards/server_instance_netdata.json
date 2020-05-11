@@ -33,8 +33,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1589139401902,
+  "id": 13,
+  "iteration": 1589197208502,
   "links": [],
   "panels": [
     {
@@ -114,6 +114,7 @@
       "targets": [
         {
           "expr": "bbb_api_up{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -285,7 +286,7 @@
         {
           "expr": "bbb_exporter",
           "format": "table",
-          "instant": false,
+          "instant": true,
           "interval": "",
           "legendFormat": "",
           "refId": "A"
@@ -345,24 +346,28 @@
       "targets": [
         {
           "expr": "bbb_meetings_participants{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Participants",
           "refId": "A"
         },
         {
           "expr": "bbb_meetings_listeners{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Listeners",
           "refId": "B"
         },
         {
           "expr": "bbb_meetings_voice_participants{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Voice",
           "refId": "C"
         },
         {
           "expr": "bbb_meetings_video_participants{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Video",
           "refId": "D"
@@ -687,10 +692,10 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "abs(netdata_system_ip_kilobits_persec_average{instance=\"$instance\"})",
+          "expr": "abs(netdata_net_net_kilobits_persec_average{instance=\"$instance\", family=\"$interface\"})",
           "interval": "",
           "intervalFactor": 1,
-          "legendFormat": "Bandiwidth ({{dimension}})",
+          "legendFormat": "{{family}} ({{dimension}})",
           "refId": "A"
         },
         {
@@ -877,30 +882,35 @@
       "targets": [
         {
           "expr": "bbb_recordings_processing{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Processing",
           "refId": "B"
         },
         {
           "expr": "bbb_recordings_processed{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Processed",
           "refId": "A"
         },
         {
           "expr": "bbb_recordings_published{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Published",
           "refId": "E"
         },
         {
           "expr": "bbb_recordings_unpublished{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Unpublished",
           "refId": "C"
         },
         {
           "expr": "bbb_recordings_deleted{instance=\"$instance\"}",
+          "instant": true,
           "interval": "",
           "legendFormat": "Deleted",
           "refId": "D"
@@ -916,13 +926,103 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 27
+      },
+      "hiddenSeries": false,
+      "id": 56,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bbb_room_participants_gcount{instance=\"$instance\"}",
+          "interval": "",
+          "legendFormat": "Rooms",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Number of Rooms",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:572",
+          "format": "short",
+          "label": "Rooms",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:573",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "Prometheus",
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 6,
+        "h": 7,
         "w": 12,
-        "x": 0,
+        "x": 12,
         "y": 27
       },
       "hiddenSeries": false,
@@ -1010,7 +1110,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 33
+        "y": 34
       },
       "id": 52,
       "panels": [],
@@ -1037,7 +1137,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 34
+        "y": 35
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1105,7 +1205,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 34
+        "y": 35
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1173,7 +1273,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 44
+        "y": 45
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1241,7 +1341,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 44
+        "y": 45
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1296,7 +1396,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 54
+        "y": 55
       },
       "id": 38,
       "panels": [],
@@ -1315,7 +1415,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 40,
@@ -1429,7 +1529,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 56
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1577,6 +1677,28 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "allValue": null,
+        "datasource": "Prometheus",
+        "definition": "label_values(netdata_net_net_kilobits_persec_average, family)",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Network Interface",
+        "multi": false,
+        "name": "interface",
+        "options": [],
+        "query": "label_values(netdata_net_net_kilobits_persec_average, family)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       }
     ]
   },
@@ -1604,5 +1726,5 @@
   "variables": {
     "list": []
   },
-  "version": 44
+  "version": 2
 }

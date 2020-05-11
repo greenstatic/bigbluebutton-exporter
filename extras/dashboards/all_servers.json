@@ -111,6 +111,7 @@
       "targets": [
         {
           "expr": "bbb_api_up",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -355,6 +356,7 @@
       "targets": [
         {
           "expr": "sum(bbb_meetings_participants)",
+          "instant": true,
           "interval": "",
           "legendFormat": "Total",
           "refId": "A"
@@ -550,12 +552,74 @@
       }
     },
     {
+      "cacheTimeout": null,
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 13
+      },
+      "id": 53,
+      "links": [],
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "mappings": [
+              {
+                "$$hashKey": "object:409",
+                "id": 0,
+                "op": "=",
+                "text": "N/A",
+                "type": 1,
+                "value": "null"
+              }
+            ],
+            "nullValueMode": "connected",
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            },
+            "unit": "none"
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.2",
+      "targets": [
+        {
+          "expr": "sum(bbb_room_participants_gcount)",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "Total",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Total Rooms",
+      "type": "stat"
+    },
+    {
       "datasource": "Prometheus",
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 13
+        "y": 16
       },
       "id": 26,
       "options": {
@@ -587,6 +651,7 @@
       "targets": [
         {
           "expr": "bbb_meetings_participants",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -598,52 +663,94 @@
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
+        "h": 7,
+        "w": 9,
+        "x": 4,
         "y": 17
       },
-      "id": 24,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "max"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+      "hiddenSeries": false,
+      "id": 52,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
       },
-      "pluginVersion": "6.7.2",
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_meetings_participants",
+          "expr": "bbb_room_participants_gcount",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
         }
       ],
+      "thresholds": [],
       "timeFrom": null,
+      "timeRegions": [],
       "timeShift": null,
-      "title": "Max Participants for Selected Timeframe",
-      "type": "stat"
+      "title": "Number of Rooms",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1140",
+          "format": "short",
+          "label": "Rooms",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1141",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
     },
     {
       "aliasColors": {},
@@ -654,9 +761,9 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 4,
+        "h": 7,
+        "w": 11,
+        "x": 13,
         "y": 17
       },
       "hiddenSeries": false,
@@ -738,13 +845,62 @@
       }
     },
     {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 20
+      },
+      "id": 24,
+      "options": {
+        "colorMode": "value",
+        "fieldOptions": {
+          "calcs": [
+            "max"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal"
+      },
+      "pluginVersion": "6.7.2",
+      "targets": [
+        {
+          "expr": "bbb_meetings_participants",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Max Participants for Selected Timeframe",
+      "type": "stat"
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 23
+        "y": 24
       },
       "id": 30,
       "panels": [],
@@ -757,7 +913,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 24
+        "y": 25
       },
       "id": 14,
       "options": {
@@ -788,6 +944,7 @@
       "targets": [
         {
           "expr": "bbb_recordings_processing",
+          "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -804,7 +961,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 24
+        "y": 25
       },
       "id": 16,
       "options": {
@@ -836,6 +993,7 @@
       "targets": [
         {
           "expr": "bbb_recordings_processed",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -852,7 +1010,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 24
+        "y": 25
       },
       "id": 18,
       "options": {
@@ -884,6 +1042,7 @@
       "targets": [
         {
           "expr": "bbb_recordings_published",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -900,7 +1059,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 24
+        "y": 25
       },
       "id": 20,
       "options": {
@@ -932,6 +1091,7 @@
       "targets": [
         {
           "expr": "bbb_recordings_unpublished",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -948,7 +1108,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 24
+        "y": 25
       },
       "id": 10,
       "options": {
@@ -980,6 +1140,7 @@
       "targets": [
         {
           "expr": "bbb_recordings_deleted",
+          "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -997,7 +1158,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 28
+        "y": 29
       },
       "id": 44,
       "panels": [],
@@ -1024,7 +1185,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 29
+        "y": 30
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1092,7 +1253,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 29
+        "y": 30
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1160,7 +1321,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 40
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1228,7 +1389,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 40
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1283,7 +1444,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 49
+        "y": 50
       },
       "id": 32,
       "panels": [],
@@ -1302,7 +1463,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 51
       },
       "hiddenSeries": false,
       "id": 36,
@@ -1414,7 +1575,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 58
+        "y": 59
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1564,5 +1725,5 @@
   "variables": {
     "list": []
   },
-  "version": 39
+  "version": 41
 }
