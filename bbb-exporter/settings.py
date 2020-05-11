@@ -5,7 +5,7 @@ from helpers import validate_api_base_url, validate_buckets
 MAJOR = 0
 MINOR = 3
 BUGFIX = 0
-INFO = "development-version"
+INFO = ""
 
 VERSION = "{}.{}.{}".format(MAJOR, MINOR, BUGFIX)
 if INFO:
