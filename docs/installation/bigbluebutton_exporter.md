@@ -21,7 +21,12 @@ mkdir ~/bbb-exporter
 
 ### 2. Create docker-compose file
 Copy [extras/docker-compose.exporter.yaml](https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/docker-compose.exporter.yaml) 
-to your BigBlueButton server into `~/bbb-exporter/docker-compose.yaml`
+to your BigBlueButton server into `~/bbb-exporter/docker-compose.yaml`.
+Make sure to replace the Docker image tag to the [latest release](https://github.com/greenstatic/bigbluebutton-exporter/releases).
+
+!!! tip
+    Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
+    This also makes it easier to check which version you are running and which is the latest release.
 
 ### 3. Create secrets file
 Take a note of your BigBlueButton's API base url and secret by running:

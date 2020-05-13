@@ -35,6 +35,12 @@ to your server into `~/bbb-monitoring`
 
 And replace all the references to `example.com` with your BigBlueButton domain.
 
+Make sure to replace the exporters Docker image tag to the [latest release](https://github.com/greenstatic/bigbluebutton-exporter/releases).
+
+!!! tip
+    Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
+    This also makes it easier to check which version you are running and which is the latest release.
+
 !!! note
     You will configure `https://example.com/monitoring` in [step 5: Configure Nginx](#5-configure-nginx).
 
