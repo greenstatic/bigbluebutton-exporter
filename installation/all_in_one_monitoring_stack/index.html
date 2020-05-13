@@ -555,6 +555,12 @@ format v3.2 (as of April 29, 2020).</p>
 <p>Copy all the files in <a href="https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/all_in_one_monitoring">extras/all_in_one_monitoring</a> 
 to your server into <code>~/bbb-monitoring</code></p>
 <p>And replace all the references to <code>example.com</code> with your BigBlueButton domain.</p>
+<p>Make sure to replace the exporters Docker image tag to the <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">latest release</a>.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
+This also makes it easier to check which version you are running and which is the latest release.</p>
+</div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>You will configure <code>https://example.com/monitoring</code> in <a href="#5-configure-nginx">step 5: Configure Nginx</a>.</p>
