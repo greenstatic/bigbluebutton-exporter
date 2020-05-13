@@ -2,7 +2,7 @@ version: '3.2'
 services:
   bbb-exporter:
     container_name: bbb-exporter
-    image: greenstatic/bigbluebutton-exporter:latest
+    image: greenstatic/bigbluebutton-exporter:v0.3.0
     network_mode: host
     env_file:
       - bbb_exporter_secrets.env
