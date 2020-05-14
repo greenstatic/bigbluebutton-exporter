@@ -894,13 +894,213 @@
       "type": "stat"
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "Prometheus",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 24,
+        "x": 0,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 55,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "(1 - avg(irate(node_cpu_seconds_total{mode=\"idle\", job=\"$job_node_exporter\"}[5m])) by (instance)) * 100",
+          "interval": "",
+          "legendFormat": "{{instance}} (node_exporter)",
+          "refId": "A"
+        },
+        {
+          "expr": "sum(netdata_system_cpu_percentage_average{dimension!=\"idle\", job=\"$job_netdata\"}) by (instance)",
+          "hide": false,
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}} (Netdata)",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "CPU Utlization ",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:199",
+          "format": "percent",
+          "label": "CPU Utlization [%]",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:200",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 31
+      },
+      "hiddenSeries": false,
+      "id": 57,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "sum(node_memory_MemTotal_bytes{job=\"$job_node_exporter\"} - node_memory_MemAvailable_bytes{job=\"$job_node_exporter\"}) by (instance)",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} (node_exporter)",
+          "refId": "A"
+        },
+        {
+          "expr": "(sum(netdata_system_ram_MiB_average) by (instance) - sum(netdata_mem_available_MiB_average) by (instance)) * 1024 * 1024",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} (Netdata)",
+          "refId": "C"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Memory Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:879",
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:880",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 39
       },
       "id": 30,
       "panels": [],
@@ -913,7 +1113,7 @@
         "h": 4,
         "w": 4,
         "x": 0,
-        "y": 25
+        "y": 40
       },
       "id": 14,
       "options": {
@@ -961,7 +1161,7 @@
         "h": 4,
         "w": 4,
         "x": 4,
-        "y": 25
+        "y": 40
       },
       "id": 16,
       "options": {
@@ -1010,7 +1210,7 @@
         "h": 4,
         "w": 4,
         "x": 8,
-        "y": 25
+        "y": 40
       },
       "id": 18,
       "options": {
@@ -1059,7 +1259,7 @@
         "h": 4,
         "w": 4,
         "x": 12,
-        "y": 25
+        "y": 40
       },
       "id": 20,
       "options": {
@@ -1108,7 +1308,7 @@
         "h": 4,
         "w": 4,
         "x": 16,
-        "y": 25
+        "y": 40
       },
       "id": 10,
       "options": {
@@ -1158,7 +1358,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 29
+        "y": 44
       },
       "id": 44,
       "panels": [],
@@ -1185,7 +1385,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 30
+        "y": 45
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1253,7 +1453,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 30
+        "y": 45
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1321,7 +1521,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 40
+        "y": 55
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1389,7 +1589,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 40
+        "y": 55
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1444,7 +1644,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 50
+        "y": 65
       },
       "id": 32,
       "panels": [],
@@ -1463,7 +1663,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 66
       },
       "hiddenSeries": false,
       "id": 36,
@@ -1575,7 +1775,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 74
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1699,7 +1899,52 @@
     "prometheus"
   ],
   "templating": {
-    "list": []
+    "list": [
+      {
+        "allValue": null,
+        "datasource": "Prometheus",
+        "definition": "label_values(netdata_system_cpu_percentage_average, job)",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "Netdata Job",
+        "multi": false,
+        "name": "job_netdata",
+        "options": [],
+        "query": "label_values(netdata_system_cpu_percentage_average, job)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "datasource": "Prometheus",
+        "definition": "label_values(node_cpu_seconds_total, job)",
+        "hide": 0,
+        "includeAll": false,
+        "index": -1,
+        "label": "node_exporter Job",
+        "multi": false,
+        "name": "job_node_exporter",
+        "options": [],
+        "query": "label_values(node_cpu_seconds_total, job)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      }
+    ]
   },
   "time": {
     "from": "now-6h",
@@ -1725,5 +1970,5 @@
   "variables": {
     "list": []
   },
-  "version": 41
+  "version": 42
 }
