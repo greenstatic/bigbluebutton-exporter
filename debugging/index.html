@@ -339,6 +339,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#debugging-all-in-one-monitoring-stack" class="md-nav__link">
+    Debugging All-In-One Monitoring Stack
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging All-In-One Monitoring Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-logs" class="md-nav__link">
+    Check Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-if-prometheus-is-scraping-correctly" class="md-nav__link">
+    Checking if Prometheus is Scraping Correctly
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -402,6 +429,33 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#debugging-all-in-one-monitoring-stack" class="md-nav__link">
+    Debugging All-In-One Monitoring Stack
+  </a>
+  
+    <nav class="md-nav" aria-label="Debugging All-In-One Monitoring Stack">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#check-logs" class="md-nav__link">
+    Check Logs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-if-prometheus-is-scraping-correctly" class="md-nav__link">
+    Checking if Prometheus is Scraping Correctly
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -438,6 +492,34 @@ Prometheus, Grafana, node_exporter, Netdata, etc.).</p>
 <a href="../exporter-user-guide/#environment-variables">Exporter User Guide</a>, by adding the 
 environment variable <code>DEBUG=true</code>.
 This should spit out the XML API responses of all API queries to stdout.</p>
+<h2 id="debugging-all-in-one-monitoring-stack">Debugging All-In-One Monitoring Stack<a class="headerlink" href="#debugging-all-in-one-monitoring-stack" title="Permanent link">#</a></h2>
+<h3 id="check-logs">Check Logs<a class="headerlink" href="#check-logs" title="Permanent link">#</a></h3>
+<div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/bbb-monitoring
+sudo docker-compose logs bbb-exporter
+sudo docker-compose logs prometheus
+sudo docker-compose logs grafana
+sudo docker-compose logs node_exporter
+
+<span class="c1"># or skip the service name to view logs for all containers</span>
+sudo docker-compose logs
+</code></pre></div>
+
+
+<h3 id="checking-if-prometheus-is-scraping-correctly">Checking if Prometheus is Scraping Correctly<a class="headerlink" href="#checking-if-prometheus-is-scraping-correctly" title="Permanent link">#</a></h3>
+<p>If you are not receiving any values in Grafana and the container logs do not give
+you any hints, it is a good idea to check if Prometheus is scraping any metrics.</p>
+<p>Since Prometheus is running on the host's network stack but binded to <code>127.0.0.1</code>
+we can use SSH to perform a local port forward.</p>
+<div class="codehilite"><pre><span></span><code>ssh -NL <span class="m">9090</span>:127.0.0.1:9090 &lt;HOST&gt;
+</code></pre></div>
+
+
+<p>Now visit <code>http://localhost:9090</code> on your local machine and the Prometheus web 
+interface should appear.
+Under <code>Status</code> select <code>Targets</code>.
+Here the <code>bbb_node_exporter</code> target should be <code>up</code>.</p>
+<p>If the target is <code>down</code> then there is a scraping issue, if it is <code>up</code> then the 
+issue is on the Grafana -&gt; Prometheus side.</p>
                 
               
               
