@@ -24,3 +24,6 @@ nav:
   - debugging.md
   - development.md
   - support.md
+
+extra_css:
+  - https://voh.nipwd.com/oss/bigbluebutton-exporter.css
