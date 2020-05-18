@@ -140,7 +140,8 @@ Replace `example.com` with your BigBlueButton's domain.
 
 ### Updates
 To update your BigBlueButton exporter all you have to do is change the docker image tag to the latest release 
-(see [releases](https://github.com/greenstatic/bigbluebutton-exporter/releases) or [Docker image tags](https://hub.docker.com/r/greenstatic/bigbluebutton-exporter/tags)) 
+(see [releases](https://github.com/greenstatic/bigbluebutton-exporter/releases) or 
+[Docker image tags](https://hub.docker.com/r/greenstatic/bigbluebutton-exporter/tags)) 
 in `~/bbb-exporter/docker-compose.yaml` and re-create the docker container by running:
 
 ```shell
