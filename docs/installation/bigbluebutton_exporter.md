@@ -95,9 +95,9 @@ location /metrics/ {
 ```
 
 !!! Tip
-    When upgrading BigBlueButton, the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
+    When upgrading BigBlueButton (using the script), the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
     thereby causing you to lose access to your metrics. 
-    So after the upgrade od BigBlueButton you will need to add the location directive again.
+    So after the upgrade you will need to add the location directive again.
     
     You could also add a seperate site configuration, but this will require you do point another domain to the server to
     do virtual hosting and acquire a seperate HTTPS certificate.
