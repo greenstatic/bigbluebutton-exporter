@@ -32,6 +32,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
+  "iteration": 1589821092038,
   "links": [],
   "panels": [
     {
@@ -672,20 +673,22 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 9,
+        "w": 10,
         "x": 4,
         "y": 17
       },
       "hiddenSeries": false,
       "id": 52,
       "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": false,
         "show": true,
         "total": false,
-        "values": false
+        "values": true
       },
       "lines": true,
       "linewidth": 1,
@@ -762,8 +765,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 7,
-        "w": 11,
-        "x": 13,
+        "w": 10,
+        "x": 14,
         "y": 17
       },
       "hiddenSeries": false,
@@ -1163,6 +1166,54 @@
         "x": 4,
         "y": 40
       },
+      "id": 58,
+      "options": {
+        "fieldOptions": {
+          "calcs": [
+            "last"
+          ],
+          "defaults": {
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                }
+              ]
+            }
+          },
+          "overrides": [],
+          "values": false
+        },
+        "orientation": "auto",
+        "showThresholdLabels": false,
+        "showThresholdMarkers": true
+      },
+      "pluginVersion": "6.7.2",
+      "targets": [
+        {
+          "expr": "bbb_recordings_unprocessed",
+          "instant": false,
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Recordings Processing",
+      "type": "gauge"
+    },
+    {
+      "datasource": "Prometheus",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 40
+      },
       "id": 16,
       "options": {
         "colorMode": "value",
@@ -1209,7 +1260,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 8,
+        "x": 12,
         "y": 40
       },
       "id": 18,
@@ -1258,7 +1309,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 12,
+        "x": 16,
         "y": 40
       },
       "id": 20,
@@ -1307,7 +1358,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
+        "x": 20,
         "y": 40
       },
       "id": 10,
@@ -1352,13 +1403,106 @@
       "type": "stat"
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "Requires `RECORDINGS_METRICS_READ_FROM_DISK` to be enabled on the BigBlueButton Exporter",
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 7,
+        "w": 12,
+        "x": 0,
+        "y": 44
+      },
+      "hiddenSeries": false,
+      "id": 60,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": false,
+        "min": false,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "dataLinks": []
+      },
+      "percentage": false,
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bbb_recordings_unprocessed",
+          "interval": "",
+          "legendFormat": "{{instance}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Recordings Unprocessed",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:250",
+          "format": "short",
+          "label": "Recordings ",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:251",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 44
+        "y": 51
       },
       "id": 44,
       "panels": [],
@@ -1385,7 +1529,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 45
+        "y": 52
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1453,7 +1597,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 45
+        "y": 52
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1521,7 +1665,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 55
+        "y": 62
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1589,7 +1733,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 55
+        "y": 62
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1644,7 +1788,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 65
+        "y": 72
       },
       "id": 32,
       "panels": [],
@@ -1663,7 +1807,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 66
+        "y": 73
       },
       "hiddenSeries": false,
       "id": 36,
@@ -1743,8 +1887,8 @@
           "format": "short",
           "label": "Seconds",
           "logBase": 1,
-          "max": "10",
-          "min": null,
+          "max": null,
+          "min": "0",
           "show": true
         },
         {
@@ -1775,7 +1919,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 74
+        "y": 81
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1970,5 +2114,5 @@
   "variables": {
     "list": []
   },
-  "version": 42
+  "version": 45
 }
