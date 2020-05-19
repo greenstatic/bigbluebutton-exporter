@@ -87,6 +87,7 @@ class BigBlueButtonCollector:
 
             else:
                 # Perform expensive API calls - this will increase the latency of the scrape
+                yield self.metric_recordings_processing(bbb_api_latency)
                 yield self.metric_recordings_published(bbb_api_latency)
                 yield self.metric_recordings_deleted(bbb_api_latency)
 
