@@ -70,11 +70,11 @@ class BigBlueButtonCollector:
         yield self.metric_meetings_participant_clients(meetings)
 
         if settings.RECORDINGS_METRICS_ENABLE:
-            yield self.metric_recordings_processing(bbb_api_latency)
             yield self.metric_recordings_processed_data(bbb_api_latency)
             yield self.metric_recordings_unpublished(bbb_api_latency)
 
             if self.recordings_metrics_from_disk:
+                yield self.metric_recordings_processing_from_disk()
                 yield self.metric_recordings_published_from_disk()
 
                 # There is a slight race condition here since in order to calculate deleted recordings we need
@@ -251,6 +251,13 @@ class BigBlueButtonCollector:
         metric.add_metric([], histogram.get_buckets(), histogram.sum)
         return metric
 
+    def metric_recordings_processing_from_disk(self):
+        logging.debug("Querying disk for recordings processing data")
+        metric = GaugeMetricFamily('bbb_recordings_processing', "Total number of BigBlueButton recordings processing "
+                                                                "(scraped from disk)")
+        metric.add_metric([], recordings_processing_from_disk(self.recordings_metrics_base_dir))
+        return metric
+
     def metric_recordings_published_from_disk(self):
         logging.debug("Querying disk for recordings published data")
         metric = GaugeMetricFamily('bbb_recordings_published', "Total number of BigBlueButton recordings published "
@@ -287,6 +294,11 @@ class BigBlueButtonCollector:
                 p_by_c[attendee['clientType']] += 1
 
         return p_by_c
+
+
+def recordings_processing_from_disk(bigbluebutton_base_dir) -> int:
+    # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
+    return len(os.listdir(path=os.path.join(bigbluebutton_base_dir, "recording/process/presentation")))
 
 
 def recordings_published_from_disk(bigbluebutton_base_dir) -> int:
