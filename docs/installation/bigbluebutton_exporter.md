@@ -76,21 +76,11 @@ Add the location directive to your Nginx web server (`/etc/nginx/sites-available
 ```text
 # BigBlueButton Exporter (metrics)
 location /metrics/ {
-  auth_basic "BigBlueButton";  # The contents of this can be anything
-  auth_basic_user_file /etc/nginx/.htpasswd;
-  proxy_pass         http://127.0.0.1:9688/;
-  proxy_redirect     default;
-  proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-  client_max_body_size       10m;
-  client_body_buffer_size    128k;
-  proxy_connect_timeout      90;
-  proxy_send_timeout         90;
-  proxy_read_timeout         90;
-  proxy_buffer_size          4k;
-  proxy_buffers              4 32k;
-  proxy_busy_buffers_size    64k;
-  proxy_temp_file_write_size 64k;
-  include    fastcgi_params;
+    auth_basic "BigBlueButton Exporter";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_pass http://127.0.0.1:9688/;
+    include proxy_params;
+
 }
 ```
 

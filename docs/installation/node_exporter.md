@@ -41,30 +41,21 @@ You will be prompted after you run the `htpasswd` command for the desired passwo
 sudo htpasswd /etc/nginx/.htpasswd monitoring
 ```
 
-### 6. Add Nginx site configuration
+### 4. Add Nginx site configuration
 Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
 `127.0.0.1:9100`.
 
 ```text
-# Netdata Monitoring
+# node_exporter metrics
 location /node_exporter/ {
-    proxy_pass         http://127.0.0.1:9100/;
-    proxy_redirect     default;
-    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-    client_max_body_size       10m;
-    client_body_buffer_size    128k;
-    proxy_connect_timeout      90;
-    proxy_send_timeout         90;
-    proxy_read_timeout         90;
-    proxy_buffer_size          4k;
-    proxy_buffers              4 32k;
-    proxy_busy_buffers_size    64k;
-    proxy_temp_file_write_size 64k;
-    include    fastcgi_params;
+    auth_basic "node_exporter";
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_pass http://127.0.0.1:9100/;
+    include proxy_params;
 }
 ```
 
-### 7. Add node_exporter to your Prometheus scrape jobs
+### 5. Add node_exporter to your Prometheus scrape jobs
 Add the following job to your Prometheus configuration.
 Replace `example.com` with your BigBlueButton's domain.
 
@@ -79,7 +70,7 @@ Replace `example.com` with your BigBlueButton's domain.
   - targets: ['example.com']
 ``` 
 
-### 8. Import the dashboard to your Grafana
+### 6. Import the dashboard to your Grafana
 Log into your Grafana web interface, click on `+` -> `Import` and select `Upload .json file`.
 Select the file `extras/dashboards/server_instance_node_exporter.json` from the repository (clone the repository or 
 copy the contents of the file).
@@ -87,5 +78,5 @@ copy the contents of the file).
 
 ## Notes
 ### Multiple BigBlueButton servers
-If you wish to monitor multiple BigBlueButton servers simply do steps 1-6 for each server and then add each server's 
+If you wish to monitor multiple BigBlueButton servers simply do steps 1-4 for each server and then add each server's 
 domain to the `targets` field in Prometheuses `bbb_node_exporter` job configuration.
