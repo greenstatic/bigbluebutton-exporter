@@ -338,22 +338,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-add-nginx-site-configuration" class="md-nav__link">
-    6. Add Nginx site configuration
+  <a href="#4-add-nginx-site-configuration" class="md-nav__link">
+    4. Add Nginx site configuration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-add-netdata-to-your-prometheus-scrape-jobs" class="md-nav__link">
-    7. Add Netdata to your Prometheus scrape jobs
+  <a href="#5-add-netdata-to-your-prometheus-scrape-jobs" class="md-nav__link">
+    5. Add Netdata to your Prometheus scrape jobs
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#8-import-the-dashboard-to-your-grafana" class="md-nav__link">
-    8. Import the dashboard to your Grafana
+  <a href="#6-import-the-dashboard-to-your-grafana" class="md-nav__link">
+    6. Import the dashboard to your Grafana
   </a>
   
 </li>
@@ -505,22 +505,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#6-add-nginx-site-configuration" class="md-nav__link">
-    6. Add Nginx site configuration
+  <a href="#4-add-nginx-site-configuration" class="md-nav__link">
+    4. Add Nginx site configuration
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#7-add-netdata-to-your-prometheus-scrape-jobs" class="md-nav__link">
-    7. Add Netdata to your Prometheus scrape jobs
+  <a href="#5-add-netdata-to-your-prometheus-scrape-jobs" class="md-nav__link">
+    5. Add Netdata to your Prometheus scrape jobs
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#8-import-the-dashboard-to-your-grafana" class="md-nav__link">
-    8. Import the dashboard to your Grafana
+  <a href="#6-import-the-dashboard-to-your-grafana" class="md-nav__link">
+    6. Import the dashboard to your Grafana
   </a>
   
 </li>
@@ -611,29 +611,20 @@ sudo htpasswd /etc/nginx/.htpasswd monitoring
 </code></pre></div>
 
 
-<h3 id="6-add-nginx-site-configuration">6. Add Nginx site configuration<a class="headerlink" href="#6-add-nginx-site-configuration" title="Permanent link">#</a></h3>
+<h3 id="4-add-nginx-site-configuration">4. Add Nginx site configuration<a class="headerlink" href="#4-add-nginx-site-configuration" title="Permanent link">#</a></h3>
 <p>Add the location directive to your Nginx web server (<code>/etc/nginx/sites-available/bigbluebutton</code>) that will proxy traffic to
 <code>127.0.0.1:19999</code>.</p>
-<div class="codehilite"><pre><span></span><code># Netdata Monitoring
+<div class="codehilite"><pre><span></span><code># Netdata metrics
 location /netdata/ {
-    proxy_pass         http://127.0.0.1:19999/;
-    proxy_redirect     default;
-    proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-    client_max_body_size       10m;
-    client_body_buffer_size    128k;
-    proxy_connect_timeout      90;
-    proxy_send_timeout         90;
-    proxy_read_timeout         90;
-    proxy_buffer_size          4k;
-    proxy_buffers              4 32k;
-    proxy_busy_buffers_size    64k;
-    proxy_temp_file_write_size 64k;
-    include    fastcgi_params;
+    auth_basic &quot;Netdata Monitoring&quot;;
+    auth_basic_user_file /etc/nginx/.htpasswd;
+    proxy_pass http://127.0.0.1:19999/;
+    include proxy_params;
 }
 </code></pre></div>
 
 
-<h3 id="7-add-netdata-to-your-prometheus-scrape-jobs">7. Add Netdata to your Prometheus scrape jobs<a class="headerlink" href="#7-add-netdata-to-your-prometheus-scrape-jobs" title="Permanent link">#</a></h3>
+<h3 id="5-add-netdata-to-your-prometheus-scrape-jobs">5. Add Netdata to your Prometheus scrape jobs<a class="headerlink" href="#5-add-netdata-to-your-prometheus-scrape-jobs" title="Permanent link">#</a></h3>
 <p>Add the following job to your Prometheus configuration.
 Replace <code>example.com</code> with your BigBlueButton's domain.</p>
 <div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;bbb_netdata&#39;</span>
@@ -647,13 +638,13 @@ Replace <code>example.com</code> with your BigBlueButton's domain.</p>
 </code></pre></div>
 
 
-<h3 id="8-import-the-dashboard-to-your-grafana">8. Import the dashboard to your Grafana<a class="headerlink" href="#8-import-the-dashboard-to-your-grafana" title="Permanent link">#</a></h3>
+<h3 id="6-import-the-dashboard-to-your-grafana">6. Import the dashboard to your Grafana<a class="headerlink" href="#6-import-the-dashboard-to-your-grafana" title="Permanent link">#</a></h3>
 <p>Log into your Grafana web interface, click on <code>+</code> -&gt; <code>Import</code> and select <code>Upload .json file</code>.
 Select the file <code>extras/dashboards/server_instance_netdata.json</code> from the repository (clone the repository or copy the 
 contents of the file).</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h2>
 <h3 id="multiple-bigbluebutton-servers">Multiple BigBlueButton servers<a class="headerlink" href="#multiple-bigbluebutton-servers" title="Permanent link">#</a></h3>
-<p>If you wish to monitor multiple BigBlueButton servers simply do steps 1-6 for each server and then add each server's 
+<p>If you wish to monitor multiple BigBlueButton servers simply do steps 1-4 for each server and then add each server's 
 domain to the <code>targets</code> field in Prometheuses <code>bbb_netdata</code> job configuration.</p>
 <h3 id="setup-netdata-without-the-nginx-reverse-proxy">Setup Netdata without the Nginx reverse proxy<a class="headerlink" href="#setup-netdata-without-the-nginx-reverse-proxy" title="Permanent link">#</a></h3>
 <p>In the case you do not wish to deploy your Netdata behind the Nginx reverse proxy, you either need to fix the 
