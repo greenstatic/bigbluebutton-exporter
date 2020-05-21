@@ -22,6 +22,7 @@ nav:
       - installation/netdata.md
   - exporter-user-guide.md
   - debugging.md
+  - faq.md
   - development.md
   - support.md
 
