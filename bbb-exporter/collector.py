@@ -70,7 +70,6 @@ class BigBlueButtonCollector:
         yield self.metric_meetings_participant_clients(meetings)
 
         if settings.RECORDINGS_METRICS_ENABLE:
-            yield self.metric_recordings_processed_data(bbb_api_latency)
             yield self.metric_recordings_unpublished(bbb_api_latency)
 
             if self.recordings_metrics_from_disk:
@@ -163,17 +162,6 @@ class BigBlueButtonCollector:
                                           self.histogram_data_recording_processing_latency.get_buckets(),
                                           self.histogram_data_recording_processing_latency.sum)
 
-        return histogram
-
-    def metric_recordings_processed_data(self, bbb_api_latency_metric):
-        logging.debug("Requesting via API recordings processed data")
-        histogram = GaugeMetricFamily('bbb_recordings_processed', "Total number of BigBlueButton recordings processed")
-        recording_processed_data, recording_processed_latency = execution_duration(api.get_recordings)("processed")
-        histogram.add_metric([], len(recording_processed_data))
-        self.histogram_data_recording_processed_latency.add(recording_processed_latency)
-        bbb_api_latency_metric.add_metric(["getRecordings", "state=processed"],
-                                          self.histogram_data_recording_processed_latency.get_buckets(),
-                                          self.histogram_data_recording_processed_latency.sum)
         return histogram
 
     def metric_recordings_published(self, bbb_api_latency_metric):
