@@ -11,7 +11,7 @@ Metrics exposed:
 
 * Number of participants by type (listeners, voice, video)
 * Number of participants by client (HTML5, dial-in, flash)
-* Number of recordings (processing, processed, published, unpublished, deleted, unprocessed)
+* Number of recordings (processing, published, unpublished, deleted, unprocessed)
 * Number of participants in rooms by bucket
 
 ## Use Case

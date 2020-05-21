@@ -67,7 +67,6 @@ metric
 * bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings
 * bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by client (html5|dial-in|flash)
 * bbb_recordings_processing - Total number of BigBlueButton recordings processing
-* bbb_recordings_processed - Total number of BigBlueButton recordings processed
 * bbb_recordings_published - Total number of BigBlueButton recordings published
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
 * bbb_recordings_deleted - Total number of BigBlueButton recordings deleted
