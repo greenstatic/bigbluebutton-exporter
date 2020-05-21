@@ -32,7 +32,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 1,
-  "iteration": 1589821092038,
+  "iteration": 1590090046251,
   "links": [],
   "panels": [
     {
@@ -1214,55 +1214,6 @@
         "x": 8,
         "y": 40
       },
-      "id": 16,
-      "options": {
-        "colorMode": "value",
-        "fieldOptions": {
-          "calcs": [
-            "last"
-          ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
-          "values": false
-        },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
-      },
-      "pluginVersion": "6.7.2",
-      "targets": [
-        {
-          "expr": "bbb_recordings_processed",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Recordings Processed",
-      "type": "stat"
-    },
-    {
-      "datasource": "Prometheus",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 40
-      },
       "id": 18,
       "options": {
         "colorMode": "value",
@@ -1309,7 +1260,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 16,
+        "x": 12,
         "y": 40
       },
       "id": 20,
@@ -1358,7 +1309,7 @@
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 20,
+        "x": 16,
         "y": 40
       },
       "id": 10,
@@ -2114,5 +2065,5 @@
   "variables": {
     "list": []
   },
-  "version": 45
+  "version": 46
 }

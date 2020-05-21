@@ -34,7 +34,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 13,
-  "iteration": 1589821160685,
+  "iteration": 1590090081406,
   "links": [],
   "panels": [
     {
@@ -679,13 +679,6 @@
           "interval": "",
           "legendFormat": "Processing",
           "refId": "B"
-        },
-        {
-          "expr": "bbb_recordings_processed{instance=\"$instance\"}",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "Processed",
-          "refId": "A"
         },
         {
           "expr": "bbb_recordings_unprocessed{instance=\"$instance\"}",
@@ -1824,5 +1817,5 @@
   "variables": {
     "list": []
   },
-  "version": 7
+  "version": 8
 }
