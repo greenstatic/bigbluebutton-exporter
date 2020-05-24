@@ -89,8 +89,8 @@ location /metrics/ {
     thereby causing you to lose access to your metrics. 
     So after the upgrade you will need to add the location directive again.
     
-    You could also add a seperate site configuration, but this will require you do point another domain to the server to
-    do virtual hosting and acquire a seperate HTTPS certificate.
+    You could also add a seperate site configuration, but this will require you to point another domain to the server,
+    configure virtual hosting and acquire a seperate HTTPS certificate.
 
 ### 7. Reload Nginx and test
 First check if your Nginx configuration is syntactically valid:
