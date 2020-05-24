@@ -33,6 +33,8 @@ This can substantially decrease the scrape time required for the exporter to res
     * Values: &lt;true | false&gt;
     * Prerequisites: access to `/var/bigbluebutton` (for Docker containers do a read-only bind mount) so running the
     exporter remotely with this option is not possible (unless you setup a remote file mount).
+    * The metric `bbb_recordings_unprocessed` relies on the optimization to be turned on since the information is not 
+    exposed via the BigBlueButton XML API
     
 ### Metric Histogram Custom Buckets
 * ROOM_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_participants_bucket` histogram metric

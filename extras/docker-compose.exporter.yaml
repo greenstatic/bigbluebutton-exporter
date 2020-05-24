@@ -2,12 +2,12 @@ version: '3'
 services:
   bbb-exporter:
     container_name: "bbb-exporter"
-    image: greenstatic/bigbluebutton-exporter:v0.4.0-preview
+    image: greenstatic/bigbluebutton-exporter:v0.4.0
     ports:
       - "127.0.0.1:9688:9688"
     volumes:
       # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
-      # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/ for details.
+      # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
       - "/var/bigbluebutton:/var/bigbluebutton:ro"
     environment:
       RECORDINGS_METRICS_READ_FROM_DISK: "true"

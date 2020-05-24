@@ -6,13 +6,15 @@ and direct the HTTP basic auth protected endpoint `/metrics/` to expose your Big
 We assume you have a working installation of BigBlueButton with Nginx as the reverse proxy already set up.
 
 !!! Info
-    HTTP Basic Auth is required because each request to the `/metrics/` endpoint performs an API call to BigBlueButton which takes a couple of seconds. 
+    HTTP Basic Auth is required because each request to the `/metrics/` endpoint performs an API call to BigBlueButton 
+    which takes a couple of seconds. 
     
 Prerequisite:
 
 * Prometheus
 * Docker
 * docker-compose
+* Working BigBlueButton server
 
 ### 1. Create directory
 ```shell
@@ -23,6 +25,16 @@ mkdir ~/bbb-exporter
 Copy [extras/docker-compose.exporter.yaml](https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/docker-compose.exporter.yaml) 
 to your BigBlueButton server into `~/bbb-exporter/docker-compose.yaml`.
 Make sure to replace the Docker image tag to the [latest release](https://github.com/greenstatic/bigbluebutton-exporter/releases).
+
+!!! Note
+    We assume you will be running the exporter on the BigBlueButton server where you have access to the recordings
+    directory (`/var/bigbluebutton`).
+    We need access to this directory so we can efficiently compute the metrics for recordings.
+    
+    You can still run the exporter on a different host by disabling the optimization but will lose certain metrics 
+    and increase scrape times. 
+    
+    See [details regarding the optimization](/exporter-user-guide/#optimizations). 
 
 !!! tip
     Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
