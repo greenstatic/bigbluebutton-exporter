@@ -1,3 +1,4 @@
+import os
 import time
 from typing import List
 
@@ -87,3 +88,8 @@ def validate_buckets(xs: str) -> List[int]:
         raise ValueError("List of buckets contain int less than 0")
 
     return buckets
+
+
+def verify_recordings_base_dir_exists() -> bool:
+    import settings
+    return os.path.exists(settings.recordings_metrics_base_dir)

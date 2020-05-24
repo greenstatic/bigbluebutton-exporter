@@ -25,6 +25,15 @@
     * Default: 9688
     * Values: &lt;1 - 65535&gt;
     
+# Optimizations
+* RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.
+This can substantially decrease the scrape time required for the exporter to respond to metrics requests.
+    * Required: false
+    * Default: false
+    * Values: &lt;true | false&gt;
+    * Prerequisites: access to `/var/bigbluebutton` (for Docker containers do a read-only bind mount) so running the
+    exporter remotely with this option is not possible (unless you setup a remote file mount).
+    
 ### Metric Histogram Custom Buckets
 * ROOM_PARTICIPANTS_CUSTOM_BUCKETS - Custom bucket sizes for the `bbb_room_participants_bucket` histogram metric
     * Required: false
@@ -58,10 +67,12 @@ metric
 * bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings
 * bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by client (html5|dial-in|flash)
 * bbb_recordings_processing - Total number of BigBlueButton recordings processing
-* bbb_recordings_processed - Total number of BigBlueButton recordings processed
 * bbb_recordings_published - Total number of BigBlueButton recordings published
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
 * bbb_recordings_deleted - Total number of BigBlueButton recordings deleted
+* bbb_recordings_unprocessed - Total number of BigBlueButton recordings that are enqueued to be processed, requires for 
+the exporter to be installed on the BigBlueButton server (access to `/var/bigbluebutton/` dir) and for 
+`RECORDINGS_METRICS_READ_FROM_DISK` to be enabled
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
 * bbb_exporter(labels: version) - Information about the exporter (i.e. version)
 

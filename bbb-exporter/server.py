@@ -1,10 +1,12 @@
 import logging
+import sys
 from time import sleep
 
 from prometheus_client import start_http_server, REGISTRY
 
 import settings
 from collector import BigBlueButtonCollector
+from helpers import verify_recordings_base_dir_exists
 
 logging.basicConfig(level=logging.INFO,
                     format="%(asctime)s [%(levelname)s]: %(message)s")
@@ -13,6 +15,16 @@ logging.basicConfig(level=logging.INFO,
 if __name__ == '__main__':
     if settings.DEBUG:
         logging.getLogger().setLevel(logging.DEBUG)
+
+    if settings.RECORDINGS_METRICS_READ_FROM_DISK:
+        logging.info("Enabling recordings metrics read from disk, we will not request expensive recordings metrics "
+                     "via the API")
+        if verify_recordings_base_dir_exists():
+            logging.debug("BigBlueButton recordings base dir exists")
+        else:
+            logging.fatal("BigBlueButton recordings base dir (" + settings.recordings_metrics_base_dir + ") does not " +
+                          "exist. Disable RECORDINGS_METRICS_READ_FROM_DISK=true or run on BigBlueButton server.")
+            sys.exit(1)
 
     start_http_server(settings.PORT, addr=settings.BIND_IP)
     logging.info("HTTP server started on port: {}".format(settings.PORT))
