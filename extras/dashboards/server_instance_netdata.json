@@ -34,7 +34,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 13,
-  "iteration": 1590090081406,
+  "iteration": 1590359835924,
   "links": [],
   "panels": [
     {
@@ -284,7 +284,7 @@
       "tableColumn": "version",
       "targets": [
         {
-          "expr": "bbb_exporter",
+          "expr": "bbb_exporter{instance=\"$instance\"}",
           "format": "table",
           "instant": true,
           "interval": "",
@@ -1817,5 +1817,5 @@
   "variables": {
     "list": []
   },
-  "version": 8
+  "version": 9
 }
