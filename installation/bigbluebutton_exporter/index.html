@@ -769,13 +769,15 @@ and direct the HTTP basic auth protected endpoint <code>/metrics/</code> to expo
 We assume you have a working installation of BigBlueButton with Nginx as the reverse proxy already set up.</p>
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>HTTP Basic Auth is required because each request to the <code>/metrics/</code> endpoint performs an API call to BigBlueButton which takes a couple of seconds. </p>
+<p>HTTP Basic Auth is required because each request to the <code>/metrics/</code> endpoint performs an API call to BigBlueButton 
+which takes a couple of seconds. </p>
 </div>
 <p>Prerequisite:</p>
 <ul>
 <li>Prometheus</li>
 <li>Docker</li>
 <li>docker-compose</li>
+<li>Working BigBlueButton server</li>
 </ul>
 <h3 id="1-create-directory">1. Create directory<a class="headerlink" href="#1-create-directory" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>mkdir ~/bbb-exporter
@@ -786,6 +788,15 @@ We assume you have a working installation of BigBlueButton with Nginx as the rev
 <p>Copy <a href="https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/docker-compose.exporter.yaml">extras/docker-compose.exporter.yaml</a> 
 to your BigBlueButton server into <code>~/bbb-exporter/docker-compose.yaml</code>.
 Make sure to replace the Docker image tag to the <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">latest release</a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>We assume you will be running the exporter on the BigBlueButton server where you have access to the recordings
+directory (<code>/var/bigbluebutton</code>).
+We need access to this directory so we can efficiently compute the metrics for recordings.</p>
+<p>You can still run the exporter on a different host by disabling the optimization but will lose certain metrics 
+and increase scrape times. </p>
+<p>See <a href="/exporter-user-guide/#optimizations">details regarding the optimization</a>. </p>
+</div>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
@@ -891,7 +902,8 @@ Replace <code>example.com</code> with your BigBlueButton's domain.</p>
 </div>
 <h3 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">#</a></h3>
 <p>To update your BigBlueButton exporter all you have to do is change the docker image tag to the latest release 
-(see <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">releases</a> or <a href="https://hub.docker.com/r/greenstatic/bigbluebutton-exporter/tags">Docker image tags</a>) 
+(see <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">releases</a> or 
+<a href="https://hub.docker.com/r/greenstatic/bigbluebutton-exporter/tags">Docker image tags</a>) 
 in <code>~/bbb-exporter/docker-compose.yaml</code> and re-create the docker container by running:</p>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/bbb-exporter
 docker-compose up -d

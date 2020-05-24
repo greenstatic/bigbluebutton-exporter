@@ -328,46 +328,6 @@
     Environment Variables
   </a>
   
-    <nav class="md-nav" aria-label="Environment Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
-    Metric Histogram Custom Buckets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics" class="md-nav__link">
-    Metrics
-  </a>
-  
-    <nav class="md-nav" aria-label="Metrics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gauges" class="md-nav__link">
-    Gauges
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#histograms" class="md-nav__link">
-    Histograms
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -455,46 +415,6 @@
     Environment Variables
   </a>
   
-    <nav class="md-nav" aria-label="Environment Variables">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
-    Metric Histogram Custom Buckets
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#metrics" class="md-nav__link">
-    Metrics
-  </a>
-  
-    <nav class="md-nav" aria-label="Metrics">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#gauges" class="md-nav__link">
-    Gauges
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#histograms" class="md-nav__link">
-    Histograms
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
     </ul>
@@ -556,6 +476,20 @@
 </ul>
 </li>
 </ul>
+<h1 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h1>
+<ul>
+<li>RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.
+This can substantially decrease the scrape time required for the exporter to respond to metrics requests.<ul>
+<li>Required: false</li>
+<li>Default: false</li>
+<li>Values: &lt;true | false&gt;</li>
+<li>Prerequisites: access to <code>/var/bigbluebutton</code> (for Docker containers do a read-only bind mount) so running the
+exporter remotely with this option is not possible (unless you setup a remote file mount).</li>
+<li>The metric <code>bbb_recordings_unprocessed</code> relies on the optimization to be turned on since the information is not 
+exposed via the BigBlueButton XML API</li>
+</ul>
+</li>
+</ul>
 <h3 id="metric-histogram-custom-buckets">Metric Histogram Custom Buckets<a class="headerlink" href="#metric-histogram-custom-buckets" title="Permanent link">#</a></h3>
 <ul>
 <li>
@@ -602,10 +536,12 @@ metric<ul>
 <li>bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings</li>
 <li>bbb_meetings_participant_clients(type=&lt;client>) - Total number of participants in all BigBlueButton meetings by client (html5|dial-in|flash)</li>
 <li>bbb_recordings_processing - Total number of BigBlueButton recordings processing</li>
-<li>bbb_recordings_processed - Total number of BigBlueButton recordings processed</li>
 <li>bbb_recordings_published - Total number of BigBlueButton recordings published</li>
 <li>bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished</li>
 <li>bbb_recordings_deleted - Total number of BigBlueButton recordings deleted</li>
+<li>bbb_recordings_unprocessed - Total number of BigBlueButton recordings that are enqueued to be processed, requires for 
+the exporter to be installed on the BigBlueButton server (access to <code>/var/bigbluebutton/</code> dir) and for 
+<code>RECORDINGS_METRICS_READ_FROM_DISK</code> to be enabled</li>
 <li>bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise</li>
 <li>bbb_exporter(labels: version) - Information about the exporter (i.e. version)</li>
 </ul>
