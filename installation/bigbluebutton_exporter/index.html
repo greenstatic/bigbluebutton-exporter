@@ -949,7 +949,8 @@ sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
 
 <h3 id="4-copy-systemd-unit-service-and-example-settings">4. Copy Systemd unit service and example settings<a class="headerlink" href="#4-copy-systemd-unit-service-and-example-settings" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter.service /lib/systemd/system/
-sudo cp -r /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter /etc
+sudo mkdir /etc/bigbluebutton-exporter
+sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter/* /etc/bigbluebutton-exporter
 </code></pre></div>
 
 
