@@ -195,7 +195,8 @@ sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
 ### 4. Copy Systemd unit service and example settings
 ```shell
 sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter.service /lib/systemd/system/
-sudo cp -r /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter /etc
+sudo mkdir /etc/bigbluebutton-exporter
+sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter/* /etc/bigbluebutton-exporter
 ```
 
 ### 5. Edit settings and replace `API_BASE_URL` and `API_SECRET`
