@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.2.2">
     
     
       
@@ -19,9 +19,9 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.71dfd922.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.a2408e81.min.css">
       
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.616af814.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
       
         
@@ -357,8 +357,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-download-the-source-code" class="md-nav__link">
-    2. Download the source code
+  <a href="#2-download-the-source-code-and-install-dependencies" class="md-nav__link">
+    2. Download the source code and install dependencies
   </a>
   
 </li>
@@ -662,8 +662,8 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#2-download-the-source-code" class="md-nav__link">
-    2. Download the source code
+  <a href="#2-download-the-source-code-and-install-dependencies" class="md-nav__link">
+    2. Download the source code and install dependencies
   </a>
   
 </li>
@@ -763,6 +763,12 @@
                 
                 
                 <h1 id="installation-of-bigbluebutton-exporter">Installation of BigBlueButton Exporter<a class="headerlink" href="#installation-of-bigbluebutton-exporter" title="Permanent link">#</a></h1>
+<p>Two installation methods are supported:</p>
+<ul>
+<li>Docker (recommended)</li>
+<li>Systemd (not recommended)</li>
+</ul>
+<p>We recommend Docker because it is easier to update, reproduce builds and comes with all dependencies pre-installed.</p>
 <h2 id="docker-installation-recommended">Docker Installation (Recommended)<a class="headerlink" href="#docker-installation-recommended" title="Permanent link">#</a></h2>
 <p>These instructions will guide you through the installation procedure for BigBlueButton Exporter on your BigBlueButton server 
 and direct the HTTP basic auth protected endpoint <code>/metrics/</code> to expose your BigBlueButtons server's metrics.
@@ -929,7 +935,7 @@ this will require you to install Nginx and set it up by yourself.</p>
 </code></pre></div>
 
 
-<h3 id="2-download-the-source-code">2. Download the source code<a class="headerlink" href="#2-download-the-source-code" title="Permanent link">#</a></h3>
+<h3 id="2-download-the-source-code-and-install-dependencies">2. Download the source code and install dependencies<a class="headerlink" href="#2-download-the-source-code-and-install-dependencies" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> /opt
 sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
 <span class="nb">cd</span> bigbluebutton-exporter/
@@ -937,7 +943,7 @@ sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
 <span class="c1"># We recommend selecting the latest release tag from:</span>
 <span class="c1"># https://github.com/greenstatic/bigbluebutton-exporter/releases</span>
 sudo git checkout &lt;RELEASE TAG&gt;
-<span class="c1"># e.g. sudo git checkout v0.2.0</span>
+sudo pip3 install -r requirements.txt  <span class="c1"># will install the Python dependencies system-wide</span>
 </code></pre></div>
 
 
