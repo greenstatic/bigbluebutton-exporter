@@ -1,5 +1,12 @@
 # Installation of BigBlueButton Exporter
 
+Two installation methods are supported:
+
+* Docker (recommended)
+* Systemd (not recommended)
+
+We recommend Docker because it is easier to update, reproduce builds and comes with all dependencies pre-installed.
+
 ## Docker Installation (Recommended)
 These instructions will guide you through the installation procedure for BigBlueButton Exporter on your BigBlueButton server 
 and direct the HTTP basic auth protected endpoint `/metrics/` to expose your BigBlueButtons server's metrics.
@@ -174,7 +181,7 @@ this will require you to install Nginx and set it up by yourself.
 sudo apt install python3-pip
 ```
 
-### 2. Download the source code
+### 2. Download the source code and install dependencies
 ```shell
 cd /opt
 sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
@@ -183,7 +190,7 @@ cd bigbluebutton-exporter/
 # We recommend selecting the latest release tag from:
 # https://github.com/greenstatic/bigbluebutton-exporter/releases
 sudo git checkout <RELEASE TAG>
-# e.g. sudo git checkout v0.2.0
+sudo pip3 install -r requirements.txt  # will install the Python dependencies system-wide
 ```
 
 ### 3. Create a non-privileged user for the exporter
