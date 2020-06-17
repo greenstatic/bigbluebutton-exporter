@@ -63,6 +63,9 @@ Replace `example.com` with your BigBlueButton's domain.
     format: [prometheus]
   honor_labels: true
   scheme: https
+  basic_auth:
+    username: "<HTTP BASIC AUTH USERNAME>"
+    password: "<HTTP BASIC AUTH PASSWORD>"
   static_configs:
   - targets: ['example.com']
 ``` 
