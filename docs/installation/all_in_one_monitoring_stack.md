@@ -50,7 +50,7 @@ Get your BBB secret by running:
 bbb-conf --secret
 ```
 
-Then fill out `API_BASE_URL` and `API_SECRET` in `~/bbb-monitoring/secrets.env` with your details.
+Then fill out `API_BASE_URL` and `API_SECRET` in `~/bbb-monitoring/bbb_exporter_secrets.env` with your details.
 
 !!! warning
     The API base url ends with `/api/` (beware of the trailing slash!). `bbb-conf --secret` will return the base url but
@@ -92,10 +92,10 @@ location /monitoring/ {
 !!! Tip
     When upgrading BigBlueButton, the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
     thereby causing you to lose access to your metrics. 
-    So after the upgrade od BigBlueButton you will need to add the location directive again.
+    So after the upgrade to BigBlueButton you will need to add the location directive again.
     
-    You could also add a seperate site configuration, but this will require you do point another domain to the server to
-    do virtual hosting and acquire a seperate HTTPS certificate.
+    You could also add a separate site configuration, but this will require you to point another domain to the server to
+    do virtual hosting and acquire a separate HTTPS certificate.
 
 ### 6. Setup Grafana
 Login to Grafana (https://example.com/monitoring) in your web browser (admin:admin) and **change the password**.
