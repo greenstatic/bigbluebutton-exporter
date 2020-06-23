@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.0">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.2">
     
     
       
@@ -19,7 +19,7 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.6e35a1a6.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.fe0cca5b.min.css">
       
         <link rel="stylesheet" href="../../assets/stylesheets/palette.a46bcfb3.min.css">
       
@@ -587,7 +587,7 @@ This also makes it easier to check which version you are running and which is th
 </code></pre></div>
 
 
-<p>Then fill out <code>API_BASE_URL</code> and <code>API_SECRET</code> in <code>~/bbb-monitoring/secrets.env</code> with your details.</p>
+<p>Then fill out <code>API_BASE_URL</code> and <code>API_SECRET</code> in <code>~/bbb-monitoring/bbb_exporter_secrets.env</code> with your details.</p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>The API base url ends with <code>/api/</code> (beware of the trailing slash!). <code>bbb-conf --secret</code> will return the base url but
@@ -630,9 +630,9 @@ variable as well.</p>
 <p class="admonition-title">Tip</p>
 <p>When upgrading BigBlueButton, the upgrade procedure will overwrite the contents of <code>/etc/nginx/sites-available/bigbluebutton</code>
 thereby causing you to lose access to your metrics. 
-So after the upgrade od BigBlueButton you will need to add the location directive again.</p>
-<p>You could also add a seperate site configuration, but this will require you do point another domain to the server to
-do virtual hosting and acquire a seperate HTTPS certificate.</p>
+So after the upgrade to BigBlueButton you will need to add the location directive again.</p>
+<p>You could also add a separate site configuration, but this will require you to point another domain to the server to
+do virtual hosting and acquire a separate HTTPS certificate.</p>
 </div>
 <h3 id="6-setup-grafana">6. Setup Grafana<a class="headerlink" href="#6-setup-grafana" title="Permanent link">#</a></h3>
 <p>Login to Grafana (https://example.com/monitoring) in your web browser (admin:admin) and <strong>change the password</strong>.</p>
@@ -730,14 +730,14 @@ details on the latest Docker image release tag.</p>
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.a14cc5fd.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.7a2ea5ba.min.js"
+            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
