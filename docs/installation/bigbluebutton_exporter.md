@@ -145,7 +145,7 @@ Replace `example.com` with your BigBlueButton's domain.
 ```
 
 !!! Tip
-    You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password.
+    You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password <which auth are we talking about?>.
 
 ### Updates
 To update your BigBlueButton exporter all you have to do is change the docker image tag to the latest release 
@@ -243,3 +243,14 @@ It is recommended to watch the repository to be alerted when there is a new rele
 ### Multiple BigBlueButton Servers
 You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
 Prometheus `bbb` job target list.
+
+<example>
+     static_configs:
+  - targets: ['example1.com'], ['example2.com'], ['example3.com']
+    
+    or 
+    
+static_configs:
+  - targets: ['example1.com']
+  - targets: ['example2.com']
+  - targets: ['example3.com']
