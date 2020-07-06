@@ -108,8 +108,8 @@ location /metrics/ {
     thereby causing you to lose access to your metrics. 
     So after the upgrade you will need to add the location directive again.
     
-    You could also add a seperate site configuration, but this will require you to point another domain to the server,
-    configure virtual hosting and acquire a seperate HTTPS certificate.
+    You could also add a separate site configuration, but this will require you to point another domain to the server,
+    configure virtual hosting and acquire a separate HTTPS certificate.
 
 ### 7. Reload Nginx and test
 First check if your Nginx configuration is syntactically valid:
@@ -145,7 +145,8 @@ Replace `example.com` with your BigBlueButton's domain.
 ```
 
 !!! Tip
-    You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password.
+    You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password in the Nginx termination proxy.
+    See [Multiple BigBlueButton Servers](#multiple-bigbluebutton-servers) for details.
 
 ### Updates
 To update your BigBlueButton exporter all you have to do is change the docker image tag to the latest release 
@@ -241,5 +242,87 @@ It is recommended to watch the repository to be alerted when there is a new rele
 
 ## Notes
 ### Multiple BigBlueButton Servers
-You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
-Prometheus `bbb` job target list.
+There are two ways of configuring Prometheus to scrape multiple BigBlueButton exporters, the primary difference between the
+two is that one supports having different HTTP Basic Auth usernames/passwords for each exporter and the other doesn't.
+
+#### 1. Extending Prometheus targets (Recommended)
+Pro:
+
+* Simple configuration
+* Dashboards work out of the box
+
+
+Cons:
+
+* All BigBlueButton exporters must have the same HTTP Basic Auth username/password
+
+##### Configuration steps
+1. Configure a single BigBlueButton exporter Prometheus scrape job
+2. Configure the same HTTP Basic Auth username/password on all your Nginx TLS termination proxies 
+(that act as a reverse proxy for your BigBlueButton exporter)
+3. Append all the hosts to the Prometheus' `targets` field
+
+Example scrape job, place this under `scrape_configs` in your Prometheus configuration:
+```yaml
+- job_name: 'bbb_node_exporter'
+    metrics_path: '/node_exporter/metrics'
+    params:
+      format: [prometheus]
+    honor_labels: true
+    scheme: https
+    basic_auth:
+      username: <HTTP BASIC AUTH USERNAME>  # TODO - change
+      password: <HTTP BASIC AUTH PASSWORD>  # TODO - change
+    static_configs:
+    # TODO - change, add all of your BigBlueButton exporter hosts
+    - targets: ['bbb.example.com', 'bbb2.example.com', 'bbb3.example.com']
+```
+
+
+#### 2. Separate job (Not recommended)
+Pro:
+
+* All BigBlueButton exporters can have different HTTP Basic Auth usernames/passwords
+
+
+Cons:
+
+* More to configure
+
+!!! Warning 
+    This has not been tested and some changes to the provided Grafana dashboards might be required (in the future)!
+
+##### Configuration steps
+1. For each BigBlueButton exporter create a separate Prometheus scrape job 
+2. Check to see if your Grafana dashboards are displaying all metrics correctly
+
+Here is an example of two job scrape configuration (for two different exporters). 
+Place this under `scrape_configs` in your Prometheus configuration for each job (exporter):
+
+```yaml
+# TODO - change job_name, this has to be different for each job
+- job_name: 'bbb_node_exporter_1'
+  metrics_path: '/node_exporter/metrics'
+  params:
+    format: [prometheus]
+  honor_labels: true
+  scheme: https
+  basic_auth:
+    username: <HTTP BASIC AUTH USERNAME>  # TODO - change
+    password: <HTTP BASIC AUTH PASSWORD>  # TODO - change
+  static_configs:
+    - targets: ['bbb.example.com']  # TODO - change
+
+# TODO - change job_name, this has to be different for each job
+- job_name: 'bbb_node_exporter_2'
+  metrics_path: '/node_exporter/metrics'
+  params:
+    format: [prometheus]
+  honor_labels: true
+  scheme: https
+  basic_auth:
+    username: <HTTP BASIC AUTH USERNAME>  # TODO - change
+    password: <HTTP BASIC AUTH PASSWORD>  # TODO - change
+  static_configs:
+    - targets: ['bbb2.example.com']  # TODO - change
+```
