@@ -11,7 +11,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.3.2">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-5.4.0">
     
     
       
@@ -431,6 +431,52 @@
     Multiple BigBlueButton Servers
   </a>
   
+    <nav class="md-nav" aria-label="Multiple BigBlueButton Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extending-prometheus-targets-recommended" class="md-nav__link">
+    1. Extending Prometheus targets (Recommended)
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Extending Prometheus targets (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-steps" class="md-nav__link">
+    Configuration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-separate-job-not-recommended" class="md-nav__link">
+    2. Separate job (Not recommended)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Separate job (Not recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-steps_1" class="md-nav__link">
+    Configuration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -736,6 +782,52 @@
     Multiple BigBlueButton Servers
   </a>
   
+    <nav class="md-nav" aria-label="Multiple BigBlueButton Servers">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-extending-prometheus-targets-recommended" class="md-nav__link">
+    1. Extending Prometheus targets (Recommended)
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Extending Prometheus targets (Recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-steps" class="md-nav__link">
+    Configuration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-separate-job-not-recommended" class="md-nav__link">
+    2. Separate job (Not recommended)
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Separate job (Not recommended)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#configuration-steps_1" class="md-nav__link">
+    Configuration steps
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
         
       </ul>
@@ -870,8 +962,8 @@ location /metrics/ {
 <p>When upgrading BigBlueButton (using the script), the upgrade procedure will overwrite the contents of <code>/etc/nginx/sites-available/bigbluebutton</code>
 thereby causing you to lose access to your metrics. 
 So after the upgrade you will need to add the location directive again.</p>
-<p>You could also add a seperate site configuration, but this will require you to point another domain to the server,
-configure virtual hosting and acquire a seperate HTTPS certificate.</p>
+<p>You could also add a separate site configuration, but this will require you to point another domain to the server,
+configure virtual hosting and acquire a separate HTTPS certificate.</p>
 </div>
 <h3 id="7-reload-nginx-and-test">7. Reload Nginx and test<a class="headerlink" href="#7-reload-nginx-and-test" title="Permanent link">#</a></h3>
 <p>First check if your Nginx configuration is syntactically valid:</p>
@@ -905,7 +997,8 @@ Replace <code>example.com</code> with your BigBlueButton's domain.</p>
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password.</p>
+<p>You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password in the Nginx termination proxy.
+See <a href="#multiple-bigbluebutton-servers">Multiple BigBlueButton Servers</a> for details.</p>
 </div>
 <h3 id="updates">Updates<a class="headerlink" href="#updates" title="Permanent link">#</a></h3>
 <p>To update your BigBlueButton exporter all you have to do is change the docker image tag to the latest release 
@@ -993,8 +1086,87 @@ sudo systemctl restart bigbluebutton-exporter
 It is recommended to watch the repository to be alerted when there is a new release available.</p>
 <h2 id="notes">Notes<a class="headerlink" href="#notes" title="Permanent link">#</a></h2>
 <h3 id="multiple-bigbluebutton-servers">Multiple BigBlueButton Servers<a class="headerlink" href="#multiple-bigbluebutton-servers" title="Permanent link">#</a></h3>
-<p>You will need to install BigBlueButton Exporter on each server and then just add the server's domain to your
-Prometheus <code>bbb</code> job target list.</p>
+<p>There are two ways of configuring Prometheus to scrape multiple BigBlueButton exporters, the primary difference between the
+two is that one supports having different HTTP Basic Auth usernames/passwords for each exporter and the other doesn't.</p>
+<h4 id="1-extending-prometheus-targets-recommended">1. Extending Prometheus targets (Recommended)<a class="headerlink" href="#1-extending-prometheus-targets-recommended" title="Permanent link">#</a></h4>
+<p>Pro:</p>
+<ul>
+<li>Simple configuration</li>
+<li>Dashboards work out of the box</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>All BigBlueButton exporters must have the same HTTP Basic Auth username/password</li>
+</ul>
+<h5 id="configuration-steps">Configuration steps<a class="headerlink" href="#configuration-steps" title="Permanent link">#</a></h5>
+<ol>
+<li>Configure a single BigBlueButton exporter Prometheus scrape job</li>
+<li>Configure the same HTTP Basic Auth username/password on all your Nginx TLS termination proxies 
+(that act as a reverse proxy for your BigBlueButton exporter)</li>
+<li>Append all the hosts to the Prometheus' <code>targets</code> field</li>
+</ol>
+<p>Example scrape job, place this under <code>scrape_configs</code> in your Prometheus configuration:</p>
+<div class="codehilite"><pre><span></span><code><span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;bbb_node_exporter&#39;</span>
+    <span class="nt">metrics_path</span><span class="p">:</span> <span class="s">&#39;/node_exporter/metrics&#39;</span>
+    <span class="nt">params</span><span class="p">:</span>
+      <span class="nt">format</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">prometheus</span><span class="p p-Indicator">]</span>
+    <span class="nt">honor_labels</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+    <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+    <span class="nt">basic_auth</span><span class="p">:</span>
+      <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH USERNAME&gt;</span>  <span class="c1"># TODO - change</span>
+      <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH PASSWORD&gt;</span>  <span class="c1"># TODO - change</span>
+    <span class="nt">static_configs</span><span class="p">:</span>
+    <span class="c1"># TODO - change, add all of your BigBlueButton exporter hosts</span>
+    <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;bbb.example.com&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;bbb2.example.com&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;bbb3.example.com&#39;</span><span class="p p-Indicator">]</span>
+</code></pre></div>
+
+
+<h4 id="2-separate-job-not-recommended">2. Separate job (Not recommended)<a class="headerlink" href="#2-separate-job-not-recommended" title="Permanent link">#</a></h4>
+<p>Pro:</p>
+<ul>
+<li>All BigBlueButton exporters can have different HTTP Basic Auth usernames/passwords</li>
+</ul>
+<p>Cons:</p>
+<ul>
+<li>More to configure</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This has not been tested and some changes to the provided Grafana dashboards might be required (in the future)!</p>
+</div>
+<h5 id="configuration-steps_1">Configuration steps<a class="headerlink" href="#configuration-steps_1" title="Permanent link">#</a></h5>
+<ol>
+<li>For each BigBlueButton exporter create a separate Prometheus scrape job </li>
+<li>Check to see if your Grafana dashboards are displaying all metrics correctly</li>
+</ol>
+<p>Here is an example of two job scrape configuration (for two different exporters). 
+Place this under <code>scrape_configs</code> in your Prometheus configuration for each job (exporter):</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># TODO - change job_name, this has to be different for each job</span>
+<span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;bbb_node_exporter_1&#39;</span>
+  <span class="nt">metrics_path</span><span class="p">:</span> <span class="s">&#39;/node_exporter/metrics&#39;</span>
+  <span class="nt">params</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">prometheus</span><span class="p p-Indicator">]</span>
+  <span class="nt">honor_labels</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="nt">basic_auth</span><span class="p">:</span>
+    <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH USERNAME&gt;</span>  <span class="c1"># TODO - change</span>
+    <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH PASSWORD&gt;</span>  <span class="c1"># TODO - change</span>
+  <span class="nt">static_configs</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;bbb.example.com&#39;</span><span class="p p-Indicator">]</span>  <span class="c1"># TODO - change</span>
+
+<span class="c1"># TODO - change job_name, this has to be different for each job</span>
+<span class="p p-Indicator">-</span> <span class="nt">job_name</span><span class="p">:</span> <span class="s">&#39;bbb_node_exporter_2&#39;</span>
+  <span class="nt">metrics_path</span><span class="p">:</span> <span class="s">&#39;/node_exporter/metrics&#39;</span>
+  <span class="nt">params</span><span class="p">:</span>
+    <span class="nt">format</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="nv">prometheus</span><span class="p p-Indicator">]</span>
+  <span class="nt">honor_labels</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">true</span>
+  <span class="nt">scheme</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">https</span>
+  <span class="nt">basic_auth</span><span class="p">:</span>
+    <span class="nt">username</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH USERNAME&gt;</span>  <span class="c1"># TODO - change</span>
+    <span class="nt">password</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">&lt;HTTP BASIC AUTH PASSWORD&gt;</span>  <span class="c1"># TODO - change</span>
+  <span class="nt">static_configs</span><span class="p">:</span>
+    <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;bbb2.example.com&#39;</span><span class="p p-Indicator">]</span>  <span class="c1"># TODO - change</span>
+</code></pre></div>
                 
               
               
@@ -1062,14 +1234,14 @@ Prometheus <code>bbb</code> job target list.</p>
     </div>
     
       <script src="../../assets/javascripts/vendor.d710d30a.min.js"></script>
-      <script src="../../assets/javascripts/bundle.7f4f3c92.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
+      <script src="../../assets/javascripts/bundle.b39636ac.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents"}</script>
       
       <script>
         app = initialize({
           base: "../..",
           features: [],
           search: Object.assign({
-            worker: "../../assets/javascripts/worker/search.9b3611bd.min.js"
+            worker: "../../assets/javascripts/worker/search.a68abb33.min.js"
           }, typeof search !== "undefined" && search)
         })
       </script>
