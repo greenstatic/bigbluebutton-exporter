@@ -24,6 +24,13 @@
     * Required: false
     * Default: 9688
     * Values: &lt;1 - 65535&gt;
+* TLS_VERIFY - Disable TLS CA verification or replace with a custom `CA_BUNDLE` directory or file
+    * Required: false
+    * Default: true
+    * Values: &lt;true | false | path to CA_BUNDLE directory or file &gt; 
+    * A `CA_BUNDLE` file is normal file that contains a list of CA certificates you trust.
+      See the under the hood 
+      [library documentation](https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification) for details.
     
 # Optimizations
 * RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.

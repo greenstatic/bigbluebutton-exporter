@@ -1,6 +1,6 @@
 import os
 import time
-from typing import List
+from typing import List, Optional
 
 
 def execution_duration(fun):
@@ -93,3 +93,12 @@ def validate_buckets(xs: str) -> List[int]:
 def verify_recordings_base_dir_exists() -> bool:
     import settings
     return os.path.exists(settings.recordings_metrics_base_dir)
+
+
+def str_to_bool_or_none(s: str) -> Optional[bool]:
+    if s.lower() == "true":
+        return True
+    elif s.lower() == "false":
+        return False
+
+    return None

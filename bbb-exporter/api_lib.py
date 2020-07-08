@@ -11,12 +11,26 @@ import settings
 
 
 class Client:
-    def __init__(self, base_url: str, secret: str):
+    """
+    tls_verify: can either be a boolean (True/False) to enable/disable TLS CA verification or
+                a string that contains the path to a CA_BUNDLE file or directory.
+                See: https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification
+    """
+
+    def __init__(self, base_url: str, secret: str, tls_verify):
         self.base_url = base_url
         self.secret = secret
+        self.tls_verify = tls_verify
 
 
 def api_get_call(endpoint: str, client: Client, params={}) -> Optional[collections.OrderedDict]:
+    if client.tls_verify is False:
+        logging.info("TLS CA verification has been disabled for API call")
+    elif type(client.tls_verify) == str:
+        logging.info("Using custom TLS CA_BUNDLE path (%s) for API call", client.tls_verify)
+    else:
+        logging.debug("TLS CA verification is enabled for API call")
+
     url_params_partial = []
     for key, value in params.items():
         url_params_partial.append("{}={}".format(key, value))
@@ -34,7 +48,7 @@ def api_get_call(endpoint: str, client: Client, params={}) -> Optional[collectio
     url = urljoin(client.base_url, endpoint + "?checksum=" + checksum + param_str2)
 
     try:
-        r = requests.get(url)
+        r = requests.get(url, verify=client.tls_verify)
     except Exception as e:
         logging.error("Failed to perform API call")
         logging.error(e)
