@@ -355,6 +355,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working" class="md-nav__link">
+    My CA_BUNDLE for the TLS_VERIFY environment variable is not working
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -418,6 +425,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working" class="md-nav__link">
+    My CA_BUNDLE for the TLS_VERIFY environment variable is not working
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -445,6 +459,24 @@ In fact the exporter doesn't need to know anything about Scalelite (or
 Scalelite about the exporter) since the exporter still needs to be configured
 to scrape metrics from the BigBlueButton server's API.
 See <a href="https://github.com/greenstatic/bigbluebutton-exporter/issues/31#issuecomment-632335583">comment in Issue #31</a>.</p>
+<h2 id="my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working">My <code>CA_BUNDLE</code> for the <code>TLS_VERIFY</code> environment variable is not working<a class="headerlink" href="#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working" title="Permanent link">#</a></h2>
+<p>If you will specify the <em>directory flavor</em>, make sure the directory is filled with public keys of 
+your trusted CA in PEM format.</p>
+<p>If you will specify the <em>file flavor</em> (e.g. <code>TLS_VERIFY=/app/CA_BUNDLE.txt</code>), make sure the file contains an appended 
+list of all your trusted PEM formatted CA's. 
+Non-working example to denote the format:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">-----BEGIN CERTIFICATE-----</span>
+<span class="p">...</span> <span class="o">//</span> <span class="n">PEM</span> <span class="n">formated</span> <span class="n">CA</span>
+<span class="c1">-----END CERTIFICATE-----</span>
+
+<span class="c1">-----BEGIN CERTIFICATE-----</span>
+<span class="p">...</span> <span class="o">//</span> <span class="n">PEM</span> <span class="n">formated</span> <span class="n">CA</span>
+<span class="c1">-----END CERTIFICATE-----</span>
+
+<span class="c1">-----BEGIN CERTIFICATE-----</span>
+<span class="p">...</span> <span class="o">//</span> <span class="n">PEM</span> <span class="n">formated</span> <span class="n">CA</span>
+<span class="c1">-----END CERTIFICATE-----</span>
+</code></pre></div>
                 
               
               

@@ -476,6 +476,15 @@
 <li>Values: &lt;1 - 65535&gt;</li>
 </ul>
 </li>
+<li>TLS_VERIFY - Enable (default) / disable TLS CA verification or replace with a custom <code>CA_BUNDLE</code> directory or file<ul>
+<li>Required: false</li>
+<li>Default: true</li>
+<li>Values: &lt;true | false | path to CA_BUNDLE directory or file &gt; </li>
+<li>A <code>CA_BUNDLE</code> file is normal file that contains a list of CA certificates you trust.
+  See <a href="../faq/#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working">FAQ</a> or the under the hood 
+  <a href="https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification">library documentation</a> for details.</li>
+</ul>
+</li>
 </ul>
 <h1 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h1>
 <ul>
