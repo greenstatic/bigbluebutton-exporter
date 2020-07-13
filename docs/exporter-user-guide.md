@@ -24,12 +24,12 @@
     * Required: false
     * Default: 9688
     * Values: &lt;1 - 65535&gt;
-* TLS_VERIFY - Disable TLS CA verification or replace with a custom `CA_BUNDLE` directory or file
+* TLS_VERIFY - Enable (default) / disable TLS CA verification or replace with a custom `CA_BUNDLE` directory or file
     * Required: false
     * Default: true
     * Values: &lt;true | false | path to CA_BUNDLE directory or file &gt; 
     * A `CA_BUNDLE` file is normal file that contains a list of CA certificates you trust.
-      See the under the hood 
+      See [FAQ](./faq.md#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working) or the under the hood 
       [library documentation](https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification) for details.
     
 # Optimizations
