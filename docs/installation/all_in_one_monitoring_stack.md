@@ -5,7 +5,7 @@ monitoring stack on your BigBlueButton server.
 Monitoring Stack:
 
 * BigBlueButton exporter
-* Prometheus
+* Prometheus (incl. node_exporter)
 * Grafana
 
 Grafana will be exposed through the system installed Nginx which will act as a TLS termination proxy.
@@ -113,7 +113,7 @@ Now it is time to finally import the fancy dashboards.
 In the left menu click on _+ icon -> import_
 
 In the JSON field copy/paste the contents of
-[extras/dashboards/server_instace_netdata.json](https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/dashboards/server_instance_netdata.json) 
+[extras/dashboards/server_instance_node_exporter.json](https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/dashboards/server_instance_node_exporter.json) 
 Grafana dashboard.
 
 You are done 👏👏!
