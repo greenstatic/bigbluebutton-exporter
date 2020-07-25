@@ -16,7 +16,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v2.17.2
+    image: prom/prometheus:v2.20.0
     network_mode: host
     command:
       # Default commands from Dockerfile
@@ -34,7 +34,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:6.7.1
+    image: grafana/grafana:7.1.1
     network_mode: host
     environment:
       GF_SERVER_HTTP_ADDR: "127.0.0.1"
@@ -46,7 +46,7 @@ services:
 
   node_exporter:
     container_name: node_exporter
-    image: prom/node-exporter:v0.18.1
+    image: prom/node-exporter:v1.0.1
     network_mode: host
     command:
       - "--path.rootfs=/host"
