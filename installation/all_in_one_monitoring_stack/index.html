@@ -572,6 +572,13 @@ format v3.2 (as of April 29, 2020).</p>
 to your server into <code>~/bbb-monitoring</code></p>
 <p>And replace all the references to <code>example.com</code> with your BigBlueButton domain.</p>
 <p>Make sure to replace the exporters Docker image tag to the <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">latest release</a>.</p>
+<p>If you are not running on your BigBlueButton server, then you will need to disable the 
+<code>RECORDINGS_METRICS_READ_FROM_DISK</code> optimization by removing it from the docker-compose file
+and the <code>/var/bigbluebutton</code> volume bind mount.
+This will have the unfortunate consequence of dramatically increasing scrape times when your BigBlueButton
+server will have many recordings.
+It is also smart to increase the <code>scrape_timeout</code> value when disabling the optimization, see 
+<a href="/faq/#all-in-one-monitoring-stack-brokenpipeerror">All in One Monitoring Stack BrokenPipeError</a> for details.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>Docker best practice: pin your docker image to a specific tag to have a reproducible environment.

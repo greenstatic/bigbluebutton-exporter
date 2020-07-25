@@ -362,6 +362,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#all-in-one-monitoring-stack-brokenpipeerror" class="md-nav__link">
+    All in One Monitoring Stack BrokenPipeError
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -432,6 +439,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#all-in-one-monitoring-stack-brokenpipeerror" class="md-nav__link">
+    All in One Monitoring Stack BrokenPipeError
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -477,6 +491,43 @@ Non-working example to denote the format:</p>
 <span class="p">...</span> <span class="o">//</span> <span class="n">PEM</span> <span class="n">formated</span> <span class="n">CA</span>
 <span class="c1">-----END CERTIFICATE-----</span>
 </code></pre></div>
+
+
+<h2 id="all-in-one-monitoring-stack-brokenpipeerror">All in One Monitoring Stack BrokenPipeError<a class="headerlink" href="#all-in-one-monitoring-stack-brokenpipeerror" title="Permanent link">#</a></h2>
+<p>If you get a <code>BrokenPipeError</code> exception similar to:</p>
+<div class="codehilite"><pre><span></span><code><span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="c1">----------------------------------------</span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">09</span><span class="w"> </span><span class="mi">01</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">25</span><span class="p">,</span><span class="mi">635</span><span class="w"> </span><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">Collecting</span><span class="w"> </span><span class="n">metrics</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BigBlueButton</span><span class="w"> </span><span class="n">API</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="mi">2020</span><span class="o">-</span><span class="mi">07</span><span class="o">-</span><span class="mi">09</span><span class="w"> </span><span class="mi">01</span><span class="err">:</span><span class="mi">38</span><span class="err">:</span><span class="mi">32</span><span class="p">,</span><span class="mi">497</span><span class="w"> </span><span class="o">[</span><span class="n">INFO</span><span class="o">]</span><span class="err">:</span><span class="w"> </span><span class="n">Finished</span><span class="w"> </span><span class="n">collecting</span><span class="w"> </span><span class="n">metrics</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">BigBlueButton</span><span class="w"> </span><span class="n">API</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="c1">----------------------------------------</span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">Exception</span><span class="w"> </span><span class="n">happened</span><span class="w"> </span><span class="n">during</span><span class="w"> </span><span class="n">processing</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">request</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">48190</span><span class="p">)</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">Traceback</span><span class="w"> </span><span class="p">(</span><span class="n">most</span><span class="w"> </span><span class="n">recent</span><span class="w"> </span><span class="k">call</span><span class="w"> </span><span class="k">last</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/socketserver.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">650</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">process_request_thread</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">finish_request</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">client_address</span><span class="p">)</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/socketserver.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">360</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">finish_request</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">RequestHandlerClass</span><span class="p">(</span><span class="n">request</span><span class="p">,</span><span class="w"> </span><span class="n">client_address</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">)</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/socketserver.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">720</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">init</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">handle</span><span class="p">()</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/http/server.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">426</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">handle</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">handle_one_request</span><span class="p">()</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/http/server.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">414</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">handle_one_request</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">method</span><span class="p">()</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/site-packages/prometheus_client/exposition.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">159</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">do_GET</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">wfile</span><span class="p">.</span><span class="k">write</span><span class="p">(</span><span class="k">output</span><span class="p">)</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="k">File</span><span class="w"> </span><span class="ss">&quot;/usr/local/lib/python3.7/socketserver.py&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">line</span><span class="w"> </span><span class="mi">799</span><span class="p">,</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="k">write</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">_sock</span><span class="p">.</span><span class="n">sendall</span><span class="p">(</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="n">bbb</span><span class="o">-</span><span class="n">exporter</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="nl">BrokenPipeError</span><span class="p">:</span><span class="w"> </span><span class="o">[</span><span class="n">Errno 32</span><span class="o">]</span><span class="w"> </span><span class="n">Broken</span><span class="w"> </span><span class="n">pipe</span><span class="w"></span>
+</code></pre></div>
+
+
+<p>This is caused by Prometheus closing the metrics scrapping HTTP request to the exporter because the request duration 
+exceeds the Prometheus defined <code>scrape_timeout</code> value.
+The Prometheus config (<code>prometheus.yaml</code>) file bundled with the All in One Monitoring Stack has the default <code>scrape_timeout</code>
+set to 15 seconds.
+The recommended way of fixing this is to enable the <a href="/exporter-user-guide/#optimizations">RECORDINGS_METRICS_READ_FROM_DISK</a> 
+optimization which should dramatically reduce scraping times.</p>
+<p>You could also <a href="https://prometheus.io/docs/prometheus/latest/configuration/configuration/#scrape_config">override the scrape_timeout value</a> 
+for the bbb_exporter job but this should be only done in cases where enabling the <code>RECORDINGS_METRICS_READ_FROM_DISK</code>
+optimization is unfeasible.</p>
                 
               
               
