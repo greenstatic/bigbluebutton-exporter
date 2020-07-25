@@ -1,4 +1,4 @@
-FROM python:3.7-stretch
+FROM python:3.8-alpine
 EXPOSE 9688
 
 COPY requirements.txt /app/requirements.txt
