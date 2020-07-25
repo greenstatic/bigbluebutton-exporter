@@ -287,20 +287,39 @@ class BigBlueButtonCollector:
 
 def recordings_processing_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    return len(os.listdir(path=os.path.join(bigbluebutton_base_dir, "recording/process/presentation")))
+    path = os.path.join(bigbluebutton_base_dir, "recording/process/presentation")
+    try:
+        return len(os.listdir(path=path))
+    except FileNotFoundError:
+        logging.info("Path %s doesn't exist, setting processing recordings to 0", path)
+        return 0
 
 
 def recordings_published_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    return len(os.listdir(path=os.path.join(bigbluebutton_base_dir, "published/presentation")))
+    path = os.path.join(bigbluebutton_base_dir, "published/presentation")
+    try:
+        return len(os.listdir(path=path))
+    except FileNotFoundError:
+        logging.info("Path %s doesn't exist, setting published recordings to 0", path)
+        return 0
 
 
 def recordings_deleted_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    return len(os.listdir(path=os.path.join(bigbluebutton_base_dir, "recording/status/published"))) - \
-           recordings_published_from_disk(bigbluebutton_base_dir)
+    path = os.path.join(bigbluebutton_base_dir, "recording/status/published")
+    try:
+        return len(os.listdir(path=path)) - recordings_published_from_disk(bigbluebutton_base_dir)
+    except FileNotFoundError:
+        logging.info("Path %s doesn't exist, setting deleted recordings to 0", path)
+        return 0
 
 
 def recordings_unprocessed_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    return len(os.listdir(path=os.path.join(bigbluebutton_base_dir, "recording/status/sanity")))
+    path = os.path.join(bigbluebutton_base_dir, "recording/status/sanity")
+    try:
+        return len(os.listdir(path=path))
+    except FileNotFoundError:
+        logging.info("Path %s doesn't exist, setting unprocessed recordings to 0", path)
+        return 0
