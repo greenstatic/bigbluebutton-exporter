@@ -2,7 +2,7 @@ version: '3'
 services:
   bbb-exporter:
     container_name: "bbb-exporter"
-    image: greenstatic/bigbluebutton-exporter:v0.5.0
+    image: greenstatic/bigbluebutton-exporter:v0.5.1
     ports:
       - "127.0.0.1:9688:9688"
     volumes:
