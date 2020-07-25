@@ -4,6 +4,12 @@ services:
     container_name: bbb-exporter
     image: greenstatic/bigbluebutton-exporter:v0.5.1
     network_mode: host
+    volumes:
+      # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
+      # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
+      - "/var/bigbluebutton:/var/bigbluebutton:ro"
+    environment:
+      RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
       - bbb_exporter_secrets.env
     restart: unless-stopped

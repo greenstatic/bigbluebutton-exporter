@@ -37,6 +37,14 @@ And replace all the references to `example.com` with your BigBlueButton domain.
 
 Make sure to replace the exporters Docker image tag to the [latest release](https://github.com/greenstatic/bigbluebutton-exporter/releases).
 
+If you are not running on your BigBlueButton server, then you will need to disable the 
+`RECORDINGS_METRICS_READ_FROM_DISK` optimization by removing it from the docker-compose file
+and the `/var/bigbluebutton` volume bind mount.
+This will have the unfortunate consequence of dramatically increasing scrape times when your BigBlueButton
+server will have many recordings.
+It is also smart to increase the `scrape_timeout` value when disabling the optimization, see 
+[All in One Monitoring Stack BrokenPipeError](/faq/#all-in-one-monitoring-stack-brokenpipeerror) for details.
+
 !!! tip
     Docker best practice: pin your docker image to a specific tag to have a reproducible environment.
     This also makes it easier to check which version you are running and which is the latest release.
