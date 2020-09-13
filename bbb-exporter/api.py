@@ -10,8 +10,9 @@ def get_meetings():
 
     if data is None:
         return []
-
-    if data['response']['meetings'] is None:
+    elif 'meetings' not in data['response']:
+        return []
+    elif data['response']['meetings'] is None:
         return []
 
     meetings = []
