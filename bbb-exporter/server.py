@@ -27,7 +27,7 @@ if __name__ == '__main__':
             sys.exit(1)
 
     start_http_server(settings.PORT, addr=settings.BIND_IP)
-    logging.info("HTTP server started on port: {}".format(settings.PORT))
+    logging.info("HTTP server started on {}:{}".format(settings.BIND_IP, settings.PORT))
 
     collector = BigBlueButtonCollector()
 
