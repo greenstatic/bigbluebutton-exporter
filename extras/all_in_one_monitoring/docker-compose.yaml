@@ -9,6 +9,7 @@ services:
       # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
       - "/var/bigbluebutton:/var/bigbluebutton:ro"
     environment:
+      BIND_IP: "127.0.0.1"
       RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
       - bbb_exporter_secrets.env
