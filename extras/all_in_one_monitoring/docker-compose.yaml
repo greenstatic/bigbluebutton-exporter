@@ -2,7 +2,7 @@ version: '3.2'
 services:
   bbb-exporter:
     container_name: bbb-exporter
-    image: greenstatic/bigbluebutton-exporter:v0.5.1
+    image: greenstatic/bigbluebutton-exporter:v0.5.2
     network_mode: host
     volumes:
       # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
