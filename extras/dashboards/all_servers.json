@@ -2,7 +2,6 @@
   "annotations": {
     "list": [
       {
-        "$$hashKey": "object:561",
         "datasource": "-- Grafana --",
         "enable": true,
         "hide": false,
@@ -17,7 +16,6 @@
         "type": "tags"
       },
       {
-        "$$hashKey": "object:57",
         "builtIn": 1,
         "datasource": "-- Grafana --",
         "enable": true,
@@ -31,8 +29,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 1,
-  "iteration": 1590090046251,
+  "id": 4,
+  "iteration": 1601105299477,
   "links": [],
   "panels": [
     {
@@ -51,7 +49,46 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "from": "",
+              "id": 1,
+              "operator": "",
+              "text": "Online",
+              "to": "",
+              "type": 1,
+              "value": "1"
+            },
+            {
+              "from": "",
+              "id": 2,
+              "operator": "",
+              "text": "Offline",
+              "to": "",
+              "type": 1,
+              "value": "0"
+            }
+          ],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "green",
+                "value": 1
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 6,
@@ -62,53 +99,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "from": "",
-                "id": 1,
-                "operator": "",
-                "text": "Online",
-                "to": "",
-                "type": 1,
-                "value": "1"
-              },
-              {
-                "from": "",
-                "id": 2,
-                "operator": "",
-                "text": "Offline",
-                "to": "",
-                "type": 1,
-                "value": "0"
-              }
-            ],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "red",
-                  "value": null
-                },
-                {
-                  "color": "green",
-                  "value": 1
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_api_up",
@@ -128,7 +131,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -152,10 +162,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -191,7 +199,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:138",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -200,7 +207,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:139",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -217,7 +223,13 @@
     {
       "cacheTimeout": null,
       "columns": [],
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "fontSize": "100%",
       "gridPos": {
         "h": 4,
@@ -236,7 +248,6 @@
       },
       "styles": [
         {
-          "$$hashKey": "object:6603",
           "alias": "",
           "align": "auto",
           "colorMode": null,
@@ -254,7 +265,6 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:6640",
           "alias": "",
           "align": "auto",
           "colorMode": null,
@@ -272,7 +282,6 @@
           "unit": "short"
         },
         {
-          "$$hashKey": "object:6682",
           "alias": "Instance | Version",
           "align": "auto",
           "colorMode": null,
@@ -304,11 +313,37 @@
       "timeShift": null,
       "title": "BigBlueButton Exporter Version",
       "transform": "timeseries_to_rows",
-      "type": "table"
+      "type": "table-old"
     },
     {
       "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -319,41 +354,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "$$hashKey": "object:409",
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "sum(bbb_meetings_participants)",
@@ -373,7 +386,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -398,10 +418,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -437,7 +455,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:304",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -446,7 +463,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:305",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -465,7 +481,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -489,10 +512,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -528,7 +549,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:456",
           "decimals": null,
           "format": "short",
           "label": "Participants",
@@ -538,7 +558,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:457",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -554,7 +573,33 @@
     },
     {
       "cacheTimeout": null,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [
+            {
+              "id": 0,
+              "op": "=",
+              "text": "N/A",
+              "type": 1,
+              "value": "null"
+            }
+          ],
+          "nullValueMode": "connected",
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "none"
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 3,
         "w": 4,
@@ -565,41 +610,19 @@
       "links": [],
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [
-              {
-                "$$hashKey": "object:409",
-                "id": 0,
-                "op": "=",
-                "text": "N/A",
-                "type": 1,
-                "value": "null"
-              }
-            ],
-            "nullValueMode": "connected",
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            },
-            "unit": "none"
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "sum(bbb_room_participants_gcount)",
@@ -615,7 +638,23 @@
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -625,30 +664,19 @@
       "id": 26,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_meetings_participants",
@@ -668,7 +696,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -693,10 +728,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -732,7 +765,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1140",
           "format": "short",
           "label": "Rooms",
           "logBase": 1,
@@ -741,7 +773,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1141",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -760,7 +791,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -785,10 +823,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -824,7 +860,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:360",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -833,7 +868,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:361",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -848,7 +882,23 @@
       }
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -858,30 +908,19 @@
       "id": 24,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "max"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_meetings_participants",
@@ -901,7 +940,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -926,10 +972,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -973,7 +1017,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:199",
           "format": "percent",
           "label": "CPU Utlization [%]",
           "logBase": 1,
@@ -982,7 +1025,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:200",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1001,7 +1043,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1026,10 +1075,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1073,7 +1120,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:879",
           "format": "bytes",
           "label": null,
           "logBase": 1,
@@ -1082,7 +1128,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:880",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1111,7 +1156,23 @@
       "type": "row"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -1120,30 +1181,18 @@
       },
       "id": 14,
       "options": {
-        "fieldOptions": {
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_recordings_processing",
@@ -1159,7 +1208,23 @@
       "type": "gauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -1168,30 +1233,18 @@
       },
       "id": 58,
       "options": {
-        "fieldOptions": {
+        "orientation": "auto",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "orientation": "auto",
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_recordings_unprocessed",
@@ -1207,7 +1260,23 @@
       "type": "gauge"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -1217,30 +1286,19 @@
       "id": 18,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "last"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_recordings_published",
@@ -1256,7 +1314,23 @@
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -1266,30 +1340,19 @@
       "id": 20,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_recordings_unpublished",
@@ -1305,7 +1368,23 @@
       "type": "stat"
     },
     {
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
@@ -1315,30 +1394,19 @@
       "id": 10,
       "options": {
         "colorMode": "value",
-        "fieldOptions": {
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
           "calcs": [
             "mean"
           ],
-          "defaults": {
-            "mappings": [],
-            "thresholds": {
-              "mode": "absolute",
-              "steps": [
-                {
-                  "color": "green",
-                  "value": null
-                }
-              ]
-            }
-          },
-          "overrides": [],
+          "fields": "",
           "values": false
         },
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal"
+        "textMode": "auto"
       },
-      "pluginVersion": "6.7.2",
+      "pluginVersion": "7.1.5",
       "targets": [
         {
           "expr": "bbb_recordings_deleted",
@@ -1358,8 +1426,15 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
       "description": "Requires `RECORDINGS_METRICS_READ_FROM_DISK` to be enabled on the BigBlueButton Exporter",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1384,10 +1459,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1423,7 +1496,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:250",
           "format": "short",
           "label": "Recordings ",
           "logBase": 1,
@@ -1432,7 +1504,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:251",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1474,8 +1545,14 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
       "description": "Buckets (Y axis) represents the number of participants while the count in each bucket represents the number of rooms with that particular bucket's value. ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -1542,8 +1619,14 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
       "description": "Buckets (Y axis) represents the number of listeners while the count in each bucket represents the number of rooms with that particular bucket's value. ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -1610,8 +1693,14 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
       "description": "Buckets (Y axis) represents the number of voice participants while the count in each bucket represents the number of rooms with that particular bucket's value. ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -1678,8 +1767,14 @@
         "mode": "spectrum"
       },
       "dataFormat": "tsbuckets",
-      "datasource": null,
+      "datasource": "$datasource",
       "description": "Buckets (Y axis) represents the number of video participants while the count in each bucket represents the number of rooms with that particular bucket's value. ",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
       "gridPos": {
         "h": 10,
         "w": 12,
@@ -1751,7 +1846,14 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1776,10 +1878,8 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1797,7 +1897,6 @@
       ],
       "thresholds": [
         {
-          "$$hashKey": "object:1179",
           "colorMode": "warning",
           "fill": true,
           "line": true,
@@ -1806,7 +1905,6 @@
           "yaxis": "left"
         },
         {
-          "$$hashKey": "object:1185",
           "colorMode": "critical",
           "fill": true,
           "line": true,
@@ -1834,7 +1932,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1001",
           "format": "short",
           "label": "Seconds",
           "logBase": 1,
@@ -1843,7 +1940,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1002",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1863,7 +1959,14 @@
       "cacheTimeout": null,
       "dashLength": 10,
       "dashes": false,
-      "datasource": "Prometheus",
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "links": []
+        },
+        "overrides": []
+      },
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
@@ -1889,11 +1992,8 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
-      "options": {
-        "dataLinks": []
-      },
       "percentage": false,
-      "pluginVersion": "6.7.0",
+      "pluginVersion": "7.1.5",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1962,7 +2062,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1728",
           "format": "short",
           "label": "Latency [s]",
           "logBase": 1,
@@ -1971,7 +2070,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1729",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1987,7 +2085,7 @@
     }
   ],
   "refresh": "5s",
-  "schemaVersion": 22,
+  "schemaVersion": 26,
   "style": "dark",
   "tags": [
     "BigBlueButton",
@@ -1997,11 +2095,16 @@
     "list": [
       {
         "allValue": null,
+        "current": {
+          "isNone": true,
+          "selected": false,
+          "text": "None",
+          "value": ""
+        },
         "datasource": "Prometheus",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "Netdata Job",
         "multi": false,
         "name": "job_netdata",
@@ -2019,11 +2122,15 @@
       },
       {
         "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "bbb_node_exporter_tehas1",
+          "value": "bbb_node_exporter_tehas1"
+        },
         "datasource": "Prometheus",
         "definition": "label_values(node_cpu_seconds_total, job)",
         "hide": 0,
         "includeAll": false,
-        "index": -1,
         "label": "node_exporter Job",
         "multi": false,
         "name": "job_node_exporter",
@@ -2038,6 +2145,25 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
+      },
+      {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": null,
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
       }
     ]
   },
@@ -2062,8 +2188,5 @@
   "timezone": "",
   "title": "BigBlueButton All Servers",
   "uid": "HIbd_CXZz",
-  "variables": {
-    "list": []
-  },
-  "version": 46
+  "version": 3
 }
