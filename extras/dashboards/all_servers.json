@@ -1203,7 +1203,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Recordings Processing",
+      "title": "Recordings Unprocessed",
       "type": "gauge"
     },
     {

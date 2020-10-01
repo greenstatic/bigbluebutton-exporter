@@ -71,8 +71,7 @@ sudo docker-compose up -d
 ```
 
 ### 5. Configure Nginx
-Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
-`127.0.0.1:3001`.
+Add the location directive monitoring.nginx to your Nginx web server (`/etc/bigbluebutton/nginx/monitoring.nginx` - config from this location will be loaded automatically by nginx BigBlueButton config) that will proxy traffic to `127.0.0.1:3001`.
 
 ```text
 # BigBlueButton monitoring
@@ -98,9 +97,7 @@ location /monitoring/ {
     variable as well.
 
 !!! Tip
-    When upgrading BigBlueButton, the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
-    thereby causing you to lose access to your metrics. 
-    So after the upgrade to BigBlueButton you will need to add the location directive again.
+    When upgrading BigBlueButton, the upgrade procedure will not overwrite the contents of `/etc/bigbluebutton/nginx/`folder. 
     
     You could also add a separate site configuration, but this will require you to point another domain to the server to
     do virtual hosting and acquire a separate HTTPS certificate.

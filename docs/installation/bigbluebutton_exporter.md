@@ -94,8 +94,8 @@ sudo htpasswd -c /etc/nginx/.htpasswd metrics
     If you already have `/etc/nginx/.htpasswd` file then do not add the `-c` flag, otherwise you will overwrite the file.
 
 ### 6. Add Nginx site configuration
-Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
-`127.0.0.1:9688`.
+Add the location directive to your Nginx web server (`/etc/bigbluebutton/nginx/metrics.nginx` - BigBlueButton Nginx config will load config from location `/etc/bigbluebutton/nginx/*.nginx`) that will proxy traffic to
+`127.0.0.1:9688`. 
 
 ```text
 # BigBlueButton Exporter (metrics)
@@ -109,10 +109,6 @@ location /metrics/ {
 ```
 
 !!! Tip
-    When upgrading BigBlueButton (using the script), the upgrade procedure will overwrite the contents of `/etc/nginx/sites-available/bigbluebutton`
-    thereby causing you to lose access to your metrics. 
-    So after the upgrade you will need to add the location directive again.
-    
     You could also add a separate site configuration, but this will require you to point another domain to the server,
     configure virtual hosting and acquire a separate HTTPS certificate.
 
