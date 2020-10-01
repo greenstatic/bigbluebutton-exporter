@@ -937,8 +937,8 @@ sudo htpasswd -c /etc/nginx/.htpasswd metrics
 <p>If you already have <code>/etc/nginx/.htpasswd</code> file then do not add the <code>-c</code> flag, otherwise you will overwrite the file.</p>
 </div>
 <h3 id="6-add-nginx-site-configuration">6. Add Nginx site configuration<a class="headerlink" href="#6-add-nginx-site-configuration" title="Permanent link">#</a></h3>
-<p>Add the location directive to your Nginx web server (<code>/etc/nginx/sites-available/bigbluebutton</code>) that will proxy traffic to
-<code>127.0.0.1:9688</code>.</p>
+<p>Add the location directive to your Nginx web server (<code>/etc/bigbluebutton/nginx/metrics.nginx</code> - BigBlueButton Nginx config will load config from location <code>/etc/bigbluebutton/nginx/*.nginx</code>) that will proxy traffic to
+<code>127.0.0.1:9688</code>. </p>
 <div class="codehilite"><pre><span></span><code># BigBlueButton Exporter (metrics)
 location /metrics/ {
     auth_basic &quot;BigBlueButton Exporter&quot;;
@@ -952,9 +952,6 @@ location /metrics/ {
 
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>When upgrading BigBlueButton (using the script), the upgrade procedure will overwrite the contents of <code>/etc/nginx/sites-available/bigbluebutton</code>
-thereby causing you to lose access to your metrics. 
-So after the upgrade you will need to add the location directive again.</p>
 <p>You could also add a separate site configuration, but this will require you to point another domain to the server,
 configure virtual hosting and acquire a separate HTTPS certificate.</p>
 </div>
