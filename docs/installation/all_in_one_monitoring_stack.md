@@ -71,24 +71,15 @@ sudo docker-compose up -d
 ```
 
 ### 5. Configure Nginx
-Add the location directive monitoring.nginx to your Nginx web server (`/etc/bigbluebutton/nginx/monitoring.nginx` - config from this location will be loaded automatically by nginx BigBlueButton config) that will proxy traffic to `127.0.0.1:3001`.
+Add a location directive to your Nginx web server.
+To prevent the additional location directive from being deleted on Nginx upgrades, create a new file in: `/etc/bigbluebutton/nginx/monitoring.nginx`.
+Add the following location directive to the file:
 
 ```text
 # BigBlueButton monitoring
 location /monitoring/ {
-  proxy_pass         http://127.0.0.1:3001/;
-  proxy_redirect     default;
-  proxy_set_header   X-Forwarded-For   $proxy_add_x_forwarded_for;
-  client_max_body_size       10m;
-  client_body_buffer_size    128k;
-  proxy_connect_timeout      90;
-  proxy_send_timeout         90;
-  proxy_read_timeout         90;
-  proxy_buffer_size          4k;
-  proxy_buffers              4 32k;
-  proxy_busy_buffers_size    64k;
-  proxy_temp_file_write_size 64k;
-  include    fastcgi_params;
+  proxy_pass http://127.0.0.1:3001/;
+  include proxy_params;
 }
 ```
 

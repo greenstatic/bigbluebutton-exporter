@@ -94,9 +94,9 @@ sudo htpasswd -c /etc/nginx/.htpasswd metrics
     If you already have `/etc/nginx/.htpasswd` file then do not add the `-c` flag, otherwise you will overwrite the file.
 
 ### 6. Add Nginx site configuration
-Add the location directive to your Nginx web server (`/etc/bigbluebutton/nginx/metrics.nginx` - BigBlueButton Nginx config will load config from location `/etc/bigbluebutton/nginx/*.nginx`) that will proxy traffic to
-`127.0.0.1:9688`. 
-
+Add a location directive to your Nginx web server.
+To prevent the additional location directive from being deleted on Nginx upgrades, create a new file in: `/etc/bigbluebutton/nginx/monitoring.nginx`.
+Add the following location directive to the file:
 ```text
 # BigBlueButton Exporter (metrics)
 location /metrics/ {
@@ -104,7 +104,6 @@ location /metrics/ {
     auth_basic_user_file /etc/nginx/.htpasswd;
     proxy_pass http://127.0.0.1:9688/;
     include proxy_params;
-
 }
 ```
 
