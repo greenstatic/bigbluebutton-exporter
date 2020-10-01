@@ -23,6 +23,11 @@ Prerequisite:
 * docker-compose
 * Working BigBlueButton server
 
+!!! Warning
+    Follow [Docker's official installation instructions](https://docs.docker.com/engine/install/ubuntu/) instead of 
+    installing docker-compose from Ubuntu's official repository since it is outdated and does not support compose file 
+    format v3.2 (as of April 29, 2020).
+
 ### 1. Create directory
 ```shell
 mkdir ~/bbb-exporter
