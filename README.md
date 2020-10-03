@@ -13,7 +13,7 @@ Default port: 9688
 ## Documentation
 Available at: [https://bigbluebutton-exporter.greenstatic.dev](https://bigbluebutton-exporter.greenstatic.dev)
 
-## Grafana Dashboard Screenshot
+## Grafana Dashboard Screenshots
 
 ![](docs/assets/img_grafana_dashboard_all_servers.png)
 
