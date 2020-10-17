@@ -29,8 +29,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 4,
-  "iteration": 1601105299477,
+  "id": 20,
+  "iteration": 1602961192242,
   "links": [],
   "panels": [
     {
@@ -111,10 +111,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_api_up",
+          "expr": "bbb_api_up{job=\"$job\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -134,8 +134,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -163,7 +162,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -173,7 +172,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_meetings_participants",
+          "expr": "bbb_meetings_participants{job=\"$job\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -301,7 +300,7 @@
       ],
       "targets": [
         {
-          "expr": "bbb_exporter",
+          "expr": "bbb_exporter{job=\"$job\"}",
           "format": "time_series",
           "instant": true,
           "interval": "",
@@ -366,10 +365,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "sum(bbb_meetings_participants)",
+          "expr": "sum(bbb_meetings_participants{job=\"$job\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "Total",
@@ -389,8 +388,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -419,7 +417,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -429,7 +427,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_meetings_voice_participants",
+          "expr": "bbb_meetings_voice_participants{job=\"$job\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -484,8 +482,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -513,7 +510,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -523,7 +520,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_meetings_video_participants",
+          "expr": "bbb_meetings_video_participants{job=\"$job\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -622,10 +619,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "sum(bbb_room_participants_gcount)",
+          "expr": "sum(bbb_room_participants_gcount{job=\"$job\"})",
           "instant": true,
           "interval": "",
           "legendFormat": "Total",
@@ -676,10 +673,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_meetings_participants",
+          "expr": "bbb_meetings_participants{job=\"$job\"}",
           "instant": true,
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -699,8 +696,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -729,7 +725,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -739,7 +735,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_room_participants_gcount",
+          "expr": "bbb_room_participants_gcount{job=\"$job\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -794,8 +790,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -824,7 +819,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -834,7 +829,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(bbb_meetings_participant_clients) by (type)",
+          "expr": "sum(bbb_meetings_participant_clients{job=\"$job\"}) by (type)",
           "interval": "",
           "legendFormat": "{{type}}",
           "refId": "A"
@@ -920,10 +915,10 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_meetings_participants",
+          "expr": "bbb_meetings_participants{job=\"$job\"}",
           "instant": false,
           "interval": "",
           "legendFormat": "{{instance}}",
@@ -943,8 +938,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -973,7 +967,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1017,14 +1011,16 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:1389",
           "format": "percent",
           "label": "CPU Utlization [%]",
           "logBase": 1,
-          "max": null,
+          "max": "100",
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:1390",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1046,8 +1042,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1076,7 +1071,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1093,7 +1088,7 @@
           "refId": "A"
         },
         {
-          "expr": "(sum(netdata_system_ram_MiB_average) by (instance) - sum(netdata_mem_available_MiB_average) by (instance)) * 1024 * 1024",
+          "expr": "(sum(netdata_system_ram_MiB_average{job=\"$job_netdata\"}) by (instance) - sum(netdata_mem_available_MiB_average{job=\"$job_netdata\"}) by (instance)) * 1024 * 1024",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} (Netdata)",
@@ -1142,13 +1137,121 @@
       }
     },
     {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 39
+      },
+      "hiddenSeries": false,
+      "id": 61,
+      "legend": {
+        "alignAsTable": true,
+        "avg": true,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "irate(node_network_receive_bytes_total{job=\"$job_node_exporter\", device=\"$interface\"}[1m])*8",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} receive ({{device}}) (node_exporter)",
+          "refId": "A"
+        },
+        {
+          "expr": "irate(node_network_transmit_bytes_total{job=\"$job_node_exporter\", device=\"$interface\"}[1m])*8",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} sent ({{device}}) (node_exporteer)",
+          "refId": "C"
+        },
+        {
+          "expr": "abs(netdata_net_net_kilobits_persec_average{job=\"$job_netdata\", family=\"$interface\"})",
+          "interval": "",
+          "legendFormat": "{{instance}} {{dimension}} ({{family}}) (Netdata)",
+          "refId": "B"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Network Utilization",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "format": "bytes",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
       "collapsed": false,
       "datasource": null,
       "gridPos": {
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 47
       },
       "id": 30,
       "panels": [],
@@ -1156,6 +1259,70 @@
       "type": "row"
     },
     {
+      "datasource": null,
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "percentunit"
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 13,
+        "w": 12,
+        "x": 0,
+        "y": 48
+      },
+      "id": 63,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "(node_filesystem_size_bytes{job=\"$job_node_exporter\"} - node_filesystem_avail_bytes{job=\"$job_node_exporter\"}) / node_filesystem_size_bytes{job=\"$job_node_exporter\"}",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} ({{mountpoint}})",
+          "refId": "A"
+        },
+        {
+          "expr": "1 - (netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"avail\"} / ignoring(dimension) (netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"avail\"} + ignoring(dimension) netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"used\"} + ignoring(dimension) netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"reserved for root\"}))",
+          "hide": false,
+          "interval": "",
+          "legendFormat": "{{instance}} ({{family}})",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Storage Utilization",
+      "type": "bargauge"
+    },
+    {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
@@ -1174,14 +1341,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 40
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 48
       },
       "id": 14,
       "options": {
-        "orientation": "auto",
+        "displayMode": "gradient",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1189,23 +1357,22 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showUnfilled": true
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_recordings_processing",
+          "expr": "label_replace(bbb_recordings_processing{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
           "instant": false,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Processing",
-      "type": "gauge"
+      "type": "bargauge"
     },
     {
       "datasource": "$datasource",
@@ -1226,14 +1393,15 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 4,
-        "y": 40
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 48
       },
       "id": 58,
       "options": {
-        "orientation": "auto",
+        "displayMode": "gradient",
+        "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
             "last"
@@ -1241,23 +1409,22 @@
           "fields": "",
           "values": false
         },
-        "showThresholdLabels": false,
-        "showThresholdMarkers": true
+        "showUnfilled": true
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_recordings_unprocessed",
+          "expr": "label_replace(bbb_recordings_unprocessed{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
           "instant": false,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Unprocessed",
-      "type": "gauge"
+      "type": "bargauge"
     },
     {
       "datasource": "$datasource",
@@ -1278,16 +1445,14 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 8,
-        "y": 40
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 51
       },
       "id": 18,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "displayMode": "gradient",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1296,22 +1461,22 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showUnfilled": true
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_recordings_published",
+          "expr": "label_replace(bbb_recordings_published{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Published",
-      "type": "stat"
+      "type": "bargauge"
     },
     {
       "datasource": "$datasource",
@@ -1332,70 +1497,14 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 40
-      },
-      "id": 20,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "7.1.5",
-      "targets": [
-        {
-          "expr": "bbb_recordings_unpublished",
-          "instant": true,
-          "interval": "",
-          "legendFormat": "{{instance}}",
-          "refId": "A"
-        }
-      ],
-      "timeFrom": null,
-      "timeShift": null,
-      "title": "Recordings Unpublished",
-      "type": "stat"
-    },
-    {
-      "datasource": "$datasource",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {},
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          }
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 16,
-        "y": 40
+        "h": 3,
+        "w": 6,
+        "x": 18,
+        "y": 51
       },
       "id": 10,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
+        "displayMode": "gradient",
         "orientation": "horizontal",
         "reduceOptions": {
           "calcs": [
@@ -1404,22 +1513,74 @@
           "fields": "",
           "values": false
         },
-        "textMode": "auto"
+        "showUnfilled": true
       },
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "targets": [
         {
-          "expr": "bbb_recordings_deleted",
+          "expr": "label_replace(bbb_recordings_deleted{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "{{name}}",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Deleted",
-      "type": "stat"
+      "type": "bargauge"
+    },
+    {
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 6,
+        "x": 12,
+        "y": 54
+      },
+      "id": 20,
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "showUnfilled": true
+      },
+      "pluginVersion": "7.1.1",
+      "targets": [
+        {
+          "expr": "label_replace(bbb_recordings_unpublished{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
+          "instant": true,
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Recordings Unpublished",
+      "type": "bargauge"
     },
     {
       "aliasColors": {},
@@ -1430,8 +1591,7 @@
       "description": "Requires `RECORDINGS_METRICS_READ_FROM_DISK` to be enabled on the BigBlueButton Exporter",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1440,8 +1600,8 @@
       "gridPos": {
         "h": 7,
         "w": 12,
-        "x": 0,
-        "y": 44
+        "x": 12,
+        "y": 57
       },
       "hiddenSeries": false,
       "id": 60,
@@ -1460,7 +1620,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1470,7 +1630,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "bbb_recordings_unprocessed",
+          "expr": "bbb_recordings_unprocessed{job=\"$job\"}",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1524,7 +1684,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 51
+        "y": 64
       },
       "id": 44,
       "panels": [],
@@ -1557,7 +1717,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 52
+        "y": 65
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1571,7 +1731,7 @@
       "reverseYBuckets": false,
       "targets": [
         {
-          "expr": "sum by (le) (bbb_room_participants_bucket)",
+          "expr": "sum by (le) (bbb_room_participants_bucket{job=\"$job\"})",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -1631,7 +1791,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 52
+        "y": 65
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1645,7 +1805,7 @@
       "reverseYBuckets": false,
       "targets": [
         {
-          "expr": "sum by (le) (bbb_room_listeners_bucket)",
+          "expr": "sum by (le) (bbb_room_listeners_bucket{job=\"$job\"})",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -1705,7 +1865,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 62
+        "y": 75
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1719,7 +1879,7 @@
       "reverseYBuckets": false,
       "targets": [
         {
-          "expr": "sum by (le) (bbb_room_voice_participants_bucket)",
+          "expr": "sum by (le) (bbb_room_voice_participants_bucket{job=\"$job\"})",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -1779,7 +1939,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 62
+        "y": 75
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1793,7 +1953,7 @@
       "reverseYBuckets": false,
       "targets": [
         {
-          "expr": "sum by (le) (bbb_room_video_participants_bucket)",
+          "expr": "sum by (le) (bbb_room_video_participants_bucket{job=\"$job\"})",
           "format": "heatmap",
           "instant": false,
           "interval": "",
@@ -1834,7 +1994,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 72
+        "y": 85
       },
       "id": 32,
       "panels": [],
@@ -1849,8 +2009,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1860,7 +2019,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 73
+        "y": 86
       },
       "hiddenSeries": false,
       "id": 36,
@@ -1879,7 +2038,7 @@
       "linewidth": 1,
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1889,7 +2048,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "sum(histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket[5m])) by (le, instance, endpoint, parameters))) by (instance)",
+          "expr": "sum(histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\"}[5m])) by (le, instance, endpoint, parameters))) by (instance)",
           "interval": "",
           "legendFormat": "{{instance}}",
           "refId": "A"
@@ -1962,8 +2121,7 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
-          "links": []
+          "custom": {}
         },
         "overrides": []
       },
@@ -1973,7 +2131,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 81
+        "y": 94
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1993,7 +2151,7 @@
       "links": [],
       "nullPointMode": "null",
       "percentage": false,
-      "pluginVersion": "7.1.5",
+      "pluginVersion": "7.1.1",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2003,7 +2161,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getMeetings\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getMeetings\"}[5m])) by (le, instance))",
           "instant": false,
           "interval": "",
           "intervalFactor": 1,
@@ -2011,32 +2169,32 @@
           "refId": "A"
         },
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getRecordings\", parameters=\"state=processing\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getRecordings\", parameters=\"state=processing\"}[5m])) by (le, instance))",
           "hide": false,
           "interval": "",
           "legendFormat": "{{instance}} - getRecordings processing",
           "refId": "B"
         },
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getRecordings\", parameters=\"state=processed\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getRecordings\", parameters=\"state=processed\"}[5m])) by (le, instance))",
           "interval": "",
           "legendFormat": "{{instance}} - getRecordings processed",
           "refId": "C"
         },
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getRecordings\", parameters=\"state=published\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getRecordings\", parameters=\"state=published\"}[5m])) by (le, instance))",
           "interval": "",
           "legendFormat": "{{instance}} - getRecordings published",
           "refId": "D"
         },
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getRecordings\", parameters=\"state=unpublished\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getRecordings\", parameters=\"state=unpublished\"}[5m])) by (le, instance))",
           "interval": "",
           "legendFormat": "{{instance}} - getRecordings unpublished",
           "refId": "E"
         },
         {
-          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{endpoint=\"getRecordings\", parameters=\"state=deleted\"}[5m])) by (le, instance))",
+          "expr": "histogram_quantile(0.95, sum(rate(bbb_api_latency_bucket{job=\"$job\", endpoint=\"getRecordings\", parameters=\"state=deleted\"}[5m])) by (le, instance))",
           "interval": "",
           "legendFormat": "{{instance}} - getRecordings deleted",
           "refId": "F"
@@ -2094,18 +2252,88 @@
   "templating": {
     "list": [
       {
+        "current": {
+          "selected": false,
+          "text": "Prometheus",
+          "value": "Prometheus"
+        },
+        "hide": 0,
+        "includeAll": false,
+        "label": "Datasource",
+        "multi": false,
+        "name": "datasource",
+        "options": [],
+        "query": "prometheus",
+        "queryValue": "",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "type": "datasource"
+      },
+      {
         "allValue": null,
         "current": {
-          "isNone": true,
           "selected": false,
-          "text": "None",
-          "value": ""
+          "text": "bbb",
+          "value": "bbb"
+        },
+        "datasource": "$datasource",
+        "definition": "label_values(bbb_exporter, job)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Job",
+        "multi": false,
+        "name": "job",
+        "options": [],
+        "query": "label_values(bbb_exporter, job)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "bbb_node_exporter",
+          "value": "bbb_node_exporter"
+        },
+        "datasource": "Prometheus",
+        "definition": "label_values(node_cpu_seconds_total, job)",
+        "hide": 0,
+        "includeAll": false,
+        "label": "Job node_exporter",
+        "multi": false,
+        "name": "job_node_exporter",
+        "options": [],
+        "query": "label_values(node_cpu_seconds_total, job)",
+        "refresh": 1,
+        "regex": "",
+        "skipUrlSync": false,
+        "sort": 0,
+        "tagValuesQuery": "",
+        "tags": [],
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
+      },
+      {
+        "allValue": null,
+        "current": {
+          "selected": false,
+          "text": "bbb_netdata",
+          "value": "bbb_netdata"
         },
         "datasource": "Prometheus",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
         "hide": 0,
         "includeAll": false,
-        "label": "Netdata Job",
+        "label": "Job Netdata",
         "multi": false,
         "name": "job_netdata",
         "options": [],
@@ -2124,19 +2352,19 @@
         "allValue": null,
         "current": {
           "selected": false,
-          "text": "bbb_node_exporter_tehas1",
-          "value": "bbb_node_exporter_tehas1"
+          "text": "enp101s0f0",
+          "value": "enp101s0f0"
         },
-        "datasource": "Prometheus",
-        "definition": "label_values(node_cpu_seconds_total, job)",
+        "datasource": "$datasource",
+        "definition": "label_values(node_network_address_assign_type, device)",
         "hide": 0,
         "includeAll": false,
-        "label": "node_exporter Job",
+        "label": "Network Interface",
         "multi": false,
-        "name": "job_node_exporter",
+        "name": "interface",
         "options": [],
-        "query": "label_values(node_cpu_seconds_total, job)",
-        "refresh": 1,
+        "query": "label_values(node_network_address_assign_type, device)",
+        "refresh": 2,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -2145,25 +2373,6 @@
         "tagsQuery": "",
         "type": "query",
         "useTags": false
-      },
-      {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
-        "hide": 0,
-        "includeAll": false,
-        "label": null,
-        "multi": false,
-        "name": "datasource",
-        "options": [],
-        "query": "prometheus",
-        "queryValue": "",
-        "refresh": 1,
-        "regex": "",
-        "skipUrlSync": false,
-        "type": "datasource"
       }
     ]
   },
@@ -2173,7 +2382,6 @@
   },
   "timepicker": {
     "refresh_intervals": [
-      "5s",
       "10s",
       "30s",
       "1m",
@@ -2188,5 +2396,5 @@
   "timezone": "",
   "title": "BigBlueButton All Servers",
   "uid": "HIbd_CXZz",
-  "version": 3
+  "version": 11
 }
