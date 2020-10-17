@@ -9,7 +9,7 @@
       
       
       <link rel="shortcut icon" href="../../assets/images/favicon.png">
-      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.0.1">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.1.0">
     
     
       
@@ -17,10 +17,10 @@
       
     
     
-      <link rel="stylesheet" href="../../assets/stylesheets/main.38780c08.min.css">
+      <link rel="stylesheet" href="../../assets/stylesheets/main.bc7e593a.min.css">
       
         
-        <link rel="stylesheet" href="../../assets/stylesheets/palette.3f72e892.min.css">
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.ab28b872.min.css">
         
           
           
@@ -71,7 +71,9 @@
       
     </div>
     
-      <header class="md-header" data-md-component="header">
+      
+
+<header class="md-header" data-md-component="header">
   <nav class="md-header-nav md-grid" aria-label="Header">
     <a href="../.." title="BigBlueButton Exporter" class="md-header-nav__button md-logo" aria-label="BigBlueButton Exporter">
       
@@ -149,7 +151,9 @@
               <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
                 <div class="md-sidebar__scrollwrap">
                   <div class="md-sidebar__inner">
-                    <nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+                    
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="BigBlueButton Exporter" class="md-nav__button md-logo" aria-label="BigBlueButton Exporter">
       
@@ -181,7 +185,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../.." title="Overview" class="md-nav__link">
+    <a href="../.." class="md-nav__link">
       Overview
     </a>
   </li>
@@ -193,7 +197,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../getting-started/" title="Getting Started" class="md-nav__link">
+    <a href="../../getting-started/" class="md-nav__link">
       Getting Started
     </a>
   </li>
@@ -241,7 +245,7 @@
         <span class="md-nav__icon md-icon"></span>
       </label>
     
-    <a href="./" title="BigBlueButton Exporter" class="md-nav__link md-nav__link--active">
+    <a href="./" class="md-nav__link md-nav__link--active">
       BigBlueButton Exporter
     </a>
     
@@ -489,7 +493,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../all_in_one_monitoring_stack/" title="All-In-One Monitoring Stack" class="md-nav__link">
+    <a href="../all_in_one_monitoring_stack/" class="md-nav__link">
       All-In-One Monitoring Stack
     </a>
   </li>
@@ -501,7 +505,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../node_exporter/" title="node_exporter" class="md-nav__link">
+    <a href="../node_exporter/" class="md-nav__link">
       node_exporter
     </a>
   </li>
@@ -513,7 +517,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../netdata/" title="Netdata" class="md-nav__link">
+    <a href="../netdata/" class="md-nav__link">
       Netdata
     </a>
   </li>
@@ -530,7 +534,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../exporter-user-guide/" title="Exporter User Guide" class="md-nav__link">
+    <a href="../../exporter-user-guide/" class="md-nav__link">
       Exporter User Guide
     </a>
   </li>
@@ -542,7 +546,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../debugging/" title="Debugging" class="md-nav__link">
+    <a href="../../debugging/" class="md-nav__link">
       Debugging
     </a>
   </li>
@@ -554,7 +558,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../faq/" title="FAQ" class="md-nav__link">
+    <a href="../../faq/" class="md-nav__link">
       FAQ
     </a>
   </li>
@@ -566,7 +570,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../development/" title="Development" class="md-nav__link">
+    <a href="../../development/" class="md-nav__link">
       Development
     </a>
   </li>
@@ -578,7 +582,7 @@
 
 
   <li class="md-nav__item">
-    <a href="../../support/" title="Support" class="md-nav__link">
+    <a href="../../support/" class="md-nav__link">
       Support
     </a>
   </li>
@@ -875,7 +879,6 @@ format v3.2 (as of April 29, 2020).</p>
 <div class="codehilite"><pre><span></span><code>mkdir ~/bbb-exporter
 </code></pre></div>
 
-
 <h3 id="2-create-docker-compose-file">2. Create docker-compose file<a class="headerlink" href="#2-create-docker-compose-file" title="Permanent link">#</a></h3>
 <p>Copy <a href="https://github.com/greenstatic/bigbluebutton-exporter/tree/master/extras/docker-compose.exporter.yaml">extras/docker-compose.exporter.yaml</a> 
 to your BigBlueButton server into <code>~/bbb-exporter/docker-compose.yaml</code>.
@@ -899,12 +902,10 @@ This also makes it easier to check which version you are running and which is th
 <div class="codehilite"><pre><span></span><code>bbb-conf --secret
 </code></pre></div>
 
-
 <p>Then create the file <code>~/bbb-exporter/secrets.env</code> and fill out the <code>API_BASE_URL</code> and <code>API_SECRET</code> variables with your details.</p>
 <div class="codehilite"><pre><span></span><code>API_BASE_URL=https://example.com/bigbluebutton/api/
 API_SECRET=&lt;secret&gt;
 </code></pre></div>
-
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -914,7 +915,6 @@ not the base API url which has a <code>/api/</code> appended.</p>
 <h3 id="4-start-the-container">4. Start the container<a class="headerlink" href="#4-start-the-container" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo docker-compose up -d
 </code></pre></div>
-
 
 <p>The exporter should be running now.
 However you will not be able to access it externally because the docker-compose file binded the exporters port only to localhost.
@@ -930,7 +930,6 @@ You will be prompted after you run the <code>htpasswd</code> command for the des
 <div class="codehilite"><pre><span></span><code><span class="c1"># You may replace metrics with any desired username</span>
 sudo htpasswd -c /etc/nginx/.htpasswd metrics
 </code></pre></div>
-
 
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -949,7 +948,6 @@ location /metrics/ {
 }
 </code></pre></div>
 
-
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You could also add a separate site configuration, but this will require you to point another domain to the server,
@@ -960,11 +958,9 @@ configure virtual hosting and acquire a separate HTTPS certificate.</p>
 <div class="codehilite"><pre><span></span><code>sudo nginx -t
 </code></pre></div>
 
-
 <p>If everything is okay reload Nginx:</p>
 <div class="codehilite"><pre><span></span><code>sudo systemctl reload nginx
 </code></pre></div>
-
 
 <p>Now you can try accessing the metrics on <code>/metrics</code> and typing in your username/password that you choose in 
 <a href="#5-create-http-basic-auth-password">5. Create HTTP basic auth password</a></p>
@@ -984,7 +980,6 @@ Replace <code>example.com</code> with your BigBlueButton's domain.</p>
   - targets: [&#39;example.com&#39;]
 </code></pre></div>
 
-
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
 <p>You can scrape multiple exporters using a single job rule if they all have the same HTTP basic auth username/password in the Nginx termination proxy.
@@ -998,7 +993,6 @@ in <code>~/bbb-exporter/docker-compose.yaml</code> and re-create the docker cont
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> ~/bbb-exporter
 docker-compose up -d
 </code></pre></div>
-
 
 <p>Since the container doesn't store anything it is safe to destroy the container.</p>
 <p>We recommend you "watch" on GitHub the <a href="https://github.com/greenstatic/bigbluebutton-exporter/">projects repository</a> to be notified
@@ -1018,7 +1012,6 @@ this will require you to install Nginx and set it up by yourself.</p>
 <div class="codehilite"><pre><span></span><code>sudo apt install python3-pip
 </code></pre></div>
 
-
 <h3 id="2-download-the-source-code-and-install-dependencies">2. Download the source code and install dependencies<a class="headerlink" href="#2-download-the-source-code-and-install-dependencies" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code><span class="nb">cd</span> /opt
 sudo git clone https://github.com/greenstatic/bigbluebutton-exporter.git
@@ -1030,12 +1023,10 @@ sudo git checkout &lt;RELEASE TAG&gt;
 sudo pip3 install -r requirements.txt  <span class="c1"># will install the Python dependencies system-wide</span>
 </code></pre></div>
 
-
 <h3 id="3-create-a-non-privileged-user-for-the-exporter">3. Create a non-privileged user for the exporter<a class="headerlink" href="#3-create-a-non-privileged-user-for-the-exporter" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo useradd -r -d /opt/bigbluebutton-exporter -s /usr/sbin/nologin bbb-exporter
 sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
 </code></pre></div>
-
 
 <h3 id="4-copy-systemd-unit-service-and-example-settings">4. Copy Systemd unit service and example settings<a class="headerlink" href="#4-copy-systemd-unit-service-and-example-settings" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter.service /lib/systemd/system/
@@ -1043,20 +1034,17 @@ sudo mkdir /etc/bigbluebutton-exporter
 sudo cp /opt/bigbluebutton-exporter/extras/systemd/bigbluebutton-exporter/* /etc/bigbluebutton-exporter
 </code></pre></div>
 
-
 <h3 id="5-edit-settings-and-replace-api_base_url-and-api_secret">5. Edit settings and replace <code>API_BASE_URL</code> and <code>API_SECRET</code><a class="headerlink" href="#5-edit-settings-and-replace-api_base_url-and-api_secret" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo nano /etc/bigbluebutton-exporter/settings.env 
 <span class="c1"># or using Vim</span>
 sudo vim /etc/bigbluebutton-exporter/settings.env 
 </code></pre></div>
 
-
 <h3 id="6-start-the-bigbluebutton-exporter-service">6. Start the bigbluebutton-exporter service<a class="headerlink" href="#6-start-the-bigbluebutton-exporter-service" title="Permanent link">#</a></h3>
 <div class="codehilite"><pre><span></span><code>sudo systemctl start bigbluebutton-exporter
 <span class="c1"># optional - enable exporter to autostart when booting host</span>
 sudo systemctl <span class="nb">enable</span> bigbluebutton-exporter
 </code></pre></div>
-
 
 <h3 id="7-setup-nginx-as-a-tls-termination-proxy">7. Setup Nginx as a TLS termination proxy<a class="headerlink" href="#7-setup-nginx-as-a-tls-termination-proxy" title="Permanent link">#</a></h3>
 <p>Follow <a href="#5-create-http-basic-auth-password">steps 5 - 7</a> from the Docker installation instructions.</p>
@@ -1070,7 +1058,6 @@ sudo git checkout &lt;RELEASE TAG&gt;
 sudo chown -R bbb-exporter:bbb-exporter /opt/bigbluebutton-exporter
 sudo systemctl restart bigbluebutton-exporter
 </code></pre></div>
-
 
 <p>Check the <a href="https://github.com/greenstatic/bigbluebutton-exporter/releases">repository releases</a> to get the latest tag.
 It is recommended to watch the repository to be alerted when there is a new release available.</p>
@@ -1109,7 +1096,6 @@ two is that one supports having different HTTP Basic Auth usernames/passwords fo
     <span class="c1"># TODO - change, add all of your BigBlueButton exporter hosts</span>
     <span class="p p-Indicator">-</span> <span class="nt">targets</span><span class="p">:</span> <span class="p p-Indicator">[</span><span class="s">&#39;bbb.example.com&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;bbb2.example.com&#39;</span><span class="p p-Indicator">,</span> <span class="s">&#39;bbb3.example.com&#39;</span><span class="p p-Indicator">]</span>
 </code></pre></div>
-
 
 <h4 id="2-separate-job-not-recommended">2. Separate job (Not recommended)<a class="headerlink" href="#2-separate-job-not-recommended" title="Permanent link">#</a></h4>
 <p>Pro:</p>
@@ -1175,7 +1161,7 @@ Place this under <code>scrape_configs</code> in your Prometheus configuration fo
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../../getting-started/" title="Getting Started" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../../getting-started/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -1190,7 +1176,7 @@ Place this under <code>scrape_configs</code> in your Prometheus configuration fo
           </a>
         
         
-          <a href="../all_in_one_monitoring_stack/" title="All-In-One Monitoring Stack" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+          <a href="../all_in_one_monitoring_stack/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
             <div class="md-footer-nav__title">
               <div class="md-ellipsis">
                 <span class="md-footer-nav__direction">
@@ -1223,8 +1209,8 @@ Place this under <code>scrape_configs</code> in your Prometheus configuration fo
       
     </div>
     
-      <script src="../../assets/javascripts/vendor.77e55a48.min.js"></script>
-      <script src="../../assets/javascripts/bundle.aa3f9871.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      <script src="../../assets/javascripts/vendor.6a3d08fc.min.js"></script>
+      <script src="../../assets/javascripts/bundle.71201edf.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
       
       <script>
         app = initialize({
