@@ -17,8 +17,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 22,
-  "iteration": 1602956784151,
+  "id": 24,
+  "iteration": 1603113387769,
   "links": [],
   "panels": [
     {
@@ -431,7 +431,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "(((count(count(node_cpu_seconds_total{job=\"$job\", instance=\"$instance\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{job=\"$job\", mode=\"idle\",instance=~\"$instance\"}[1m])))) * 100) / count(count(node_cpu_seconds_total{job=\"$job\", instance=~\"$instance\"}) by (cpu))",
+          "expr": "(((count(count(node_cpu_seconds_total{job=\"$job_node_exporter\", instance=\"$instance\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{job=\"$job_node_exporter\", mode=\"idle\",instance=~\"$instance\"}[1m])))) * 100) / count(count(node_cpu_seconds_total{job=\"$job_node_exporter\", instance=~\"$instance\"}) by (cpu))",
           "interval": "",
           "legendFormat": "CPU Utlization",
           "refId": "A"
@@ -543,7 +543,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes_total{job=\"$job\", instance=\"$instance\", device=\"$interface\"}[1m])*8",
+          "expr": "irate(node_network_receive_bytes_total{job=\"$job_node_exporter\", instance=\"$instance\", device=\"$interface\"}[1m])*8",
           "hide": false,
           "interval": "",
           "intervalFactor": 1,
@@ -551,7 +551,7 @@
           "refId": "A"
         },
         {
-          "expr": "irate(node_network_transmit_bytes_total{job=\"$job\", instance=\"$instance\", device=\"$interface\"}[1m])*8",
+          "expr": "irate(node_network_transmit_bytes_total{job=\"$job_node_exporter\", instance=\"$instance\", device=\"$interface\"}[1m])*8",
           "interval": "",
           "intervalFactor": 1,
           "legendFormat": "Bandiwidth {{device}} (transmit)",
@@ -2022,5 +2022,5 @@
   "timezone": "",
   "title": "BigBlueButton Server Instance (node_exporter)",
   "uid": "HIbd_CXZz3",
-  "version": 15
+  "version": 2
 }
