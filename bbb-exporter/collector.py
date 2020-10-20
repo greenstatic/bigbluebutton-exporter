@@ -102,6 +102,8 @@ class BigBlueButtonCollector:
         yield self.metric_voice_participants_histogram(meetings)
         yield self.metric_video_participants_histogram(meetings)
 
+        yield self.metric_participants_by_origin_servername(meetings)
+
         bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
         bbb_exporter.add_metric([settings.VERSION], 1)
         yield bbb_exporter
@@ -126,6 +128,15 @@ class BigBlueButtonCollector:
         metric = GaugeMetricFamily('bbb_meetings_listeners',
                                    "Total number of listeners in all BigBlueButton meetings")
         metric.add_metric([], no_listeners)
+        return metric
+    
+    def metric_participants_by_origin_servername(self, meetings):
+        participants_by_servername = self._get_participant_count_by_metadata(meetings, 'bbb-origin-server-name')
+        metric = GaugeMetricFamily('bbb_meetings_participant_origin_servername',
+                                   "Total number of participants in all BigBlueButton meetings by origin servername",
+                                   labels=["origin"])
+        for origin, num in participants_by_servername.items():
+            metric.add_metric([origin.lower()], num)
         return metric
 
     def metric_meetings_voice_participants(self, meetings):
@@ -283,6 +294,20 @@ class BigBlueButtonCollector:
                 p_by_c[attendee['clientType']] += 1
 
         return p_by_c
+
+    @staticmethod
+    def _get_participant_count_by_metadata(meetings, metadata_key = 'bbb-origin-server-name'):
+        p_by_m = defaultdict(int)
+        for meeting in meetings:
+            participants = int(meeting['participantCount'])
+            if participants == 0:
+                continue
+            if not meeting.get("metadata") or not meeting['metadata'].get(metadata_key):
+                p_by_m['_no_metadata'] += participants
+            else:
+                p_by_m[meeting['metadata'][metadata_key]] += participants
+
+        return p_by_m
 
 
 def recordings_processing_from_disk(bigbluebutton_base_dir) -> int:
