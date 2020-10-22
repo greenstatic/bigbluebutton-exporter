@@ -68,6 +68,7 @@ class BigBlueButtonCollector:
         yield self.metric_meetings_video_participants(meetings)
 
         yield self.metric_meetings_participant_clients(meetings)
+        yield self.metric_meetings_participants_origin(meetings)
 
         if settings.RECORDINGS_METRICS_ENABLE:
             yield self.metric_recordings_unpublished(bbb_api_latency)
@@ -126,6 +127,15 @@ class BigBlueButtonCollector:
         metric = GaugeMetricFamily('bbb_meetings_listeners',
                                    "Total number of listeners in all BigBlueButton meetings")
         metric.add_metric([], no_listeners)
+        return metric
+    
+    def metric_meetings_participants_origin(self, meetings):
+        participants_by_origin = self._get_participants_count_by_origin(meetings)
+        metric = GaugeMetricFamily('bbb_meetings_participants_origin',
+                                   "Total number of participants in all BigBlueButton meetings by origin servername",
+                                   labels=["server", "name"])
+        for (servername, origin), num in participants_by_origin.items():
+            metric.add_metric([servername.lower(), origin.lower()], num)
         return metric
 
     def metric_meetings_voice_participants(self, meetings):
@@ -283,6 +293,21 @@ class BigBlueButtonCollector:
                 p_by_c[attendee['clientType']] += 1
 
         return p_by_c
+
+    @staticmethod
+    def _get_participants_count_by_origin(meetings):
+        p_by_m = defaultdict(int)
+        for meeting in meetings:
+            participants = int(meeting['participantCount'])
+            if participants == 0:
+                continue
+            key = ('', '')
+            if meeting.get("metadata"):
+                servername = meeting['metadata'].get('bbb-origin-server-name') or ''
+                origin = meeting['metadata'].get('bbb-origin') or ''
+                key = (servername, origin)
+            p_by_m[key] += participants
+        return p_by_m
 
 
 def recordings_processing_from_disk(bigbluebutton_base_dir) -> int:
