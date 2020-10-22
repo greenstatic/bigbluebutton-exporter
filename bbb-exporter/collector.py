@@ -303,7 +303,7 @@ class BigBlueButtonCollector:
             if participants == 0:
                 continue
             if not meeting.get("metadata") or not meeting['metadata'].get(metadata_key):
-                p_by_m['_no_metadata'] += participants
+                p_by_m[''] += participants
             else:
                 p_by_m[meeting['metadata'][metadata_key]] += participants
 
