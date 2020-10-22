@@ -68,6 +68,7 @@ class BigBlueButtonCollector:
         yield self.metric_meetings_video_participants(meetings)
 
         yield self.metric_meetings_participant_clients(meetings)
+        yield self.metric_meetings_participant_origin(meetings)
 
         if settings.RECORDINGS_METRICS_ENABLE:
             yield self.metric_recordings_unpublished(bbb_api_latency)
@@ -102,8 +103,6 @@ class BigBlueButtonCollector:
         yield self.metric_voice_participants_histogram(meetings)
         yield self.metric_video_participants_histogram(meetings)
 
-        yield self.metric_participants_by_origin_servername(meetings)
-
         bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
         bbb_exporter.add_metric([settings.VERSION], 1)
         yield bbb_exporter
@@ -130,13 +129,13 @@ class BigBlueButtonCollector:
         metric.add_metric([], no_listeners)
         return metric
     
-    def metric_participants_by_origin_servername(self, meetings):
-        participants_by_servername = self._get_participant_count_by_metadata(meetings, 'bbb-origin-server-name')
-        metric = GaugeMetricFamily('bbb_meetings_participant_origin_servername',
+    def metric_meetings_participant_origin(self, meetings):
+        participants_by_origin = self._get_participant_count_by_origin(meetings)
+        metric = GaugeMetricFamily('bbb_meetings_participant_origin',
                                    "Total number of participants in all BigBlueButton meetings by origin servername",
-                                   labels=["origin"])
-        for origin, num in participants_by_servername.items():
-            metric.add_metric([origin.lower()], num)
+                                   labels=["server", "name"])
+        for (servername, origin), num in participants_by_origin.items():
+            metric.add_metric([servername.lower(), origin.lower()], num)
         return metric
 
     def metric_meetings_voice_participants(self, meetings):
@@ -296,17 +295,18 @@ class BigBlueButtonCollector:
         return p_by_c
 
     @staticmethod
-    def _get_participant_count_by_metadata(meetings, metadata_key = 'bbb-origin-server-name'):
+    def _get_participant_count_by_origin(meetings):
         p_by_m = defaultdict(int)
         for meeting in meetings:
             participants = int(meeting['participantCount'])
             if participants == 0:
                 continue
-            if not meeting.get("metadata") or not meeting['metadata'].get(metadata_key):
-                p_by_m[''] += participants
-            else:
-                p_by_m[meeting['metadata'][metadata_key]] += participants
-
+            key = ('', '')
+            if meeting.get("metadata"):
+                servername = meeting['metadata'].get('bbb-origin-server-name') or ''
+                origin = meeting['metadata'].get('bbb-origin') or ''
+                key = (servername, origin)
+            p_by_m[key] += participants
         return p_by_m
 
 
