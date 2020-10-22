@@ -68,7 +68,7 @@ class BigBlueButtonCollector:
         yield self.metric_meetings_video_participants(meetings)
 
         yield self.metric_meetings_participant_clients(meetings)
-        yield self.metric_meetings_participant_origin(meetings)
+        yield self.metric_meetings_participants_origin(meetings)
 
         if settings.RECORDINGS_METRICS_ENABLE:
             yield self.metric_recordings_unpublished(bbb_api_latency)
@@ -129,9 +129,9 @@ class BigBlueButtonCollector:
         metric.add_metric([], no_listeners)
         return metric
     
-    def metric_meetings_participant_origin(self, meetings):
-        participants_by_origin = self._get_participant_count_by_origin(meetings)
-        metric = GaugeMetricFamily('bbb_meetings_participant_origin',
+    def metric_meetings_participants_origin(self, meetings):
+        participants_by_origin = self._get_participants_count_by_origin(meetings)
+        metric = GaugeMetricFamily('bbb_meetings_participants_origin',
                                    "Total number of participants in all BigBlueButton meetings by origin servername",
                                    labels=["server", "name"])
         for (servername, origin), num in participants_by_origin.items():
@@ -295,7 +295,7 @@ class BigBlueButtonCollector:
         return p_by_c
 
     @staticmethod
-    def _get_participant_count_by_origin(meetings):
+    def _get_participants_count_by_origin(meetings):
         p_by_m = defaultdict(int)
         for meeting in meetings:
             participants = int(meeting['participantCount'])
