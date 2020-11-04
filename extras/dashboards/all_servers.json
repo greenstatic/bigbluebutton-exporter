@@ -30,7 +30,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 20,
-  "iteration": 1602961192242,
+  "iteration": 1604528058266,
   "links": [],
   "panels": [
     {
@@ -945,10 +945,106 @@
       "fill": 1,
       "fillGradient": 0,
       "gridPos": {
+        "h": 6,
+        "w": 20,
+        "x": 4,
+        "y": 24
+      },
+      "hiddenSeries": false,
+      "id": 64,
+      "legend": {
+        "alignAsTable": true,
+        "avg": false,
+        "current": true,
+        "max": true,
+        "min": true,
+        "rightSide": true,
+        "show": true,
+        "total": false,
+        "values": true
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bbb_meetings_participants_origin{job=\"$job\"}",
+          "interval": "",
+          "legendFormat": "{{server}} - {{name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Participants Origin",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:1229",
+          "format": "short",
+          "label": "Participants",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:1230",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": "$datasource",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
         "h": 7,
         "w": 24,
         "x": 0,
-        "y": 24
+        "y": 30
       },
       "hiddenSeries": false,
       "id": 55,
@@ -1052,7 +1148,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 31
+        "y": 37
       },
       "hiddenSeries": false,
       "id": 57,
@@ -1154,7 +1250,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 39
+        "y": 45
       },
       "hiddenSeries": false,
       "id": 61,
@@ -1251,7 +1347,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 47
+        "y": 53
       },
       "id": 30,
       "panels": [],
@@ -1285,7 +1381,7 @@
         "h": 13,
         "w": 12,
         "x": 0,
-        "y": 48
+        "y": 54
       },
       "id": 63,
       "options": {
@@ -1311,7 +1407,7 @@
         },
         {
           "expr": "1 - (netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"avail\"} / ignoring(dimension) (netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"avail\"} + ignoring(dimension) netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"used\"} + ignoring(dimension) netdata_disk_space_GiB_average{job=\"$job_netdata\", dimension=\"reserved for root\"}))",
-          "hide": false,
+          "hide": true,
           "interval": "",
           "legendFormat": "{{instance}} ({{family}})",
           "refId": "B"
@@ -1344,7 +1440,7 @@
         "h": 3,
         "w": 6,
         "x": 12,
-        "y": 48
+        "y": 54
       },
       "id": 14,
       "options": {
@@ -1396,7 +1492,7 @@
         "h": 3,
         "w": 6,
         "x": 18,
-        "y": 48
+        "y": 54
       },
       "id": 58,
       "options": {
@@ -1448,7 +1544,7 @@
         "h": 3,
         "w": 6,
         "x": 12,
-        "y": 51
+        "y": 57
       },
       "id": 18,
       "options": {
@@ -1500,7 +1596,7 @@
         "h": 3,
         "w": 6,
         "x": 18,
-        "y": 51
+        "y": 57
       },
       "id": 10,
       "options": {
@@ -1552,7 +1648,7 @@
         "h": 3,
         "w": 6,
         "x": 12,
-        "y": 54
+        "y": 60
       },
       "id": 20,
       "options": {
@@ -1601,7 +1697,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 57
+        "y": 63
       },
       "hiddenSeries": false,
       "id": 60,
@@ -1684,7 +1780,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 64
+        "y": 70
       },
       "id": 44,
       "panels": [],
@@ -1717,7 +1813,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 65
+        "y": 71
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1791,7 +1887,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 65
+        "y": 71
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1865,7 +1961,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 75
+        "y": 81
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1939,7 +2035,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 75
+        "y": 81
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1994,7 +2090,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 85
+        "y": 91
       },
       "id": 32,
       "panels": [],
@@ -2019,7 +2115,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 86
+        "y": 92
       },
       "hiddenSeries": false,
       "id": 36,
@@ -2091,14 +2187,16 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": "Seconds",
+          "$$hashKey": "object:1162",
+          "format": "s",
+          "label": "Response Time",
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:1163",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2131,7 +2229,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 94
+        "y": 100
       },
       "hiddenSeries": false,
       "id": 22,
@@ -2204,7 +2302,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "API 95-th Percentile Latency",
+      "title": "BigBlueButton API Response Time (95th Percentile)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -2220,14 +2318,16 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": "Latency [s]",
+          "$$hashKey": "object:1223",
+          "format": "s",
+          "label": "Resonse Time",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
+          "$$hashKey": "object:1224",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2252,11 +2352,6 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
         "hide": 0,
         "includeAll": false,
         "label": "Datasource",
@@ -2272,11 +2367,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "bbb",
-          "value": "bbb"
-        },
         "datasource": "$datasource",
         "definition": "label_values(bbb_exporter, job)",
         "hide": 0,
@@ -2298,11 +2388,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "bbb_node_exporter",
-          "value": "bbb_node_exporter"
-        },
         "datasource": "Prometheus",
         "definition": "label_values(node_cpu_seconds_total, job)",
         "hide": 0,
@@ -2324,11 +2409,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "bbb_netdata",
-          "value": "bbb_netdata"
-        },
         "datasource": "Prometheus",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
         "hide": 0,
@@ -2350,11 +2430,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "enp101s0f0",
-          "value": "enp101s0f0"
-        },
         "datasource": "$datasource",
         "definition": "label_values(node_network_address_assign_type, device)",
         "hide": 0,
@@ -2396,5 +2471,5 @@
   "timezone": "",
   "title": "BigBlueButton All Servers",
   "uid": "HIbd_CXZz",
-  "version": 11
+  "version": 14
 }

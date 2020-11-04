@@ -32,7 +32,7 @@
   "gnetId": null,
   "graphTooltip": 0,
   "id": 21,
-  "iteration": 1602956830647,
+  "iteration": 1604528162787,
   "links": [],
   "panels": [
     {
@@ -684,6 +684,101 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {}
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 0,
+        "y": 19
+      },
+      "hiddenSeries": false,
+      "id": 62,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "percentage": false,
+      "pluginVersion": "7.1.1",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bbb_meetings_participants_origin{job=\"$job\", instance=\"$instance\"}",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Participants Origin",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:992",
+          "format": "short",
+          "label": "Participants",
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        },
+        {
+          "$$hashKey": "object:993",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
@@ -695,8 +790,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 8,
-        "x": 0,
+        "w": 6,
+        "x": 6,
         "y": 19
       },
       "hiddenSeries": false,
@@ -706,7 +801,7 @@
         "current": false,
         "max": false,
         "min": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": false
       },
@@ -750,6 +845,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:913",
           "format": "short",
           "label": "Rooms",
           "logBase": 1,
@@ -758,6 +854,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:914",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -789,8 +886,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 8,
-        "x": 8,
+        "w": 6,
+        "x": 12,
         "y": 19
       },
       "hiddenSeries": false,
@@ -802,7 +899,7 @@
         "max": true,
         "min": true,
         "rightSide": false,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -846,6 +943,7 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:888",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -854,6 +952,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:889",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -885,8 +984,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 8,
-        "x": 16,
+        "w": 6,
+        "x": 18,
         "y": 19
       },
       "hiddenSeries": false,
@@ -897,7 +996,7 @@
         "current": true,
         "max": true,
         "min": true,
-        "show": true,
+        "show": false,
         "total": false,
         "values": true
       },
@@ -941,14 +1040,16 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:772",
           "format": "short",
-          "label": "Participants",
+          "label": "Video Participants",
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:773",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1618,6 +1719,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": "$datasource",
+      "description": "",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -1686,7 +1788,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "Metrics Response Time (95th Percentile)",
+      "title": "Exporter Metrics Response Time (95th Percentile)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1702,14 +1804,16 @@
       },
       "yaxes": [
         {
-          "format": "short",
-          "label": "Seconds",
+          "$$hashKey": "object:464",
+          "format": "s",
+          "label": "Response Time",
           "logBase": 1,
           "max": null,
           "min": "0",
           "show": true
         },
         {
+          "$$hashKey": "object:465",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1817,7 +1921,7 @@
       "timeFrom": null,
       "timeRegions": [],
       "timeShift": null,
-      "title": "API 95-th Percentile Latency",
+      "title": "BigBlueButton API Response Time (95th Percentile)",
       "tooltip": {
         "shared": true,
         "sort": 0,
@@ -1833,15 +1937,17 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:516",
           "decimals": null,
-          "format": "short",
-          "label": "Latency [s]",
+          "format": "s",
+          "label": "Response Time",
           "logBase": 1,
           "max": null,
           "min": null,
           "show": true
         },
         {
+          "$$hashKey": "object:517",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1867,11 +1973,6 @@
   "templating": {
     "list": [
       {
-        "current": {
-          "selected": false,
-          "text": "Prometheus",
-          "value": "Prometheus"
-        },
         "hide": 0,
         "includeAll": false,
         "label": null,
@@ -1887,11 +1988,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "bbb",
-          "value": "bbb"
-        },
         "datasource": "$datasource",
         "definition": "label_values(bbb_exporter, job)",
         "hide": 0,
@@ -1919,11 +2015,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "bbb_netdata",
-          "value": "bbb_netdata"
-        },
         "datasource": "$datasource",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
         "hide": 0,
@@ -1972,11 +2063,6 @@
       },
       {
         "allValue": null,
-        "current": {
-          "selected": false,
-          "text": "enp101s0f0",
-          "value": "enp101s0f0"
-        },
         "datasource": "Prometheus",
         "definition": "label_values(netdata_net_net_kilobits_persec_average, family)",
         "hide": 0,
@@ -2018,5 +2104,5 @@
   "timezone": "",
   "title": "BigBlueButton Server Instance (netdata)",
   "uid": "HIbd_CXZz2",
-  "version": 8
+  "version": 11
 }
