@@ -77,7 +77,7 @@ metric
 * bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by 
   client (html5|dial-in|flash)
 * bbb_meetings_participants_origin(name=<origin\>, server=<servername\>) - Total number of participants in all 
-  BigBlueButton meetings by server name and origin metadata
+  BigBlueButton meetings by server name and origin metadata (v0.6.0+)
 
     !!! hint
         *bbb_meetings_participants_origin* is useful when using multiple Greenlight instances with a single 
