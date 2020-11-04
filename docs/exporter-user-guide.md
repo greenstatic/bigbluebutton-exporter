@@ -74,8 +74,16 @@ metric
 * bbb_meetings_listeners - Total number of listeners in all BigBlueButton meetings
 * bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings
 * bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings
-* bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by client (html5|dial-in|flash)
-* bbb_meetings_participant_origin(server=<servername\>, name=<origin>) - Total number of participants in all BigBlueButton meetings by servername and origin metadata (e.g. when using multiple greenlight instances with a single big blue button server, or adding custom bbb-origin-server-name or bbb-origin metadata tags in your application using BigBlueButton)
+* bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by 
+  client (html5|dial-in|flash)
+* bbb_meetings_participants_origin(name=<origin\>, server=<servername\>) - Total number of participants in all 
+  BigBlueButton meetings by server name and origin metadata
+
+    !!! hint
+        *bbb_meetings_participants_origin* is useful when using multiple Greenlight instances with a single 
+        BigBlueButton server, or adding custom bbb-origin-server-name or bbb-origin metadata tags in your BigBlueButton
+        application. See [PR #65](https://github.com/greenstatic/bigbluebutton-exporter/pull/65) for details.
+  
 * bbb_recordings_processing - Total number of BigBlueButton recordings processing
 * bbb_recordings_published - Total number of BigBlueButton recordings published
 * bbb_recordings_unpublished - Total number of BigBlueButton recordings unpublished
