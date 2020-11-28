@@ -29,8 +29,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 20,
-  "iteration": 1604528058266,
+  "id": 1,
+  "iteration": 1606607119717,
   "links": [],
   "panels": [
     {
@@ -52,7 +52,11 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "displayMode": "color-text",
+            "filterable": false
+          },
           "mappings": [
             {
               "from": "",
@@ -77,8 +81,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "red",
+                "color": "rgb(199, 208, 217)",
                 "value": null
+              },
+              {
+                "color": "red",
+                "value": 0
               },
               {
                 "color": "green",
@@ -98,33 +106,47 @@
       "id": 12,
       "links": [],
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
+        "showHeader": true,
+        "sortBy": []
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_api_up{job=\"$job\"}",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "BBB API",
-      "type": "stat"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -161,8 +183,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -221,15 +246,26 @@
     },
     {
       "cacheTimeout": null,
-      "columns": [],
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
         },
         "overrides": []
       },
-      "fontSize": "100%",
       "gridPos": {
         "h": 4,
         "w": 6,
@@ -238,81 +274,47 @@
       },
       "id": 50,
       "links": [],
-      "pageSize": null,
-      "pluginVersion": "6.7.2",
-      "showHeader": true,
-      "sort": {
-        "col": 0,
-        "desc": true
+      "options": {
+        "showHeader": true
       },
-      "styles": [
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Time",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "alias": "",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Value",
-          "thresholds": [],
-          "type": "hidden",
-          "unit": "short"
-        },
-        {
-          "alias": "Instance | Version",
-          "align": "auto",
-          "colorMode": null,
-          "colors": [
-            "rgba(245, 54, 54, 0.9)",
-            "rgba(237, 129, 40, 0.89)",
-            "rgba(50, 172, 45, 0.97)"
-          ],
-          "dateFormat": "YYYY-MM-DD HH:mm:ss",
-          "decimals": 2,
-          "mappingType": 1,
-          "pattern": "Metric",
-          "thresholds": [],
-          "type": "number",
-          "unit": "short"
-        }
-      ],
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_exporter{job=\"$job\"}",
-          "format": "time_series",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}} | {{version}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "BigBlueButton Exporter Version",
-      "transform": "timeseries_to_rows",
-      "type": "table-old"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "version"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "cacheTimeout": null,
@@ -365,7 +367,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "sum(bbb_meetings_participants{job=\"$job\"})",
@@ -416,8 +418,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -509,8 +514,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -598,7 +606,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 4,
         "x": 0,
         "y": 13
@@ -619,7 +627,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "sum(bbb_room_participants_gcount{job=\"$job\"})",
@@ -638,7 +646,10 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -653,40 +664,53 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 7,
         "w": 4,
         "x": 0,
-        "y": 16
+        "y": 17
       },
       "id": 26,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_meetings_participants{job=\"$job\"}",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Participants per server",
-      "type": "stat"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -724,8 +748,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -818,8 +845,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -880,7 +910,10 @@
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -895,40 +928,53 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 4,
+        "h": 6,
         "w": 4,
         "x": 0,
-        "y": 20
+        "y": 24
       },
       "id": 24,
       "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "max"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "textMode": "auto"
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_meetings_participants{job=\"$job\"}",
-          "instant": false,
+          "format": "table",
+          "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Max Participants for Selected Timeframe",
-      "type": "stat"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -966,8 +1012,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1003,7 +1052,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1229",
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -1012,7 +1060,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1230",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1062,8 +1109,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1107,7 +1157,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1389",
           "format": "percent",
           "label": "CPU Utlization [%]",
           "logBase": 1,
@@ -1116,7 +1165,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1390",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1166,8 +1214,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1268,8 +1319,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1358,7 +1412,11 @@
       "datasource": null,
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "displayMode": "auto",
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1366,10 +1424,6 @@
               {
                 "color": "green",
                 "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
               }
             ]
           },
@@ -1378,31 +1432,24 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 13,
+        "h": 22,
         "w": 12,
         "x": 0,
         "y": 54
       },
       "id": 63,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "(node_filesystem_size_bytes{job=\"$job_node_exporter\"} - node_filesystem_avail_bytes{job=\"$job_node_exporter\"}) / node_filesystem_size_bytes{job=\"$job_node_exporter\"}",
+          "format": "table",
           "hide": false,
+          "instant": true,
           "interval": "",
-          "legendFormat": "{{instance}} ({{mountpoint}})",
+          "legendFormat": "",
           "refId": "A"
         },
         {
@@ -1416,13 +1463,51 @@
       "timeFrom": null,
       "timeShift": null,
       "title": "Storage Utilization",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "device",
+                "fstype",
+                "instance",
+                "Value",
+                "mountpoint"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {
+              "Value": 4,
+              "device": 2,
+              "fstype": 3,
+              "instance": 0,
+              "mountpoint": 1
+            },
+            "renameByName": {
+              "device": "Device",
+              "fstype": "FS Type",
+              "instance": "Instance",
+              "mountpoint": "Mountpoint"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1437,44 +1522,62 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 6,
         "x": 12,
         "y": 54
       },
       "id": 14,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "label_replace(bbb_recordings_processing{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
-          "instant": false,
+          "format": "table",
+          "instant": true,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Processing",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1489,44 +1592,62 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 6,
         "x": 18,
         "y": 54
       },
       "id": 58,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "label_replace(bbb_recordings_unprocessed{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
-          "instant": false,
+          "format": "table",
+          "instant": true,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Unprocessed",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1541,44 +1662,62 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 6,
         "x": 12,
-        "y": 57
+        "y": 59
       },
       "id": 18,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "last"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "label_replace(bbb_recordings_published{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Published",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1593,44 +1732,62 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 6,
         "x": 18,
-        "y": 57
+        "y": 59
       },
       "id": 10,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "label_replace(bbb_recordings_deleted{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Deleted",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "custom": {
+            "align": null,
+            "filterable": false
+          },
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -1645,38 +1802,53 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 5,
         "w": 6,
         "x": 12,
-        "y": 60
+        "y": 64
       },
       "id": 20,
       "options": {
-        "displayMode": "gradient",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "mean"
-          ],
-          "fields": "",
-          "values": false
-        },
-        "showUnfilled": true
+        "showHeader": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "label_replace(bbb_recordings_unpublished{job=\"$job\"}, \"name\", \"$1\", \"instance\", \"([a-zA-Z0-9-]*).*:.*\")",
+          "format": "table",
           "instant": true,
           "interval": "",
-          "legendFormat": "{{name}}",
+          "legendFormat": "",
           "refId": "A"
         }
       ],
       "timeFrom": null,
       "timeShift": null,
       "title": "Recordings Unpublished",
-      "type": "bargauge"
+      "transformations": [
+        {
+          "id": "filterFieldsByName",
+          "options": {
+            "include": {
+              "names": [
+                "instance",
+                "Value"
+              ]
+            }
+          }
+        },
+        {
+          "id": "organize",
+          "options": {
+            "excludeByName": {},
+            "indexByName": {},
+            "renameByName": {
+              "instance": "Instance"
+            }
+          }
+        }
+      ],
+      "type": "table"
     },
     {
       "aliasColors": {},
@@ -1697,7 +1869,7 @@
         "h": 7,
         "w": 12,
         "x": 12,
-        "y": 63
+        "y": 69
       },
       "hiddenSeries": false,
       "id": 60,
@@ -1715,8 +1887,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1780,7 +1955,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 70
+        "y": 76
       },
       "id": 44,
       "panels": [],
@@ -1813,7 +1988,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 71
+        "y": 77
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1887,7 +2062,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 71
+        "y": 77
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1961,7 +2136,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 81
+        "y": 87
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -2035,7 +2210,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 81
+        "y": 87
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -2090,7 +2265,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 91
+        "y": 97
       },
       "id": 32,
       "panels": [],
@@ -2115,7 +2290,7 @@
         "h": 8,
         "w": 24,
         "x": 0,
-        "y": 92
+        "y": 98
       },
       "hiddenSeries": false,
       "id": 36,
@@ -2133,8 +2308,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2187,7 +2365,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1162",
           "format": "s",
           "label": "Response Time",
           "logBase": 1,
@@ -2196,7 +2373,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1163",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2229,7 +2405,7 @@
         "h": 11,
         "w": 24,
         "x": 0,
-        "y": 100
+        "y": 106
       },
       "hiddenSeries": false,
       "id": 22,
@@ -2248,8 +2424,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -2318,7 +2497,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:1223",
           "format": "s",
           "label": "Resonse Time",
           "logBase": 1,
@@ -2327,7 +2505,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:1224",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -2352,6 +2529,7 @@
   "templating": {
     "list": [
       {
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Datasource",
@@ -2369,6 +2547,7 @@
         "allValue": null,
         "datasource": "$datasource",
         "definition": "label_values(bbb_exporter, job)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job",
@@ -2390,6 +2569,7 @@
         "allValue": null,
         "datasource": "Prometheus",
         "definition": "label_values(node_cpu_seconds_total, job)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job node_exporter",
@@ -2411,6 +2591,7 @@
         "allValue": null,
         "datasource": "Prometheus",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job Netdata",
@@ -2432,6 +2613,7 @@
         "allValue": null,
         "datasource": "$datasource",
         "definition": "label_values(node_network_address_assign_type, device)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Network Interface",
@@ -2471,5 +2653,5 @@
   "timezone": "",
   "title": "BigBlueButton All Servers",
   "uid": "HIbd_CXZz",
-  "version": 14
+  "version": 7
 }
