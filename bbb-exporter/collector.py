@@ -3,7 +3,8 @@ import os
 from functools import reduce
 from collections import defaultdict
 
-from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily, GaugeHistogramMetricFamily
+from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily, GaugeHistogramMetricFamily, \
+    CounterMetricFamily
 from prometheus_client.utils import INF
 
 import api
@@ -27,6 +28,12 @@ class BigBlueButtonCollector:
 
     recordings_metrics_base_dir = settings.recordings_metrics_base_dir
     recordings_metrics_from_disk = settings.RECORDINGS_METRICS_READ_FROM_DISK
+
+    last_scrape_meetings = set([])
+    unique_meetings_count = 0
+
+    last_scrape_breakout_rooms = set([])
+    unique_breakout_rooms_count = 0
 
     def set_room_participants_buckets(self, buckets):
         assert type(buckets) == list
@@ -102,6 +109,9 @@ class BigBlueButtonCollector:
         yield self.metric_listeners_histogram(meetings)
         yield self.metric_voice_participants_histogram(meetings)
         yield self.metric_video_participants_histogram(meetings)
+
+        yield self.metric_unique_meetings_count(meetings)
+        yield self.metric_unique_breakout_rooms_count(meetings)
 
         bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
         bbb_exporter.add_metric([settings.VERSION], 1)
@@ -276,6 +286,36 @@ class BigBlueButtonCollector:
         metric = GaugeMetricFamily('bbb_recordings_unprocessed', "Total number of BigBlueButton recordings enqueued to "
                                                                  "be processed (scraped from disk)")
         metric.add_metric([], recordings_unprocessed_from_disk(self.recordings_metrics_base_dir))
+        return metric
+
+    def metric_unique_meetings_count(self, meetings):
+        logging.debug("Calculating count of unique non-breakout meetings")
+
+        # Meetings that are not breakout rooms
+        m = list(filter(lambda meeting: meeting['isBreakout'].lower() == "false", meetings))
+
+        meetings_2 = set(map(lambda meeting: meeting['internalMeetingID'], m))
+        new_meetings_count = len(meetings_2 - self.last_scrape_meetings)
+        self.unique_meetings_count += new_meetings_count
+        self.last_scrape_meetings = meetings_2
+
+        metric = CounterMetricFamily('bbb_unique_meetings', "Unique non-breakout meetings counter")
+        metric.add_metric([], self.unique_meetings_count)
+        return metric
+
+    def metric_unique_breakout_rooms_count(self, meetings):
+        logging.debug("Calculating count of unique breakout rooms")
+
+        # Meetings that are not breakout rooms
+        m = list(filter(lambda meeting: meeting['isBreakout'].lower() == "true", meetings))
+
+        meetings_2 = set(map(lambda meeting: meeting['internalMeetingID'], m))
+        new_breakout_meetings_count = len(meetings_2 - self.last_scrape_breakout_rooms)
+        self.unique_breakout_rooms_count += new_breakout_meetings_count
+        self.last_scrape_breakout_rooms = meetings_2
+
+        metric = CounterMetricFamily('bbb_unique_breakout_rooms', "Unique breakout rooms counter")
+        metric.add_metric([], self.unique_breakout_rooms_count)
         return metric
 
     @staticmethod
