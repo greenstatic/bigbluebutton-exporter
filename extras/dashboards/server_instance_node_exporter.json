@@ -17,8 +17,8 @@
   "editable": true,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": 24,
-  "iteration": 1604526635876,
+  "id": 4,
+  "iteration": 1608489015691,
   "links": [],
   "panels": [
     {
@@ -78,7 +78,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 4,
         "w": 4,
         "x": 0,
         "y": 1
@@ -99,7 +99,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_api_up{job=\"$job\", instance=\"$instance\"}",
@@ -151,8 +151,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -188,6 +191,8 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:145",
+          "decimals": 0,
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -196,6 +201,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:146",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -219,6 +225,7 @@
         "#d44a3a"
       ],
       "datasource": "$datasource",
+      "description": "BigBlueButton Exporter Version",
       "fieldConfig": {
         "defaults": {
           "custom": {}
@@ -237,7 +244,7 @@
         "h": 3,
         "w": 4,
         "x": 0,
-        "y": 4
+        "y": 5
       },
       "id": 46,
       "interval": null,
@@ -290,7 +297,7 @@
       "thresholds": "",
       "timeFrom": null,
       "timeShift": null,
-      "title": "BigBlueButton Exporter Version",
+      "title": "BBB Exporter Version",
       "type": "singlestat",
       "valueFontSize": "80%",
       "valueMaps": [
@@ -324,7 +331,7 @@
         "h": 7,
         "w": 4,
         "x": 0,
-        "y": 7
+        "y": 8
       },
       "id": 26,
       "options": {
@@ -341,7 +348,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_meetings_participants{job=\"$job\", instance=\"$instance\"}",
@@ -414,14 +421,16 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:2952",
           "alias": "Participants",
           "yaxis": 2
         }
@@ -521,19 +530,20 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
       "seriesOverrides": [
         {
-          "$$hashKey": "object:3017",
           "alias": "Participants",
           "yaxis": 2
         },
         {
-          "$$hashKey": "object:3018",
           "alias": "CPU total utilization",
           "yaxis": 2
         }
@@ -627,10 +637,10 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 5,
+        "h": 6,
         "w": 4,
         "x": 0,
-        "y": 14
+        "y": 15
       },
       "id": 30,
       "options": {
@@ -647,7 +657,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_meetings_participants{job=\"$job\", instance=\"$instance\"}",
@@ -678,114 +688,6 @@
       "bars": false,
       "dashLength": 10,
       "dashes": false,
-      "datasource": null,
-      "description": "",
-      "fieldConfig": {
-        "defaults": {
-          "custom": {
-            "align": null
-          },
-          "mappings": [],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              }
-            ]
-          },
-          "unit": "short"
-        },
-        "overrides": []
-      },
-      "fill": 1,
-      "fillGradient": 0,
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 0,
-        "y": 19
-      },
-      "hiddenSeries": false,
-      "id": 59,
-      "legend": {
-        "avg": false,
-        "current": false,
-        "max": false,
-        "min": false,
-        "show": true,
-        "total": false,
-        "values": false
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "null",
-      "percentage": false,
-      "pluginVersion": "7.1.1",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
-      "targets": [
-        {
-          "expr": "bbb_meetings_participants_origin{job=\"$job\", instance=\"$instance\"}",
-          "interval": "",
-          "legendFormat": "{{name}}",
-          "refId": "A"
-        }
-      ],
-      "thresholds": [],
-      "timeFrom": null,
-      "timeRegions": [],
-      "timeShift": null,
-      "title": "Participants Origin",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "$$hashKey": "object:633",
-          "format": "short",
-          "label": "Participants",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "$$hashKey": "object:634",
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
-    },
-    {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "$datasource",
       "fieldConfig": {
         "defaults": {
@@ -797,8 +699,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 6,
-        "x": 6,
+        "w": 7,
+        "x": 4,
         "y": 19
       },
       "hiddenSeries": false,
@@ -815,8 +717,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -852,7 +757,8 @@
       },
       "yaxes": [
         {
-          "decimals": null,
+          "$$hashKey": "object:223",
+          "decimals": 0,
           "format": "short",
           "label": "Rooms",
           "logBase": 1,
@@ -861,6 +767,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:224",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -893,7 +800,7 @@
       "gridPos": {
         "h": 8,
         "w": 6,
-        "x": 12,
+        "x": 11,
         "y": 19
       },
       "hiddenSeries": false,
@@ -912,8 +819,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -949,6 +859,8 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:252",
+          "decimals": 0,
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -957,6 +869,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:253",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -988,8 +901,8 @@
       "fillGradient": 0,
       "gridPos": {
         "h": 8,
-        "w": 6,
-        "x": 18,
+        "w": 7,
+        "x": 17,
         "y": 19
       },
       "hiddenSeries": false,
@@ -1007,8 +920,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1044,7 +960,8 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:608",
+          "$$hashKey": "object:277",
+          "decimals": 0,
           "format": "short",
           "label": "Video Participants",
           "logBase": 1,
@@ -1053,7 +970,7 @@
           "show": true
         },
         {
-          "$$hashKey": "object:609",
+          "$$hashKey": "object:278",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1066,6 +983,116 @@
         "align": false,
         "alignLevel": null
       }
+    },
+    {
+      "datasource": "$datasource",
+      "description": "Unique meetings created in the time range - does not include breakout rooms.",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 21
+      },
+      "id": 60,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.4",
+      "targets": [
+        {
+          "expr": "increase(bbb_unique_meetings_total{job=\"$job\", instance=\"$instance\"}[$__range])",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "A"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Meetings Created in Time Range",
+      "type": "stat"
+    },
+    {
+      "datasource": "$datasource",
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {},
+          "decimals": 0,
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          }
+        },
+        "overrides": []
+      },
+      "gridPos": {
+        "h": 3,
+        "w": 4,
+        "x": 0,
+        "y": 24
+      },
+      "id": 61,
+      "options": {
+        "colorMode": "value",
+        "graphMode": "none",
+        "justifyMode": "auto",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "last"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "auto"
+      },
+      "pluginVersion": "7.3.4",
+      "targets": [
+        {
+          "expr": "increase(bbb_unique_breakout_rooms_total{job=\"$job\", instance=\"$instance\"}[$__range])",
+          "interval": "",
+          "legendFormat": "",
+          "refId": "B"
+        }
+      ],
+      "timeFrom": null,
+      "timeShift": null,
+      "title": "Breakout Rooms Created in Time Range",
+      "type": "stat"
     },
     {
       "datasource": "$datasource",
@@ -1106,7 +1133,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "bbb_recordings_processing{job=\"$job\", instance=\"$instance\"}",
@@ -1192,7 +1219,7 @@
         "showThresholdLabels": false,
         "showThresholdMarkers": true
       },
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "targets": [
         {
           "expr": "(node_filesystem_size_bytes{job=\"$job_node_exporter\", instance=\"$instance\"} - node_filesystem_avail_bytes{job=\"$job_node_exporter\", instance=\"$instance\"}) / node_filesystem_size_bytes{job=\"$job_node_exporter\", instance=\"$instance\"}",
@@ -1241,8 +1268,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1278,6 +1308,8 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:302",
+          "decimals": 0,
           "format": "short",
           "label": "Recordings ",
           "logBase": 1,
@@ -1286,6 +1318,7 @@
           "show": true
         },
         {
+          "$$hashKey": "object:303",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1335,8 +1368,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1372,6 +1408,8 @@
       },
       "yaxes": [
         {
+          "$$hashKey": "object:331",
+          "decimals": 0,
           "format": "short",
           "label": "Participants",
           "logBase": 1,
@@ -1380,6 +1418,119 @@
           "show": true
         },
         {
+          "$$hashKey": "object:332",
+          "format": "short",
+          "label": null,
+          "logBase": 1,
+          "max": null,
+          "min": null,
+          "show": true
+        }
+      ],
+      "yaxis": {
+        "align": false,
+        "alignLevel": null
+      }
+    },
+    {
+      "aliasColors": {},
+      "bars": false,
+      "dashLength": 10,
+      "dashes": false,
+      "datasource": null,
+      "description": "",
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "align": null
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              }
+            ]
+          },
+          "unit": "short"
+        },
+        "overrides": []
+      },
+      "fill": 1,
+      "fillGradient": 0,
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 38
+      },
+      "hiddenSeries": false,
+      "id": 59,
+      "legend": {
+        "avg": false,
+        "current": false,
+        "max": false,
+        "min": false,
+        "show": true,
+        "total": false,
+        "values": false
+      },
+      "lines": true,
+      "linewidth": 1,
+      "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
+      "percentage": false,
+      "pluginVersion": "7.3.4",
+      "pointradius": 2,
+      "points": false,
+      "renderer": "flot",
+      "seriesOverrides": [],
+      "spaceLength": 10,
+      "stack": false,
+      "steppedLine": false,
+      "targets": [
+        {
+          "expr": "bbb_meetings_participants_origin{job=\"$job\", instance=\"$instance\"}",
+          "interval": "",
+          "legendFormat": "{{name}}",
+          "refId": "A"
+        }
+      ],
+      "thresholds": [],
+      "timeFrom": null,
+      "timeRegions": [],
+      "timeShift": null,
+      "title": "Participants Origin",
+      "tooltip": {
+        "shared": true,
+        "sort": 0,
+        "value_type": "individual"
+      },
+      "type": "graph",
+      "xaxis": {
+        "buckets": null,
+        "mode": "time",
+        "name": null,
+        "show": true,
+        "values": []
+      },
+      "yaxes": [
+        {
+          "$$hashKey": "object:194",
+          "decimals": 0,
+          "format": "short",
+          "label": "Participants",
+          "logBase": 1,
+          "max": null,
+          "min": "0",
+          "show": true
+        },
+        {
+          "$$hashKey": "object:195",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1400,7 +1551,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 38
+        "y": 46
       },
       "id": 51,
       "panels": [],
@@ -1433,7 +1584,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 39
+        "y": 47
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1507,7 +1658,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 39
+        "y": 47
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1581,7 +1732,7 @@
         "h": 10,
         "w": 12,
         "x": 0,
-        "y": 49
+        "y": 57
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1655,7 +1806,7 @@
         "h": 10,
         "w": 12,
         "x": 12,
-        "y": 49
+        "y": 57
       },
       "heatmap": {},
       "hideZeroBuckets": true,
@@ -1710,7 +1861,7 @@
         "h": 1,
         "w": 24,
         "x": 0,
-        "y": 59
+        "y": 67
       },
       "id": 38,
       "panels": [],
@@ -1735,7 +1886,7 @@
         "h": 9,
         "w": 12,
         "x": 0,
-        "y": 60
+        "y": 68
       },
       "hiddenSeries": false,
       "id": 40,
@@ -1753,8 +1904,11 @@
       "lines": true,
       "linewidth": 1,
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1807,7 +1961,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:3437",
           "format": "s",
           "label": "Response Time",
           "logBase": 1,
@@ -1816,7 +1969,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:3438",
           "format": "short",
           "label": null,
           "logBase": 1,
@@ -1851,7 +2003,7 @@
         "h": 9,
         "w": 12,
         "x": 12,
-        "y": 60
+        "y": 68
       },
       "hiddenSeries": false,
       "id": 22,
@@ -1870,8 +2022,11 @@
       "linewidth": 1,
       "links": [],
       "nullPointMode": "null",
+      "options": {
+        "alertThreshold": true
+      },
       "percentage": false,
-      "pluginVersion": "7.1.1",
+      "pluginVersion": "7.3.4",
       "pointradius": 2,
       "points": false,
       "renderer": "flot",
@@ -1940,7 +2095,6 @@
       },
       "yaxes": [
         {
-          "$$hashKey": "object:3468",
           "decimals": null,
           "format": "s",
           "label": "Response Time",
@@ -1950,7 +2104,6 @@
           "show": true
         },
         {
-          "$$hashKey": "object:3469",
           "format": "short",
           "label": "",
           "logBase": 1,
@@ -1976,6 +2129,7 @@
   "templating": {
     "list": [
       {
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Datasource",
@@ -1993,6 +2147,7 @@
         "allValue": null,
         "datasource": "$datasource",
         "definition": "label_values(bbb_exporter, job)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job",
@@ -2020,25 +2175,15 @@
         "allValue": null,
         "datasource": "$datasource",
         "definition": "label_values(node_cpu_seconds_total, job)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Job node_exporter",
         "multi": false,
         "name": "job_node_exporter",
-        "options": [
-          {
-            "selected": true,
-            "text": "bbb_node_exporter",
-            "value": "bbb_node_exporter"
-          },
-          {
-            "selected": false,
-            "text": "cloud_maas",
-            "value": "cloud_maas"
-          }
-        ],
+        "options": [],
         "query": "label_values(node_cpu_seconds_total, job)",
-        "refresh": 0,
+        "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
         "sort": 0,
@@ -2052,6 +2197,7 @@
         "allValue": null,
         "datasource": "Prometheus",
         "definition": "label_values(bbb_api_up, instance)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Instance",
@@ -2073,6 +2219,7 @@
         "allValue": null,
         "datasource": "Prometheus",
         "definition": "label_values(node_network_transmit_bytes_total, device)",
+        "error": null,
         "hide": 0,
         "includeAll": false,
         "label": "Network Interface",
@@ -2112,5 +2259,5 @@
   "timezone": "",
   "title": "BigBlueButton Server Instance (node_exporter)",
   "uid": "HIbd_CXZz3",
-  "version": 6
+  "version": 4
 }
