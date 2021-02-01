@@ -2050,7 +2050,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(bbb_api_up, instance)",
         "hide": 0,
         "includeAll": false,
@@ -2071,7 +2071,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(node_network_transmit_bytes_total, device)",
         "hide": 0,
         "includeAll": false,

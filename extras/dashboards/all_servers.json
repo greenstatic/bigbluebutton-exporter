@@ -2567,7 +2567,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(node_cpu_seconds_total, job)",
         "error": null,
         "hide": 0,
@@ -2589,7 +2589,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(netdata_system_cpu_percentage_average, job)",
         "error": null,
         "hide": 0,

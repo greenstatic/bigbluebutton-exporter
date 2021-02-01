@@ -2042,7 +2042,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(bbb_api_up, instance)",
         "hide": 0,
         "includeAll": false,
@@ -2063,7 +2063,7 @@
       },
       {
         "allValue": null,
-        "datasource": "Prometheus",
+        "datasource": "$datasource",
         "definition": "label_values(netdata_net_net_kilobits_persec_average, family)",
         "hide": 0,
         "includeAll": false,
