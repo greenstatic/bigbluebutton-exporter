@@ -9,6 +9,10 @@ services:
       # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
       # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
       - "/var/bigbluebutton:/var/bigbluebutton:ro"
+    # There can be an issue of DNS resolution if the hostname and the api url is the same. 
+    # Docker then advertises the FQDN as a local 127.0.0.1 IP inside the container.
+    #extra_hosts: 
+    #  - 'host-fqdn:PUBLIC.HOST.IP.ADDRESS'
     environment:
       RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
