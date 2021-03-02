@@ -13,6 +13,7 @@ services:
     # Docker then advertises the FQDN as a local 127.0.0.1 IP inside the container.
     #extra_hosts: 
     #  - 'host-fqdn:PUBLIC.HOST.IP.ADDRESS'
+    #  - 'bbb.example.com:1.2.3.4'  # example
     environment:
       RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
