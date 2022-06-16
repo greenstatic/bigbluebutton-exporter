@@ -382,7 +382,7 @@ def recordings_deleted_from_disk(bigbluebutton_base_dir) -> int:
 
 def recordings_unprocessed_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    path = os.path.join(bigbluebutton_base_dir, "recording/status/sanity")
+    path = os.path.join(bigbluebutton_base_dir, "recording/status/recorded")
     try:
         return len(os.listdir(path=path))
     except FileNotFoundError:
