@@ -382,9 +382,21 @@ def recordings_deleted_from_disk(bigbluebutton_base_dir) -> int:
 
 def recordings_unprocessed_from_disk(bigbluebutton_base_dir) -> int:
     # bigbluebutton_base_dir i.e. "/var/bigbluebutton/"
-    path = os.path.join(bigbluebutton_base_dir, "recording/status/recorded")
+    sanity = 0
+    processed = 0
+
+    path = os.path.join(bigbluebutton_base_dir, "recording/status/sanity")
     try:
-        return len(os.listdir(path=path))
+        sanity = len(os.listdir(path=path))
     except FileNotFoundError:
         logging.info("Path %s doesn't exist, setting unprocessed recordings to 0", path)
         return 0
+
+    path = os.path.join(bigbluebutton_base_dir, "recording/status/processed")
+    try:
+        processed = len(os.listdir(path=path))
+    except FileNotFoundError:
+        logging.info("Path %s doesn't exist, setting unprocessed recordings to 0", path)
+        return 0
+
+    return sanity - processed
