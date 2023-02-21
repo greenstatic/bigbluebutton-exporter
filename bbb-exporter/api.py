@@ -43,8 +43,11 @@ def get_recordings(state: str):
     if data is None:
         return []
 
-    if data['response']['messageKey'] == 'noRecordings':
-        return []
+    try:
+        if data['response']['messageKey'] == 'noRecordings':
+            return []
+    except KeyError:
+        pass
 
     if data['response']['recordings'] is None:
         return []
