@@ -107,6 +107,13 @@ class BigBlueButtonCollector:
         bbb_exporter.add_metric([settings.VERSION], 1)
         yield bbb_exporter
 
+        # read BBB version from disk
+        with open("/etc/bigbluebutton/bigbluebutton-release", "r") as f:
+            bbb_release = f.read()
+        bbb_version = GaugeMetricFamily("bbb_version", "BigBlueButton version", labels=["version"])
+        bbb_version.add_metric([bbb_release.strip().split("=")[1]], 1)
+        yield bbb_version
+
         logging.info("Finished collecting metrics from BigBlueButton API")
 
     def metric_meetings(self, meetings):
