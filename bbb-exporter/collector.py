@@ -280,7 +280,7 @@ class BigBlueButtonCollector:
 
     @staticmethod
     def _get_participant_count_by_client(meetings):
-        p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0, 'FLASH': 0})
+        p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0})
         for meeting in meetings:
             if not meeting.get("attendees"):
                 continue
