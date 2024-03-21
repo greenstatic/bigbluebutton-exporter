@@ -6,7 +6,10 @@ services:
     ports:
       - "127.0.0.1:9688:9688"
     volumes:
+
+      # Can be removed if `BBB_VERSION_READ_FROM_DISK` is set to false (or omitted).
       - "/etc/bigbluebutton/bigbluebutton-release:/etc/bigbluebutton/bigbluebutton-release:ro"
+      
       # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
       # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
       - "/var/bigbluebutton:/var/bigbluebutton:ro"
@@ -16,6 +19,7 @@ services:
     #  - 'host-fqdn:PUBLIC.HOST.IP.ADDRESS'
     #  - 'bbb.example.com:1.2.3.4'  # example
     environment:
+      BBB_VERSION_READ_FROM_DISK: "true"
       RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
       - secrets.env

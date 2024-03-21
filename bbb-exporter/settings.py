@@ -5,7 +5,7 @@ from helpers import validate_api_base_url, validate_buckets, str_to_bool_or_none
 MAJOR = 0
 MINOR = 7
 BUGFIX = 0
-INFO = "preview2"
+INFO = "preview3"
 
 VERSION = "{}.{}.{}".format(MAJOR, MINOR, BUGFIX)
 if INFO:
@@ -41,7 +41,11 @@ RECORDINGS_METRICS_ENABLE = False if os.getenv("RECORDINGS_METRICS", "true").low
 
 RECORDINGS_METRICS_READ_FROM_DISK = False if os.getenv("RECORDINGS_METRICS_READ_FROM_DISK",
                                                        "false").lower() == "false" else True
+
+
 recordings_metrics_base_dir = "/var/bigbluebutton"
+
+BBB_VERSION_READ_FROM_DISK = False if os.getenv("BBB_VERSION_READ_FROM_DISK", "false").lower() == "false" else True
 
 # Global (gasp.) variable flag that is used to mark if communicating with BigBlueButton's API is possible.
 # Used to set the `bbb_api_up` metric.

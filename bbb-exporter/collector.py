@@ -29,6 +29,8 @@ class BigBlueButtonCollector:
     recordings_metrics_base_dir = settings.recordings_metrics_base_dir
     recordings_metrics_from_disk = settings.RECORDINGS_METRICS_READ_FROM_DISK
 
+    bbb_version_from_disk = settings.BBB_VERSION_READ_FROM_DISK
+
     last_scrape_meetings = set([])
     unique_meetings_count = 0
 
@@ -114,16 +116,12 @@ class BigBlueButtonCollector:
         yield self.metric_unique_meetings_count(meetings)
         yield self.metric_unique_breakout_rooms_count(meetings)
 
+        if self.bbb_version_from_disk:
+            self.metric_bbb_version()
+
         bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
         bbb_exporter.add_metric([settings.VERSION], 1)
         yield bbb_exporter
-
-        # read BBB version from disk
-        with open("/etc/bigbluebutton/bigbluebutton-release", "r") as f:
-            bbb_release = f.read()
-        bbb_version = GaugeMetricFamily("bbb_version", "BigBlueButton version", labels=["version"])
-        bbb_version.add_metric([bbb_release.strip().split("=")[1]], 1)
-        yield bbb_version
 
         logging.info("Finished collecting metrics from BigBlueButton API")
 
@@ -332,6 +330,13 @@ class BigBlueButtonCollector:
         metric = CounterMetricFamily('bbb_unique_breakout_rooms', "Unique breakout rooms counter")
         metric.add_metric([], self.unique_breakout_rooms_count)
         return metric
+    
+    def metric_bbb_version(self):
+        with open("/etc/bigbluebutton/bigbluebutton-release", "r") as f:
+            bbb_release = f.read()
+        bbb_version = GaugeMetricFamily("bbb_version", "BigBlueButton version", labels=["version"])
+        bbb_version.add_metric([bbb_release.strip().split("=")[1]], 1)
+        yield bbb_version
 
     @staticmethod
     def _get_participant_count_by_client(meetings):
