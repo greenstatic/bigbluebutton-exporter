@@ -70,6 +70,7 @@ class BigBlueButtonCollector:
 
         yield self.metric_meetings(meetings)
         yield self.metric_participants(meetings)
+        yield self.metric_participants_max(meetings)
         yield self.metric_meetings_listeners(meetings)
         yield self.metric_meetings_voice_participants(meetings)
         yield self.metric_meetings_video_participants(meetings)
@@ -136,6 +137,13 @@ class BigBlueButtonCollector:
         no_participants = reduce(lambda total, meeting: total + str_integer_to_int(meeting['participantCount']), meetings, 0)
         metric = GaugeMetricFamily('bbb_meetings_participants',
                                    "Total number of participants in all BigBlueButton meetings")
+        metric.add_metric([], no_participants)
+        return metric
+
+    def metric_participants_max(self, meetings):
+        no_participants = reduce(lambda max, meeting: int(meeting['participantCount']) if int(meeting['participantCount']) > max else max, meetings, 0)
+        metric = GaugeMetricFamily('bbb_meetings_participants_max',
+                                   "Maximum number of participants in all BigBlueButton meetings")
         metric.add_metric([], no_participants)
         return metric
 
