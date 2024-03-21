@@ -3,9 +3,9 @@ import api_lib
 from helpers import validate_api_base_url, validate_buckets, str_to_bool_or_none
 
 MAJOR = 0
-MINOR = 6
-BUGFIX = 1
-INFO = ""
+MINOR = 7
+BUGFIX = 0
+INFO = "preview2"
 
 VERSION = "{}.{}.{}".format(MAJOR, MINOR, BUGFIX)
 if INFO:

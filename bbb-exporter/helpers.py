@@ -102,3 +102,23 @@ def str_to_bool_or_none(s: str) -> Optional[bool]:
         return False
 
     return None
+
+
+def str_integer_to_int(s: str) -> int:
+    # Converts a string into an integer. The string can be simply an signed integer (e.g. 123, -123), comma thousands
+    # separated signed integer (e.g. 1,234 , -1,234) or a signed decimal integer (e.g. 1.234, -1.234). In the case of
+    # a signed decimal integer we will truncate everything after the decimal point. In the case of an empty string
+    # the function will return 0.
+    #
+    # "-1,223.234" -> -1223
+
+    if s == '':
+        return 0
+
+    s = s.replace(',', '')
+    s = s.split('.')
+
+    if len(s) > 0:
+        return int(s[0])
+
+    return 0

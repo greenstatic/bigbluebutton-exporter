@@ -3,12 +3,13 @@ import os
 from functools import reduce
 from collections import defaultdict
 
-from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily, GaugeHistogramMetricFamily
+from prometheus_client.metrics_core import GaugeMetricFamily, HistogramMetricFamily, GaugeHistogramMetricFamily, \
+    CounterMetricFamily
 from prometheus_client.utils import INF
 
 import api
 import settings
-from helpers import execution_duration, HistogramBucketHelper
+from helpers import execution_duration, HistogramBucketHelper, str_integer_to_int
 
 
 class BigBlueButtonCollector:
@@ -27,6 +28,12 @@ class BigBlueButtonCollector:
 
     recordings_metrics_base_dir = settings.recordings_metrics_base_dir
     recordings_metrics_from_disk = settings.RECORDINGS_METRICS_READ_FROM_DISK
+
+    last_scrape_meetings = set([])
+    unique_meetings_count = 0
+
+    last_scrape_breakout_rooms = set([])
+    unique_breakout_rooms_count = 0
 
     def set_room_participants_buckets(self, buckets):
         assert type(buckets) == list
@@ -103,6 +110,9 @@ class BigBlueButtonCollector:
         yield self.metric_voice_participants_histogram(meetings)
         yield self.metric_video_participants_histogram(meetings)
 
+        yield self.metric_unique_meetings_count(meetings)
+        yield self.metric_unique_breakout_rooms_count(meetings)
+
         bbb_exporter = GaugeMetricFamily("bbb_exporter", "BigBlueButton Exporter version", labels=["version"])
         bbb_exporter.add_metric([settings.VERSION], 1)
         yield bbb_exporter
@@ -123,14 +133,14 @@ class BigBlueButtonCollector:
         return metric
 
     def metric_participants(self, meetings):
-        no_participants = reduce(lambda total, meeting: total + int(meeting['participantCount']), meetings, 0)
+        no_participants = reduce(lambda total, meeting: total + str_integer_to_int(meeting['participantCount']), meetings, 0)
         metric = GaugeMetricFamily('bbb_meetings_participants',
                                    "Total number of participants in all BigBlueButton meetings")
         metric.add_metric([], no_participants)
         return metric
 
     def metric_meetings_listeners(self, meetings):
-        no_listeners = reduce(lambda total, meeting: total + int(meeting['listenerCount']), meetings, 0)
+        no_listeners = reduce(lambda total, meeting: total + str_integer_to_int(meeting['listenerCount']), meetings, 0)
         metric = GaugeMetricFamily('bbb_meetings_listeners',
                                    "Total number of listeners in all BigBlueButton meetings")
         metric.add_metric([], no_listeners)
@@ -146,14 +156,14 @@ class BigBlueButtonCollector:
         return metric
 
     def metric_meetings_voice_participants(self, meetings):
-        no_voice_participants = reduce(lambda total, meeting: total + int(meeting['voiceParticipantCount']), meetings, 0)
+        no_voice_participants = reduce(lambda total, meeting: total + str_integer_to_int(meeting['voiceParticipantCount']), meetings, 0)
         metric = GaugeMetricFamily('bbb_meetings_voice_participants',
                                    "Total number of voice participants in all BigBlueButton meetings")
         metric.add_metric([], no_voice_participants)
         return metric
 
     def metric_meetings_video_participants(self, meetings):
-        no_video_participants = reduce(lambda total, meeting: total + int(meeting['videoCount']), meetings, 0)
+        no_video_participants = reduce(lambda total, meeting: total + str_integer_to_int(meeting['videoCount']), meetings, 0)
         metric = GaugeMetricFamily('bbb_meetings_video_participants',
                                    "Total number of video participants in all BigBlueButton meetings")
 
@@ -218,7 +228,7 @@ class BigBlueButtonCollector:
         logging.debug("Calculating room participants histogram")
         histogram = HistogramBucketHelper(self.room_participants_buckets)
         for meeting in meetings:
-            histogram.add(int(meeting['participantCount']))
+            histogram.add(str_integer_to_int(meeting['participantCount']))
 
         metric = GaugeHistogramMetricFamily('bbb_room_participants', "BigBlueButton room participants histogram gauge")
         metric.add_metric([], histogram.get_buckets(), histogram.sum)
@@ -229,7 +239,7 @@ class BigBlueButtonCollector:
         logging.debug("Calculating room listeners histogram")
         histogram = HistogramBucketHelper(self.room_listeners_buckets)
         for meeting in meetings:
-            histogram.add(int(meeting['listenerCount']))
+            histogram.add(str_integer_to_int(meeting['listenerCount']))
 
         metric = GaugeHistogramMetricFamily('bbb_room_listeners', "BigBlueButton room listeners histogram gauge")
         metric.add_metric([], histogram.get_buckets(), histogram.sum)
@@ -239,7 +249,7 @@ class BigBlueButtonCollector:
         logging.debug("Calculating room voice participants histogram")
         histogram = HistogramBucketHelper(self.room_voice_participants_buckets)
         for meeting in meetings:
-            histogram.add(int(meeting['voiceParticipantCount']))
+            histogram.add(str_integer_to_int(meeting['voiceParticipantCount']))
 
         metric = GaugeHistogramMetricFamily('bbb_room_voice_participants',
                                             "BigBlueButton room voice participants histogram gauge")
@@ -250,7 +260,7 @@ class BigBlueButtonCollector:
         logging.debug("Calculating room video participants histogram")
         histogram = HistogramBucketHelper(self.room_video_participants_buckets)
         for meeting in meetings:
-            histogram.add(int(meeting['videoCount']))
+            histogram.add(str_integer_to_int(meeting['videoCount']))
 
         metric = GaugeHistogramMetricFamily('bbb_room_video_participants',
                                             "BigBlueButton room video participants histogram gauge")
@@ -285,6 +295,36 @@ class BigBlueButtonCollector:
         metric.add_metric([], recordings_unprocessed_from_disk(self.recordings_metrics_base_dir))
         return metric
 
+    def metric_unique_meetings_count(self, meetings):
+        logging.debug("Calculating count of unique non-breakout meetings")
+
+        # Meetings that are not breakout rooms
+        m = list(filter(lambda meeting: meeting['isBreakout'].lower() == "false", meetings))
+
+        meetings_2 = set(map(lambda meeting: meeting['internalMeetingID'], m))
+        new_meetings_count = len(meetings_2 - self.last_scrape_meetings)
+        self.unique_meetings_count += new_meetings_count
+        self.last_scrape_meetings = meetings_2
+
+        metric = CounterMetricFamily('bbb_unique_meetings', "Unique non-breakout meetings counter")
+        metric.add_metric([], self.unique_meetings_count)
+        return metric
+
+    def metric_unique_breakout_rooms_count(self, meetings):
+        logging.debug("Calculating count of unique breakout rooms")
+
+        # Meetings that are not breakout rooms
+        m = list(filter(lambda meeting: meeting['isBreakout'].lower() == "true", meetings))
+
+        meetings_2 = set(map(lambda meeting: meeting['internalMeetingID'], m))
+        new_breakout_meetings_count = len(meetings_2 - self.last_scrape_breakout_rooms)
+        self.unique_breakout_rooms_count += new_breakout_meetings_count
+        self.last_scrape_breakout_rooms = meetings_2
+
+        metric = CounterMetricFamily('bbb_unique_breakout_rooms', "Unique breakout rooms counter")
+        metric.add_metric([], self.unique_breakout_rooms_count)
+        return metric
+
     @staticmethod
     def _get_participant_count_by_client(meetings):
         p_by_c = defaultdict(int, {'HTML5': 0, 'DIAL-IN': 0})
@@ -305,7 +345,7 @@ class BigBlueButtonCollector:
     def _get_participants_count_by_origin(meetings):
         p_by_m = defaultdict(int)
         for meeting in meetings:
-            participants = int(meeting['participantCount'])
+            participants = str_integer_to_int(meeting['participantCount'])
             if participants == 0:
                 continue
             key = ('', '')
