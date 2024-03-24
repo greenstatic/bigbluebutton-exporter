@@ -4,7 +4,7 @@ services:
     container_name: node_exporter
     # Always check if there is a newer stable release:
     # https://hub.docker.com/r/prom/node-exporter/tags
-    image: prom/node-exporter:v0.18.1
+    image: prom/node-exporter:v1.7.0
     command:
     - "--path.rootfs=/host"
     - "--web.listen-address=127.0.0.1:9100"

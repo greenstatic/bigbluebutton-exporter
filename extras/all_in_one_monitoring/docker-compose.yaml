@@ -2,14 +2,18 @@ version: '3.2'
 services:
   bbb-exporter:
     container_name: bbb-exporter
-    image: greenstatic/bigbluebutton-exporter:v0.6.1
+    image: greenstatic/bigbluebutton-exporter:v0.7.0
     network_mode: host
     volumes:
+      # Can be removed if `BBB_VERSION_READ_FROM_DISK` is set to false (or omitted).
+      - "/etc/bigbluebutton/bigbluebutton-release:/etc/bigbluebutton/bigbluebutton-release:ro"
+
       # Can be removed if `RECORDINGS_METRICS_READ_FROM_DISK` is set to false (or omitted).
       # See https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/#optimizations for details.
       - "/var/bigbluebutton:/var/bigbluebutton:ro"
     environment:
       BIND_IP: "127.0.0.1"
+      BBB_VERSION_READ_FROM_DISK: "true"
       RECORDINGS_METRICS_READ_FROM_DISK: "true"
     env_file:
       - bbb_exporter_secrets.env
@@ -17,7 +21,7 @@ services:
 
   prometheus:
     container_name: prometheus
-    image: prom/prometheus:v2.37.1
+    image: prom/prometheus:v2.51.0
     network_mode: host
     command:
       # Default commands from Dockerfile
@@ -35,7 +39,7 @@ services:
 
   grafana:
     container_name: grafana
-    image: grafana/grafana:9.1.5
+    image: grafana/grafana:10.3.5
     network_mode: host
     environment:
       GF_SERVER_HTTP_ADDR: "127.0.0.1"
@@ -47,7 +51,7 @@ services:
 
   node_exporter:
     container_name: node_exporter
-    image: prom/node-exporter:v1.3.1
+    image: prom/node-exporter:v1.7.0
     network_mode: host
     command:
       - "--path.rootfs=/host"
