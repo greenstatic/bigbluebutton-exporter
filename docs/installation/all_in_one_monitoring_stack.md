@@ -72,7 +72,8 @@ sudo docker-compose up -d
 
 ### 5. Configure Nginx
 Add a location directive to your Nginx web server.
-To prevent the additional location directive from being deleted on Nginx upgrades, create a new file in: `/etc/bigbluebutton/nginx/monitoring.nginx`.
+To prevent the additional location directive from being deleted on Nginx upgrades, create a new file in: 
+`/usr/share/bigbluebutton/nginx/monitoring.nginx` ([#119](https://github.com/greenstatic/bigbluebutton-exporter/issues/119)).
 Add the following location directive to the file:
 
 ```text
@@ -88,7 +89,7 @@ location /monitoring/ {
     variable as well.
 
 !!! Tip
-    When upgrading BigBlueButton, the upgrade procedure will not overwrite the contents of `/etc/bigbluebutton/nginx/`folder. 
+    When upgrading BigBlueButton, the upgrade procedure will not overwrite the contents of `/usr/share/bigbluebutton/nginx/`folder. 
     
     You could also add a separate site configuration, but this will require you to point another domain to the server to
     do virtual hosting and acquire a separate HTTPS certificate.
