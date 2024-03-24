@@ -82,7 +82,7 @@ metric
 * bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings
 * bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings
 * bbb_meetings_participant_clients(type=<client\>) - Total number of participants in all BigBlueButton meetings by 
-  client (html5|dial-in|flash)
+  client (html5|dial-in)
 * bbb_meetings_participants_origin(name=<origin\>, server=<servername\>) - Total number of participants in all 
   BigBlueButton meetings by server name and origin metadata (v0.6.0+)
 
@@ -99,12 +99,12 @@ metric
 the exporter to be installed on the BigBlueButton server (access to `/var/bigbluebutton/` dir) and for 
 `RECORDINGS_METRICS_READ_FROM_DISK` to be enabled
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
-* bbb_exporter(labels: version) - Information about the exporter (i.e. version)
-* bbb_version(labels: version) - BigBlueButton version, requires for `BBB_VERSION_READ_FROM_DISK` to be enabled
+* bbb_exporter(labels: version) - Information about the exporter (i.e. version) (v0.7.0+)
+* bbb_version(labels: version) - BigBlueButton version, requires for `BBB_VERSION_READ_FROM_DISK` to be enabled (v0.7.0+)
 
 ### Counters
-* bbb_unique_meetings - Total number of unique non-breakout meetings
-* bbb_unique_breakout_rooms - Total number of unique breakout rooms
+* bbb_unique_meetings - Total number of unique non-breakout meetings (v0.7.0+)
+* bbb_unique_breakout_rooms - Total number of unique breakout rooms (v0.7.0+)
 
 ### Histograms
 * bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency

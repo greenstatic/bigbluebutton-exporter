@@ -10,4 +10,4 @@ docs:
 
 .PHONY: docs-dev
 docs-dev:
-	mkdocs serve
+	mkdocs serve -a 0.0.0.0:8000 --no-strict
