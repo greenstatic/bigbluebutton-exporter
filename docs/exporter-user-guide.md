@@ -39,7 +39,7 @@
     so running the exporter remotely with this option is not possible (unless you setup a remote file mount).
   * The metric `bbb_version` relies on this option to be turned on
  
-# Optimizations
+## Optimizations
 * RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.
 This can substantially decrease the scrape time required for the exporter to respond to metrics requests.
     * Required: false

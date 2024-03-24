@@ -10,9 +10,10 @@ On a HTTP `/metrics` request, the exporter will query the BigBlueButton's API fo
 Metrics exposed:
 
 * Number of participants by type (listeners, voice, video)
-* Number of participants by client (HTML5, dial-in, flash)
+* Number of participants by client (HTML5, dial-in)
 * Number of recordings (processing, published, unpublished, deleted, unprocessed)
 * Number of participants in rooms by bucket
+* ...and more, checkout [exporter docs](https://bigbluebutton-exporter.greenstatic.dev/exporter-user-guide/) for details.
 
 ## Use Case
 BigBlueButton Exporter is the bridge between BigBlueButton and modern monitoring infrastructure such as Prometheus, Alertmanager & Grafana.
