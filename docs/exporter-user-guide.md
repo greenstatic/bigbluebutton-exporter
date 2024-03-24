@@ -31,7 +31,14 @@
     * A `CA_BUNDLE` file is normal file that contains a list of CA certificates you trust.
       See [FAQ](./faq.md#my-ca_bundle-for-the-tls_verify-environment-variable-is-not-working) or the under the hood 
       [library documentation](https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification) for details.
-    
+* BBB_VERSION_READ_FROM_DISK - Enable the `bbb_version` metric
+  * Required: false
+  * Default: false
+  * Values: &lt;true | false&gt;
+  * Prerequisites: access to `/etc/bigbluebutton/bigbluebutton-release` (for Docker containers do a read-only bind mount) 
+    so running the exporter remotely with this option is not possible (unless you setup a remote file mount).
+  * The metric `bbb_version` relies on this option to be turned on
+ 
 # Optimizations
 * RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.
 This can substantially decrease the scrape time required for the exporter to respond to metrics requests.
@@ -93,6 +100,11 @@ the exporter to be installed on the BigBlueButton server (access to `/var/bigblu
 `RECORDINGS_METRICS_READ_FROM_DISK` to be enabled
 * bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise
 * bbb_exporter(labels: version) - Information about the exporter (i.e. version)
+* bbb_version(labels: version) - BigBlueButton version, requires for `BBB_VERSION_READ_FROM_DISK` to be enabled
+
+### Counters
+* bbb_unique_meetings - Total number of unique non-breakout meetings
+* bbb_unique_breakout_rooms - Total number of unique breakout rooms
 
 ### Histograms
 * bbb_api_latency(labels: endpoint, parameters) - BigBlueButton API call latency
