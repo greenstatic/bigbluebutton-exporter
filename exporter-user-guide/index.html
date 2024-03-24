@@ -445,6 +445,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric Histogram Custom Buckets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gauges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gauges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histograms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histograms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -568,6 +634,72 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#optimizations" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimizations
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimizations">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#metric-histogram-custom-buckets" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metric Histogram Custom Buckets
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Metrics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Metrics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gauges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gauges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counters" class="md-nav__link">
+    <span class="md-ellipsis">
+      Counters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#histograms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histograms
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -641,7 +773,7 @@
     so running the exporter remotely with this option is not possible (unless you setup a remote file mount).</li>
 <li>The metric <code>bbb_version</code> relies on this option to be turned on</li>
 </ul>
-<h1 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h1>
+<h2 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h2>
 <ul>
 <li>RECORDINGS_METRICS_READ_FROM_DISK - Collect expensive recordings metrics by querying the disk instead of the API.
 This can substantially decrease the scrape time required for the exporter to respond to metrics requests.<ul>
