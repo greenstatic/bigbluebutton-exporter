@@ -205,3 +205,4 @@ fabric.properties
 .idea
 .DS_Store
 .vscode
+venv
