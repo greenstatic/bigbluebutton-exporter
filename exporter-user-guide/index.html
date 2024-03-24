@@ -834,7 +834,7 @@ metric<ul>
 <li>bbb_meetings_voice_participants - Total number of voice participants in all BigBlueButton meetings</li>
 <li>bbb_meetings_video_participants - Total number of video participants in all BigBlueButton meetings</li>
 <li>bbb_meetings_participant_clients(type=&lt;client&gt;) - Total number of participants in all BigBlueButton meetings by 
-  client (html5|dial-in|flash)</li>
+  client (html5|dial-in)</li>
 <li>
 <p>bbb_meetings_participants_origin(name=&lt;origin&gt;, server=&lt;servername&gt;) - Total number of participants in all 
   BigBlueButton meetings by server name and origin metadata (v0.6.0+)</p>
@@ -855,13 +855,13 @@ application. See <a href="https://github.com/greenstatic/bigbluebutton-exporter/
 the exporter to be installed on the BigBlueButton server (access to <code>/var/bigbluebutton/</code> dir) and for 
 <code>RECORDINGS_METRICS_READ_FROM_DISK</code> to be enabled</li>
 <li>bbb_api_up - 1 if BigBlueButton API is responding 0 otherwise</li>
-<li>bbb_exporter(labels: version) - Information about the exporter (i.e. version)</li>
-<li>bbb_version(labels: version) - BigBlueButton version, requires for <code>BBB_VERSION_READ_FROM_DISK</code> to be enabled</li>
+<li>bbb_exporter(labels: version) - Information about the exporter (i.e. version) (v0.7.0+)</li>
+<li>bbb_version(labels: version) - BigBlueButton version, requires for <code>BBB_VERSION_READ_FROM_DISK</code> to be enabled (v0.7.0+)</li>
 </ul>
 <h3 id="counters">Counters<a class="headerlink" href="#counters" title="Permanent link">#</a></h3>
 <ul>
-<li>bbb_unique_meetings - Total number of unique non-breakout meetings</li>
-<li>bbb_unique_breakout_rooms - Total number of unique breakout rooms</li>
+<li>bbb_unique_meetings - Total number of unique non-breakout meetings (v0.7.0+)</li>
+<li>bbb_unique_breakout_rooms - Total number of unique breakout rooms (v0.7.0+)</li>
 </ul>
 <h3 id="histograms">Histograms<a class="headerlink" href="#histograms" title="Permanent link">#</a></h3>
 <ul>
