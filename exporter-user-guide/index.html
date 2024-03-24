@@ -765,13 +765,15 @@
   <a href="https://2.python-requests.org/en/master/user/advanced/#ssl-cert-verification">library documentation</a> for details.</li>
 </ul>
 </li>
-<li>BBB_VERSION_READ_FROM_DISK - Enable the <code>bbb_version</code> metric</li>
+<li>BBB_VERSION_READ_FROM_DISK - Enable the <code>bbb_version</code> metric<ul>
 <li>Required: false</li>
 <li>Default: false</li>
 <li>Values: &lt;true | false&gt;</li>
 <li>Prerequisites: access to <code>/etc/bigbluebutton/bigbluebutton-release</code> (for Docker containers do a read-only bind mount) 
-    so running the exporter remotely with this option is not possible (unless you setup a remote file mount).</li>
+  so running the exporter remotely with this option is not possible (unless you setup a remote file mount).</li>
 <li>The metric <code>bbb_version</code> relies on this option to be turned on</li>
+</ul>
+</li>
 </ul>
 <h2 id="optimizations">Optimizations<a class="headerlink" href="#optimizations" title="Permanent link">#</a></h2>
 <ul>
