@@ -29,7 +29,7 @@ def get_meetings():
     response = []
 
     for meeting in meetings:
-        if type(meeting) != OrderedDict:
+        if not isinstance(meeting, dict):
             continue
 
         response.append(meeting)
@@ -66,7 +66,7 @@ def get_recordings(state: str):
     response = []
 
     for recording in recordings:
-        if type(recording) != OrderedDict:
+        if not isinstance(recording, dict):
             continue
 
         response.append(recording)
