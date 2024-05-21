@@ -2,6 +2,6 @@ certifi==2024.2.2
 chardet==5.2.0
 idna==3.6
 prometheus-client==0.20.0
-requests==2.31.0
+requests==2.32.0
 urllib3==2.2.1
 xmltodict==0.13.0
