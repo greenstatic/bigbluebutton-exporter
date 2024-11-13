@@ -42,8 +42,8 @@ sudo htpasswd /etc/nginx/.htpasswd monitoring
 ```
 
 ### 4. Add Nginx site configuration
-Add the location directive to your Nginx web server (`/etc/nginx/sites-available/bigbluebutton`) that will proxy traffic to
-`127.0.0.1:9100`.
+Add the location directive to your Nginx web server that will proxy traffic to `127.0.0.1:9100`.
+To prevent the additional location directive from being deleted on Nginx upgrades, add it to the file you've created for the bbb exporter (`/etc/bigbluebutton/nginx/monitoring.nginx`).
 
 ```text
 # node_exporter metrics
