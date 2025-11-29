@@ -1,4 +1,4 @@
-FROM python:3.8-alpine
+FROM python:3.13-alpine
 EXPOSE 9688
 
 COPY requirements.txt /app/requirements.txt
